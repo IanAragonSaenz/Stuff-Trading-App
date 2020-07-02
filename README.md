@@ -9,7 +9,7 @@ BOOK/MOVIE/VIDEOGAMES/MANGA/STUFF TRADING
 - Habit: Will let people stop wasting items that they are not using anymore and let those items be re-used.
 Scope: It would start with messages, feed, sign-in, location and would be available for anyone, primarly focused on young adults.
 
-REQUIRED STORIES:
+1.REQUIRED STORIES:
 * Your app has multiple views
 * Your app interacts with a database (e.g. Parse) 
 * You can log in/log out of your app as a user
@@ -20,3 +20,11 @@ REQUIRED STORIES:
 * Your app uses gesture recognizers (e.g. double tap to like, e.g. pinch to scale) 
 * Your app use an animation (doesn’t have to be fancy) (e.g. fade in/out, e.g. animating a view growing and shrinking)
 * Your app incorporates an external library to add visual polish
+
+2.OPTIONAL STORIES
+
+
+3.SCREEN ARCHETYPES
+
+
+4.NAVIGATION
