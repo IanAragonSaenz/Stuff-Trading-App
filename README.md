@@ -37,11 +37,13 @@ It's an app where people can put up what items they would like to trade or give 
 * The user can upload a post of something that they want to trade to the feed.
 * The user can see the feed of trading options.
 * The feed should have infinite scrolling.
+* The users can message each other.
 
 **Optional Nice-to-have Stories**
 
 * The feed is divided in Books/Movies/Manga/etc.
-* The users can message each other.
+* The feed in a collection view.
+* Map view where it shows the trade posts close to you.
 * User should display the relative timestamp for each post "8m", "7h"
 
 ### 2. Screen Archetypes
@@ -57,8 +59,16 @@ It's an app where people can put up what items they would like to trade or give 
     * The user can upload a post of something that they want to trade to the feed.
     * The user can see the feed of trading options.
     * The feed should have infinite scrolling.
+    * Your app uses gesture recognizers (e.g. double tap to like, e.g. pinch to scale) 
 * User (other user profile)
     * Your app use an animation (doesn’t have to be fancy) (e.g. fade in/out, e.g. animating a view growing and shrinking)
+* ComposePost
+    * Somewhere in your app you can use the camera to take a picture and do something with the picture.
+    * Your app use an animation (doesn’t have to be fancy) (e.g. fade in/out, e.g. animating a view growing and shrinking)
+* PostDetails
+    * User should display the relative timestamp for each post "8m", "7h"
+* Messages
+    * Somewhere in your app you can use the camera to take a picture and do something with the picture.
 
 ### 3. Navigation
 
@@ -66,6 +76,7 @@ It's an app where people can put up what items they would like to trade or give 
 
 * Profile
 * Feed
+* Optional: close trades map
 
 **Flow Navigation** (Screen to Screen)
 
@@ -74,6 +85,9 @@ It's an app where people can put up what items they would like to trade or give 
 
 * Feed
    * User
+        * Messages
+   * PostDetails
+   * ComposePost
 
 ## Wireframes
 [Add picture of your hand sketched wireframes in this section]
