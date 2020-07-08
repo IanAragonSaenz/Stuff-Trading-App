@@ -6,7 +6,7 @@
 1. [Wireframes](#Wireframes)
 2. [Schema](#Schema)
 
-## Overview
+## Overview 
 ### Description
 It's an app where people can put up what items they would like to trade or give away, giving the option for other people to trade for things they want.
 
@@ -45,6 +45,7 @@ It's an app where people can put up what items they would like to trade or give 
 * The feed in a collection view.
 * Map view where it shows the trade posts close to you.
 * User should display the relative timestamp for each post "8m", "7h"
+* User can message images
 
 ### 2. Screen Archetypes
 
@@ -68,8 +69,7 @@ It's an app where people can put up what items they would like to trade or give 
 * PostDetails
     * User should display the relative timestamp for each post "8m", "7h"
 * Messages
-    * Somewhere in your app you can use the camera to take a picture and do something with the picture.
-
+    * User should display the relative timestamp for each message "8m", "7h"
 ### 3. Navigation
 
 **Tab Navigation** (Tab to Screen)
@@ -89,11 +89,9 @@ It's an app where people can put up what items they would like to trade or give 
    * PostDetails
    * ComposePost
 
-## Wireframes
-[Add picture of your hand sketched wireframes in this section]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+## Digital Wireframes
 
-### [BONUS] Digital Wireframes & Mockups
+<img src="https://github.com/IanAragonSaenz/Stuff-Trading-App/blob/master/WireframePic.png" width=600>
 
 ### [BONUS] Interactive Prototype
 
