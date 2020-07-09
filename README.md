@@ -38,6 +38,10 @@ It's an app where people can put up what items they would like to trade or give 
 * The user can see the feed of trading options.
 * The feed should have infinite scrolling.
 * The users can message each other.
+* User can change his name
+* User can change his password
+* User can change his profile picture.
+* User can see the chats and messages he has
 
 **Optional Nice-to-have Stories**
 
@@ -46,6 +50,7 @@ It's an app where people can put up what items they would like to trade or give 
 * Map view where it shows the trade posts close to you.
 * User should display the relative timestamp for each post "8m", "7h"
 * User can message images
+
 
 ### 2. Screen Archetypes
 
@@ -68,26 +73,45 @@ It's an app where people can put up what items they would like to trade or give 
     * Your app use an animation (doesn’t have to be fancy) (e.g. fade in/out, e.g. animating a view growing and shrinking)
 * PostDetails
     * User should display the relative timestamp for each post "8m", "7h"
-* Messages
+* DirectMessage
     * User should display the relative timestamp for each message "8m", "7h"
+    * The users can message each other.
+* Messages
+    * User can see the chats and messages he has
+* UserSettings
+    * User can change his name
+    * User can change his password
+    * User can change his profile picture.
+
 ### 3. Navigation
 
 **Tab Navigation** (Tab to Screen)
 
 * Profile
 * Feed
+* Messages
 * Optional: close trades map
 
 **Flow Navigation** (Screen to Screen)
 
 * Login
    * Profile
+   
+* Profile
+   * UserSettings
+   
+* Messages
+    * DirectMessage
 
 * Feed
    * User
-        * Messages
    * PostDetails
+   
+* PostDetails
    * ComposePost
+   
+* User
+   * DirectMessage
 
 ## Digital Wireframes
 
@@ -96,10 +120,145 @@ It's an app where people can put up what items they would like to trade or give 
 ### [BONUS] Interactive Prototype
 
 ## Schema 
-[This section will be completed in Unit 9]
 ### Models
-[Add table of models]
+#### Post
+| Property      | Type     | Description |
+| ------------- | -------- | ------------|
+| objectId      | String   | unique id for the post (default field) |
+| author        | Pointer to User| image author |
+| image         | File     | image that user posts |
+| title       | String   | image caption by author |
+| description | Number   | number of comments that has been posted to an image |
+| likesCount    | Number   | number of likes for the post |
+| createdAt     | DateTime | date when post is created (default field) |
+| updatedAt     | DateTime | date when post is last updated (default field) |
+
+#### User
+| Property      | Type     | Description |
+| ------------- | -------- | ------------|
+| objectId      | String   | unique id for the user (default field) |
+| image         | File       | image of user |
+| username   | String   | user's name |
+| password   | String   | user's password |
+| email | String   | user's email |
+| emailVerified    | Bool   | if user has verified his email |
+| authData    | Object   | user data |
+| createdAt     | DateTime | date when post is created (default field) |
+| updatedAt     | DateTime | date when post is last updated (default field) |
+
+### Chat
+| Property      | Type     | Description |
+| ------------- | -------- | ------------|
+| objectId      | String   | unique id for the message (default field) |
+| userA         | Pointer to User       | user from chat |
+| userB   | Pointer to User   | user from chat |
+| createdAt     | DateTime | date when post is created (default field) |
+| updatedAt     | DateTime | date when post is last updated (default field) |
+
+#### Message
+| Property      | Type     | Description |
+| ------------- | -------- | ------------|
+| objectId      | String   | unique id for the message (default field) |
+| message         | String       | user's message |
+| chat   | Pointer to Chat   | chat where message is supposed to go |
+| author   | Pointer to User   | user's name |
+| createdAt     | DateTime | date when post is created (default field) |
+| updatedAt     | DateTime | date when post is last updated (default field) |
+
 ### Networking
-- [Add list of network requests by screen ]
-- [Create basic snippets for each Parse network request]
+#### Login
+| CRUD   | HTTP Verb | Example                              |
+|--------|-----------|--------------------------------------|
+| Create | POST      | Creating a new user                  |
+| Create | POST      | Create a post                        |
+| Create | POST      | Create a direct messsage             |
+| Create | POST      | Logout from current session     |
+| Read   | GET       | Get an existing user                 |
+| Read   | GET       | Fetching posts for user's feed       |
+| Read   | GET       | Get messages from a chat             |
+| Update | PUT       | Update existing user profile picture |
+| Update | PUT       | Change user's name                   |
+| Update | PUT       | Change user's password               |
+| Delete | Delete    | Delete an existing user              |
+
+    - Login Screen
+        - (Create/POST) Creating a new user
+           ```Objective-C
+           if([self usernameEmpty:self.usernameText.text password:self.passwordText.text])
+               return;
+           
+           PFUser *newUser = [PFUser user];
+           newUser.username = self.usernameText.text;
+           newUser.password = self.passwordText.text;
+           
+           [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+               if(succeeded){
+                   //let user in
+               }else{
+                   //alert user of error
+               }
+           }];
+           ```
+        - (Read/GET) Get an exisiting user
+            ```Objective-C
+            if([self usernameEmpty:self.usernameText.text password:self.passwordText.text])
+                return;
+            
+            NSString *username = self.usernameText.text;
+            NSString *password = self.passwordText.text;
+
+            [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * _Nullable user, NSError * _Nullable error) {
+                if(error){
+                    //alert user of error
+                }else{
+                    //let user in
+                }
+            }];
+            ```
+    - Home Feed Screen
+        - (Read/GET) Fetching posts for user's feed 
+            ```Objective-C
+            PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+            query.limit = 20;
+            [query orderByDescending:@"createdAt"];
+            [query includeKey:@"author"];
+            
+            [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
+                if(!error){
+                    //do something with posts
+                }else{
+                    //error
+                }
+            }];
+            ```
+        - (Create/POST) Logout from current session
+            ```Objective-C
+            //change scenes
+            [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+                //do something
+            }];
+            ```
+    - Compose Post Screen
+        - (Create/POST) Create a post   
+            ```Objective-C
+            Post *newPost = [Post new];
+            newPost.image = [self getPFFileFromImage:image];
+            newPost.author = [PFUser currentUser];
+            newPost.caption = caption;
+            newPost.likeCount = @(0);
+            newPost.commentCount = @(0);
+            
+            [newPost saveInBackgroundWithBlock:];
+            ```
+            
+    - User Settings Screen
+        - (Create/POST) Create a post   
+            ```Objective-C
+            
+            ```
+    - Compose Post Screen
+        - (Create/POST) Create a post   
+            ```Objective-C
+            
+            ```
 - [OPTIONAL: List endpoints if using existing API such as Yelp]
