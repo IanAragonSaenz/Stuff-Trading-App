@@ -106,8 +106,6 @@ It's an app where people can put up what items they would like to trade or give 
 * Feed
    * User
    * PostDetails
-   
-* PostDetails
    * ComposePost
    
 * User
@@ -173,8 +171,11 @@ It's an app where people can put up what items they would like to trade or give 
 | Create | POST      | Create a post                        |
 | Create | POST      | Create a direct messsage             |
 | Create | POST      | Logout from current session     |
+| Create | POST      | Send message to another user     |
+| Read   | GET       | Login the user                 |
 | Read   | GET       | Get an existing user                 |
 | Read   | GET       | Fetching posts for user's feed       |
+| Read  | GET       | Fetch the user's chats   |
 | Read   | GET       | Get messages from a chat             |
 | Update | PUT       | Update existing user profile picture |
 | Update | PUT       | Change user's name                   |
@@ -199,7 +200,7 @@ It's an app where people can put up what items they would like to trade or give 
                }
            }];
            ```
-        - (Read/GET) Get an exisiting user
+        - (Read/GET) Login the user
             ```Objective-C
             if([self usernameEmpty:self.usernameText.text password:self.passwordText.text])
                 return;
@@ -238,6 +239,12 @@ It's an app where people can put up what items they would like to trade or give 
                 //do something
             }];
             ```
+    - Messages Screen
+        - (Read/GET) Fetch the user's chats
+        
+    - Profile Screen
+        - (Read/GET) Get an existing user 
+    
     - Compose Post Screen
         - (Create/POST) Create a post   
             ```Objective-C
@@ -252,13 +259,19 @@ It's an app where people can put up what items they would like to trade or give 
             ```
             
     - User Settings Screen
-        - (Create/POST) Create a post   
+        - (Update/PUT) Update existing user profile picture   
             ```Objective-C
-            
             ```
+        - (Update/PUT) Change user's name 
+        - (Update/PUT) Change user's password 
+        - (Delete) Delete an existing user
+        
     - Compose Post Screen
         - (Create/POST) Create a post   
             ```Objective-C
-            
             ```
+    - Direct Messages Screen
+        - (Read/GET) Get messages from a chat  
+        - (Read/GET) Send message to another user
+        
 - [OPTIONAL: List endpoints if using existing API such as Yelp]
