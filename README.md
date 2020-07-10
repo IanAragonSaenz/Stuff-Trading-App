@@ -26,7 +26,7 @@ It's an app where people can put up what items they would like to trade or give 
 
 * Your app interacts with Parse.
 * You can log in/log out of your app as a user.
-* You can sign up with a new user profile .
+* You can sign up with a new user profile.
 * The user can see his own profile.
 * The user can see other users profiles.
 * The user go to other user profile by clicking the profile pic in a post.
@@ -34,13 +34,13 @@ It's an app where people can put up what items they would like to trade or give 
 * The app implements map location.
 * The posts load in with animation.
 * The user can upload a post of something that they want to trade to the feed.
-* The user can see the feed of trading options.
+* The user can see the feed of trading.
 * The feed should have infinite scrolling.
 * The user can refresh the feed.
 * The users can message each other.
 * User can change his name.
 * User can change his password.
-* User can see the chats and messages he has.
+* User can see the chats and messages.
 * The user can post an image.
 * The user can add map location to the post.
 * User should display the relative timestamp for each message "8m", "7h"
@@ -85,7 +85,7 @@ It's an app where people can put up what items they would like to trade or give 
     * User should display the relative timestamp for each message "8m", "7h"
     * The users can message each other.
 * Messages
-    * User can see the chats and messages he has.
+    * User can see the chats and messages.
 * UserSettings
     * User can change his name
     * User can change his password
