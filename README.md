@@ -24,19 +24,12 @@ It's an app where people can put up what items they would like to trade or give 
 
 **Required Must-have Stories**
 
-* The app has login screen.
-* The app has a feed screen.
-* The app has a profile screen.
-* The app has a messages screen.
-* The app has a settings screen.
-* The app has a post detail screen.
-* The app has a user screen.
-* The app has a direct mesages screen.
-* The app has a compose post screen.
-* The app has a map screen.
 * Your app interacts with Parse.
 * You can log in/log out of your app as a user.
 * You can sign up with a new user profile .
+* The user can see his own profile.
+* The user can see other users profiles.
+* The user go to other user profile by clicking the profile pic in a post.
 * The user can set his profile picture.
 * The app implements map location.
 * The posts load in with animation.
@@ -67,24 +60,22 @@ It's an app where people can put up what items they would like to trade or give 
 ### 2. Screen Archetypes
 
 * Log-in
-  * The app has login screen.
   * Your app interacts with Parse.
   * You can log in/log out of your app as a user
   * You can sign up with a new user profile 
 * Profile (our profile)
-   * The app has a profile screen.
+    * The user can see his own profile.
 * Feed
-    * The app has a feed screen.
     * The user can upload a post of something that they want to trade to the feed.
     * The posts load in with animation.
     * The user can see the feed of trading options.
     * The feed should have infinite scrolling.
     * The user can refresh the feed.
     * You can log in/log out of your app as a user
+    * The user go to other user profile by clicking the profile pic in a post.
 * User (other user profile)
-    * The app has a user screen.
+    * The user can see other users profiles.
 * ComposePost
-    * The app has a compose post screen.
     * The user can upload a post of something that they want to trade to the feed.
     * The user can post an image.
     * The user can add map location to the post.
