@@ -150,6 +150,7 @@ It's an app where people can put up what items they would like to trade or give 
 | objectId      | String   | unique id for the message (default field) |
 | userA         | Pointer to User       | user from chat |
 | userB   | Pointer to User   | user from chat |
+| Messages   | Array   | messages from chat |
 | createdAt     | DateTime | date when post is created (default field) |
 | updatedAt     | DateTime | date when post is last updated (default field) |
 
@@ -158,7 +159,6 @@ It's an app where people can put up what items they would like to trade or give 
 | ------------- | -------- | ------------|
 | objectId      | String   | unique id for the message (default field) |
 | message         | String       | user's message |
-| chat   | Pointer to Chat   | chat where message is supposed to go |
 | author   | Pointer to User   | user's name |
 | createdAt     | DateTime | date when post is created (default field) |
 | updatedAt     | DateTime | date when post is last updated (default field) |
