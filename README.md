@@ -24,64 +24,83 @@ It's an app where people can put up what items they would like to trade or give 
 
 **Required Must-have Stories**
 
-* Your app has multiple views
-* Your app interacts with a database (e.g. Parse) 
-* You can log in/log out of your app as a user
-* You can sign up with a new user profile 
-* Somewhere in your app you can use the camera to take a picture and do something with the picture (e.g. take a photo and share it to a feed, or take a photo and set a user’s profile picture)
-* Your app integrates with a SDK (e.g. Google Maps SDK, Facebook SDK)
-* Your app contains at least one more complex algorithm (talk with your manager) 
-* Your app uses gesture recognizers (e.g. double tap to like, e.g. pinch to scale) 
-* Your app use an animation (doesn’t have to be fancy) (e.g. fade in/out, e.g. animating a view growing and shrinking)
-* Your app incorporates an external library to add visual polish
+* The app has login screen.
+* The app has a feed screen.
+* The app has a profile screen.
+* The app has a messages screen.
+* The app has a settings screen.
+* The app has a post detail screen.
+* The app has a user screen.
+* The app has a direct mesages screen.
+* The app has a compose post screen.
+* The app has a map screen.
+* Your app interacts with Parse.
+* You can log in/log out of your app as a user.
+* You can sign up with a new user profile .
+* The user can set his profile picture.
+* The app implements map location.
+* The posts load in with animation.
 * The user can upload a post of something that they want to trade to the feed.
 * The user can see the feed of trading options.
 * The feed should have infinite scrolling.
+* The user can refresh the feed.
 * The users can message each other.
-* User can change his name
-* User can change his password
-* User can change his profile picture.
-* User can see the chats and messages he has
+* User can change his name.
+* User can change his password.
+* User can see the chats and messages he has.
+* The user can post an image.
+* The user can add map location to the post.
+* User should display the relative timestamp for each message "8m", "7h"
+* User should display the relative timestamp for each post "8m", "7h"
+* Your app incorporates an external library to add visual polish.
+* Your app contains at least one more complex algorithm (talk with your manager).
+
 
 **Optional Nice-to-have Stories**
 
 * The feed is divided in Books/Movies/Manga/etc.
 * The feed in a collection view.
 * Map view where it shows the trade posts close to you.
-* User should display the relative timestamp for each post "8m", "7h"
-* User can message images
+* User can message images.
 
 
 ### 2. Screen Archetypes
 
 * Log-in
-  * Your app interacts with a database (e.g. Parse) 
+  * The app has login screen.
+  * Your app interacts with Parse.
   * You can log in/log out of your app as a user
   * You can sign up with a new user profile 
 * Profile (our profile)
-   * Somewhere in your app you can use the camera to take a picture and do something with the picture (e.g. take a photo and share it to a feed, or take a photo and set a user’s profile picture)
-   * Your app use an animation (doesn’t have to be fancy) (e.g. fade in/out, e.g. animating a view growing and shrinking)
+   * The app has a profile screen.
 * Feed
+    * The app has a feed screen.
     * The user can upload a post of something that they want to trade to the feed.
+    * The posts load in with animation.
     * The user can see the feed of trading options.
     * The feed should have infinite scrolling.
-    * Your app uses gesture recognizers (e.g. double tap to like, e.g. pinch to scale) 
+    * The user can refresh the feed.
+    * You can log in/log out of your app as a user
 * User (other user profile)
-    * Your app use an animation (doesn’t have to be fancy) (e.g. fade in/out, e.g. animating a view growing and shrinking)
+    * The app has a user screen.
 * ComposePost
-    * Somewhere in your app you can use the camera to take a picture and do something with the picture.
-    * Your app use an animation (doesn’t have to be fancy) (e.g. fade in/out, e.g. animating a view growing and shrinking)
+    * The app has a compose post screen.
+    * The user can upload a post of something that they want to trade to the feed.
+    * The user can post an image.
+    * The user can add map location to the post.
 * PostDetails
     * User should display the relative timestamp for each post "8m", "7h"
 * DirectMessage
     * User should display the relative timestamp for each message "8m", "7h"
     * The users can message each other.
 * Messages
-    * User can see the chats and messages he has
+    * User can see the chats and messages he has.
 * UserSettings
     * User can change his name
     * User can change his password
-    * User can change his profile picture.
+    * The user can set his profile picture.
+* MapView
+    * The app implements map location.
 
 ### 3. Navigation
 
@@ -108,6 +127,9 @@ It's an app where people can put up what items they would like to trade or give 
    * PostDetails
    * ComposePost
    
+* ComposePost
+    * MapView
+   
 * User
    * DirectMessage
 
@@ -128,6 +150,7 @@ It's an app where people can put up what items they would like to trade or give 
 | title       | String   | image caption by author |
 | description | Number   | number of comments that has been posted to an image |
 | likesCount    | Number   | number of likes for the post |
+| location    | String   | location for the trade |
 | createdAt     | DateTime | date when post is created (default field) |
 | updatedAt     | DateTime | date when post is last updated (default field) |
 
@@ -187,11 +210,11 @@ It's an app where people can put up what items they would like to trade or give 
            ```Objective-C
            if([self usernameEmpty:self.usernameText.text password:self.passwordText.text])
                return;
-           
+
            PFUser *newUser = [PFUser user];
            newUser.username = self.usernameText.text;
            newUser.password = self.passwordText.text;
-           
+
            [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                if(succeeded){
                    //let user in
