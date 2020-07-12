@@ -1,0 +1,6 @@
+framework module Pods_Stuff_Trading_App_Stuff_Trading_AppUITests {
+  umbrella header "Pods-Stuff Trading App-Stuff Trading AppUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

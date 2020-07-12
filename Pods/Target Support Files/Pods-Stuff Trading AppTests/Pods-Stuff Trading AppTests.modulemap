@@ -1,0 +1,6 @@
+framework module Pods_Stuff_Trading_AppTests {
+  umbrella header "Pods-Stuff Trading AppTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

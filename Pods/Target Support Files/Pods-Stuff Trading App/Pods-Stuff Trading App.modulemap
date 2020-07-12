@@ -1,0 +1,6 @@
+framework module Pods_Stuff_Trading_App {
+  umbrella header "Pods-Stuff Trading App-umbrella.h"
+
+  export *
+  module * { export * }
+}
