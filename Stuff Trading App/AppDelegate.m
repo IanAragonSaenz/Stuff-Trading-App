@@ -18,7 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     ParseClientConfiguration *config = [ParseClientConfiguration   configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
-        configuration.applicationId = @"tradingAppid";
+        configuration.applicationId = @"tradingAppId";
         configuration.server = @"https://stuff-trading-app.herokuapp.com/parse";
     }];
     [Parse initializeWithConfiguration:config];
