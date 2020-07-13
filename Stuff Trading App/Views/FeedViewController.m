@@ -14,6 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *posts;
+@property (strong, nonatomic) UIRefreshControl *refresh;
 
 @end
 
@@ -24,6 +25,10 @@
     // Do any additional setup after loading the view.
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    self.refresh = [[UIRefreshControl alloc] init];
+    [self.refresh addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refresh atIndex:0];
     [self fetchPosts];
 }
 
@@ -43,6 +48,7 @@
             NSLog(@"Error when loading posts");
         }
     }];
+    [self.refresh endRefreshing];
 }
 
 #pragma mark - Data Source
