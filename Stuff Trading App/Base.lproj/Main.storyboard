@@ -100,23 +100,75 @@
             </objects>
             <point key="canvasLocation" x="133" y="1079"/>
         </scene>
-        <!--View Controller-->
+        <!--Compose Post View Controller-->
         <scene sceneID="4fg-Vp-sy0">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="EZH-At-OdJ" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="EZH-At-OdJ" customClass="ComposePostViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xb5-QV-uBC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9ac-Ft-sSg">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tBb-fN-K0i">
+                                        <rect key="frame" x="0.0" y="-44" width="414" height="736"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Title" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SlP-eQ-I4x">
+                                                <rect key="frame" x="14" y="232" width="374" height="32"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Description of post" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2p5-BE-wfe">
+                                                <rect key="frame" x="14" y="321" width="374" height="128"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="square.and.arrow.down" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="PWO-4E-wCa">
+                                                <rect key="frame" x="14" y="70.999999999999091" width="120" height="120"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    </view>
+                                </subviews>
+                                <viewLayoutGuide key="contentLayoutGuide" id="ENZ-uN-SLz"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="B9d-CX-yb9"/>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="GpG-vf-PSL"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Sye-dQ-Kgr">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="dbF-mv-Pou">
+                            <connections>
+                                <action selector="cancel:" destination="EZH-At-OdJ" id="Wcz-Tf-nDO"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Post" id="Mqn-qh-WeY">
+                            <connections>
+                                <action selector="post:" destination="EZH-At-OdJ" id="SLH-MS-Ii7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="desc" destination="2p5-BE-wfe" id="8Fm-Jd-HRN"/>
+                        <outlet property="postImage" destination="PWO-4E-wCa" id="3xj-n3-3lx"/>
+                        <outlet property="title" destination="SlP-eQ-I4x" id="rNN-fr-fEc"/>
                         <segue destination="r74-kK-bOL" kind="presentation" identifier="mapSegue" id="gbH-ZS-j9T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F3E-z3-NAb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-780" y="1855"/>
+            <point key="canvasLocation" x="-1317.3913043478262" y="1854.6195652173915"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Te0-it-ngB">
@@ -131,7 +183,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EQi-3g-jgL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-780" y="2689"/>
+            <point key="canvasLocation" x="-1316" y="2689"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="7Vn-68-7SS">
+            <objects>
+                <navigationController modalPresentationStyle="fullScreen" id="lnB-H8-OXN" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="r3K-L0-cdW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="EZH-At-OdJ" kind="relationship" relationship="rootViewController" id="igA-3e-PeC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vCl-Mj-5Kg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-575" y="1855"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="kHf-yb-IEr">
@@ -239,12 +307,18 @@
                         <viewLayoutGuide key="safeArea" id="2Gg-WX-o1v"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Feed" id="3bY-LK-4IW"/>
-                    <navigationItem key="navigationItem" id="NFK-yA-5Uj"/>
+                    <navigationItem key="navigationItem" id="NFK-yA-5Uj">
+                        <barButtonItem key="rightBarButtonItem" title="Post" id="6wG-02-SEc">
+                            <connections>
+                                <action selector="composePost:" destination="Xtq-Iq-aon" id="v4B-Jx-XoA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="lz6-mo-UyY" id="UbZ-AA-XGy"/>
-                        <segue destination="EZH-At-OdJ" kind="presentation" identifier="composeSegue" id="SRN-UF-Buf"/>
                         <segue destination="mim-sI-SBP" kind="presentation" identifier="userSegue" id="fCw-Mj-y1v"/>
                         <segue destination="HNb-q5-TGn" kind="presentation" identifier="detailSegue" id="jR3-e2-2Og"/>
+                        <segue destination="lnB-H8-OXN" kind="presentation" identifier="composeSegue" id="DFK-bX-Ueh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iCF-Jg-3xh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -343,5 +417,6 @@
     </scenes>
     <resources>
         <image name="person.crop.square" catalog="system" width="128" height="114"/>
+        <image name="square.and.arrow.down" catalog="system" width="121" height="128"/>
     </resources>
 </document>

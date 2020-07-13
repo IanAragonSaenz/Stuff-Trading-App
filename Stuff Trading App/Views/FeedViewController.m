@@ -56,6 +56,12 @@
     return self.posts.count;
 }
 
+#pragma mark - Post Button
+
+- (IBAction)composePost:(id)sender {
+    [self performSegueWithIdentifier:@"composePost" sender:nil];
+}
+
 /*
 #pragma mark - Navigation
 
