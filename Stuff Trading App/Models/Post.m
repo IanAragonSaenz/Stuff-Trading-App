@@ -7,6 +7,7 @@
 //
 
 #import "Post.h"
+#import "User.h"
 
 @implementation Post
 
@@ -24,7 +25,7 @@
 
 + (void)postTradeImage:(UIImage *_Nullable)image withTitle:(NSString *_Nullable)title withDescription:(NSString *_Nullable)description withCompletion:(PFBooleanResultBlock _Nullable)completion{
     Post *post = [Post new];
-    post.author = [PFUser currentUser];
+    post.author = [User currentUser];
     post.image = [self getPFFileFromImage:image];
     post.title = title;
     post.desc = description;
