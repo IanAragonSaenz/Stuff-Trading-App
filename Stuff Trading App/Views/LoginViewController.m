@@ -24,9 +24,12 @@
 }
 
 - (IBAction)login:(id)sender {
+    if([self isEmpty:self.usernameText.text password:self.passwordText.text])
+        return;
+    
     [PFUser logInWithUsernameInBackground:self.usernameText.text password:self.passwordText.text block:^(PFUser * _Nullable user, NSError * _Nullable error) {
         if(error){
-            NSLog(@" error when loging in: %@", error.localizedDescription);
+            [self sendError:error.localizedDescription];
         } else {
             [self performSegueWithIdentifier:@"loginSegue" sender:nil];
         }
@@ -34,17 +37,40 @@
 }
 
 - (IBAction)signUp:(id)sender {
+    if([self isEmpty:self.usernameText.text password:self.passwordText.text])
+        return;
+    
     PFUser *user = [PFUser user];
     user.username = self.usernameText.text;
     user.password = self.passwordText.text;
     
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if(error){
-            NSLog(@" error when doing sign up: %@", error.localizedDescription);
+            [self sendError:error.localizedDescription];
         } else {
             [self performSegueWithIdentifier:@"loginSegue" sender:nil];
         }
     }];
+}
+
+- (BOOL)isEmpty:(NSString *)username password:(NSString *)password{
+    if([username isEqualToString:@""]){
+        [self sendError:@"Username is empty"];
+        return YES;
+    } else if([password isEqualToString:@""]){
+        [self sendError:@"Password is empty"];
+        return YES;
+    }
+    return NO;
+}
+
+- (void)sendError:(NSString *)error{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:ok];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 /*
