@@ -173,7 +173,7 @@ It's an app where people can put up what items they would like to trade or give 
 | objectId      | String   | unique id for the message (default field) |
 | message         | String       | user's message |
 | author   | Pointer to User   | user's name |
-| author   | Pointer to Chat   | chat's objectid |
+| chat   | Pointer to Chat   | chat's objectid |
 | createdAt     | DateTime | date when post is created (default field) |
 | updatedAt     | DateTime | date when post is last updated (default field) |
 
