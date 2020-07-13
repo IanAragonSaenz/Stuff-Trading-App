@@ -24,13 +24,11 @@ It's an app where people can put up what items they would like to trade or give 
 
 **Required Must-have Stories**
 
-* Your app interacts with Parse.
 * You can log in/log out of your app as a user.
 * You can sign up with a new user profile.
 * The user can see his own profile.
 * The user can see other users profiles.
 * The user go to other user profile by clicking the profile pic in a post.
-* The user can set his profile picture.
 * The app implements map location.
 * The posts load in with animation.
 * The user can upload a post of something that they want to trade to the feed.
@@ -38,15 +36,12 @@ It's an app where people can put up what items they would like to trade or give 
 * The feed should have infinite scrolling.
 * The user can refresh the feed.
 * The users can message each other.
-* User can change his name.
-* User can change his password.
 * User can see the chats and messages.
 * The user can post an image.
 * The user can add map location to the post.
 * User should display the relative timestamp for each message "8m", "7h"
 * User should display the relative timestamp for each post "8m", "7h"
 * Your app incorporates an external library to add visual polish.
-* Your app contains at least one more complex algorithm (talk with your manager).
 
 
 **Optional Nice-to-have Stories**
@@ -55,6 +50,9 @@ It's an app where people can put up what items they would like to trade or give 
 * The feed in a collection view.
 * Map view where it shows the trade posts close to you.
 * User can message images.
+* User can change his name.
+* User can change his password.
+* The user can set his profile picture.
 
 
 ### 2. Screen Archetypes
