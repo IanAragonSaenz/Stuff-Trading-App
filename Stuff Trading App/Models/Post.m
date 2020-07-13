@@ -7,7 +7,6 @@
 //
 
 #import "Post.h"
-#import "User.h"
 
 @implementation Post
 

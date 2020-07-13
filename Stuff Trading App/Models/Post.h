@@ -7,6 +7,7 @@
 //
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
+#import "User.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) NSString *postID;
 @property (strong, nonatomic) NSString *userID;
-@property (nonatomic, strong) PFUser *author;
+@property (nonatomic, strong) User *author;
 @property (strong, nonatomic) PFFileObject *image;
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *desc;
