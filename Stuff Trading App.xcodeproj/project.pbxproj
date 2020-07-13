@@ -20,6 +20,7 @@
 		D1CD13CB24BCCFFD00913AE7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD13CA24BCCFFD00913AE7 /* LoginViewController.m */; };
 		D1CD13CE24BCE9B700913AE7 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD13CD24BCE9B700913AE7 /* FeedViewController.m */; };
 		D1CD13D124BCEA1C00913AE7 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD13D024BCEA1C00913AE7 /* PostCell.m */; };
+		D1CD13D524BCEE8800913AE7 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD13D424BCEE8800913AE7 /* Post.m */; };
 		D65BB463A653D572E6FDEEEC /* Pods_Stuff_Trading_App_Stuff_Trading_AppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F99B29F3CEA47A55E372814 /* Pods_Stuff_Trading_App_Stuff_Trading_AppUITests.framework */; };
 		D7778A2AE8AD54E7C362689C /* Pods_Stuff_Trading_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D5F991D0116DEDE482F951D /* Pods_Stuff_Trading_App.framework */; };
 /* End PBXBuildFile section */
@@ -75,6 +76,8 @@
 		D1CD13CD24BCE9B700913AE7 /* FeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
 		D1CD13CF24BCEA1C00913AE7 /* PostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCell.h; sourceTree = "<group>"; };
 		D1CD13D024BCEA1C00913AE7 /* PostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCell.m; sourceTree = "<group>"; };
+		D1CD13D324BCEE8800913AE7 /* Post.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		D1CD13D424BCEE8800913AE7 /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +202,8 @@
 		D1CD13C824BCCFEC00913AE7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D1CD13D324BCEE8800913AE7 /* Post.h */,
+				D1CD13D424BCEE8800913AE7 /* Post.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -461,6 +466,7 @@
 				D1CD13D124BCEA1C00913AE7 /* PostCell.m in Sources */,
 				D1CD13CE24BCE9B700913AE7 /* FeedViewController.m in Sources */,
 				D1CD13CB24BCCFFD00913AE7 /* LoginViewController.m in Sources */,
+				D1CD13D524BCEE8800913AE7 /* Post.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
