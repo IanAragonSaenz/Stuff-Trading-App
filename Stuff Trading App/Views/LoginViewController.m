@@ -7,8 +7,12 @@
 //
 
 #import "LoginViewController.h"
+#import <Parse/Parse.h>
 
 @interface LoginViewController ()
+
+@property (weak, nonatomic) IBOutlet UITextField *usernameText;
+@property (weak, nonatomic) IBOutlet UITextField *passwordText;
 
 @end
 
@@ -17,6 +21,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+- (IBAction)login:(id)sender {
+    [PFUser logInWithUsernameInBackground:self.usernameText.text password:self.passwordText.text block:^(PFUser * _Nullable user, NSError * _Nullable error) {
+        if(error){
+            NSLog(@" error when loging in: %@", error.localizedDescription);
+        } else {
+            [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+        }
+    }];
+}
+
+- (IBAction)signUp:(id)sender {
+    PFUser *user = [PFUser user];
+    user.username = self.usernameText.text;
+    user.password = self.passwordText.text;
+    
+    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if(error){
+            NSLog(@" error when doing sign up: %@", error.localizedDescription);
+        } else {
+            [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+        }
+    }];
 }
 
 /*
