@@ -38,6 +38,7 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
         if(!error){
             self.posts = posts;
+            [self.tableView reloadData];
         } else {
             NSLog(@"Error when loading posts");
         }
@@ -54,12 +55,6 @@
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.posts.count;
-}
-
-#pragma mark - Post Button
-
-- (IBAction)composePost:(id)sender {
-    [self performSegueWithIdentifier:@"composePost" sender:nil];
 }
 
 /*
