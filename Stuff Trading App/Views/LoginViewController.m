@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
+#import "User.h"
 
 @interface LoginViewController ()
 
@@ -27,7 +28,7 @@
     if([self isEmpty:self.usernameText.text password:self.passwordText.text])
         return;
     
-    [PFUser logInWithUsernameInBackground:self.usernameText.text password:self.passwordText.text block:^(PFUser * _Nullable user, NSError * _Nullable error) {
+    [User logInWithUsernameInBackground:self.usernameText.text password:self.passwordText.text block:^(PFUser * _Nullable user, NSError * _Nullable error) {
         if(error){
             [self sendError:error.localizedDescription];
         } else {
@@ -40,9 +41,10 @@
     if([self isEmpty:self.usernameText.text password:self.passwordText.text])
         return;
     
-    PFUser *user = [PFUser user];
+    User *user = [User user];
     user.username = self.usernameText.text;
     user.password = self.passwordText.text;
+    //user.image = nil;
     
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if(error){

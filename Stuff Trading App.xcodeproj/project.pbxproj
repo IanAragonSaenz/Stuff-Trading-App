@@ -22,6 +22,7 @@
 		D1CD13D124BCEA1C00913AE7 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD13D024BCEA1C00913AE7 /* PostCell.m */; };
 		D1CD13D524BCEE8800913AE7 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD13D424BCEE8800913AE7 /* Post.m */; };
 		D1CD13D824BCFB8F00913AE7 /* ComposePostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD13D724BCFB8F00913AE7 /* ComposePostViewController.m */; };
+		D1CD13DB24BD0C4300913AE7 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD13DA24BD0C4300913AE7 /* User.m */; };
 		D65BB463A653D572E6FDEEEC /* Pods_Stuff_Trading_App_Stuff_Trading_AppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F99B29F3CEA47A55E372814 /* Pods_Stuff_Trading_App_Stuff_Trading_AppUITests.framework */; };
 		D7778A2AE8AD54E7C362689C /* Pods_Stuff_Trading_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D5F991D0116DEDE482F951D /* Pods_Stuff_Trading_App.framework */; };
 /* End PBXBuildFile section */
@@ -81,6 +82,8 @@
 		D1CD13D424BCEE8800913AE7 /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		D1CD13D624BCFB8F00913AE7 /* ComposePostViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposePostViewController.h; sourceTree = "<group>"; };
 		D1CD13D724BCFB8F00913AE7 /* ComposePostViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposePostViewController.m; sourceTree = "<group>"; };
+		D1CD13D924BD0C4300913AE7 /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		D1CD13DA24BD0C4300913AE7 /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +212,8 @@
 			children = (
 				D1CD13D324BCEE8800913AE7 /* Post.h */,
 				D1CD13D424BCEE8800913AE7 /* Post.m */,
+				D1CD13D924BD0C4300913AE7 /* User.h */,
+				D1CD13DA24BD0C4300913AE7 /* User.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -464,6 +469,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1CD13DB24BD0C4300913AE7 /* User.m in Sources */,
 				D1CD139924BB9A5500913AE7 /* ViewController.m in Sources */,
 				D1CD13D824BCFB8F00913AE7 /* ComposePostViewController.m in Sources */,
 				D1CD139324BB9A5500913AE7 /* AppDelegate.m in Sources */,
