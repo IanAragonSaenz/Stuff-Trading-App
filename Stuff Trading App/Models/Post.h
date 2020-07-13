@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSString *desc;
 @property (strong, nonatomic) NSNumber *likeCount;
 
++ (void)postTradeImage:(UIImage *_Nullable)image withTitle:(NSString *_Nullable)title withDescription:(NSString *_Nullable)description withCompletion:(PFBooleanResultBlock _Nullable)completion;
+
 @end
 
 NS_ASSUME_NONNULL_END
