@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,7 @@
 		D1CD13A424BB9A5700913AE7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD13A324BB9A5700913AE7 /* main.m */; };
 		D1CD13AE24BB9A5700913AE7 /* Stuff_Trading_AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD13AD24BB9A5700913AE7 /* Stuff_Trading_AppTests.m */; };
 		D1CD13B924BB9A5700913AE7 /* Stuff_Trading_AppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD13B824BB9A5700913AE7 /* Stuff_Trading_AppUITests.m */; };
+		D1CD13CB24BCCFFD00913AE7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD13CA24BCCFFD00913AE7 /* LoginViewController.m */; };
 		D65BB463A653D572E6FDEEEC /* Pods_Stuff_Trading_App_Stuff_Trading_AppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F99B29F3CEA47A55E372814 /* Pods_Stuff_Trading_App_Stuff_Trading_AppUITests.framework */; };
 		D7778A2AE8AD54E7C362689C /* Pods_Stuff_Trading_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D5F991D0116DEDE482F951D /* Pods_Stuff_Trading_App.framework */; };
 /* End PBXBuildFile section */
@@ -66,6 +67,8 @@
 		D1CD13B424BB9A5700913AE7 /* Stuff Trading AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Stuff Trading AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1CD13B824BB9A5700913AE7 /* Stuff_Trading_AppUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Stuff_Trading_AppUITests.m; sourceTree = "<group>"; };
 		D1CD13BA24BB9A5700913AE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D1CD13C924BCCFFD00913AE7 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		D1CD13CA24BCCFFD00913AE7 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +134,9 @@
 		D1CD139024BB9A5500913AE7 /* Stuff Trading App */ = {
 			isa = PBXGroup;
 			children = (
+				D1CD13C824BCCFEC00913AE7 /* Models */,
+				D1CD13C724BCCFDE00913AE7 /* Cells */,
+				D1CD13C624BCCFD400913AE7 /* Views */,
 				D1CD139124BB9A5500913AE7 /* AppDelegate.h */,
 				D1CD139224BB9A5500913AE7 /* AppDelegate.m */,
 				D1CD139424BB9A5500913AE7 /* SceneDelegate.h */,
@@ -164,6 +170,29 @@
 			path = "Stuff Trading AppUITests";
 			sourceTree = "<group>";
 		};
+		D1CD13C624BCCFD400913AE7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D1CD13C924BCCFFD00913AE7 /* LoginViewController.h */,
+				D1CD13CA24BCCFFD00913AE7 /* LoginViewController.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D1CD13C724BCCFDE00913AE7 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		D1CD13C824BCCFEC00913AE7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		E670C9E8B1EF901246F0ED71 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,7 +203,6 @@
 				6A4D3438566E76D94752EC36 /* Pods-Stuff Trading AppTests.debug.xcconfig */,
 				258D407B3B49B8F2B47624AC /* Pods-Stuff Trading AppTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -420,6 +448,7 @@
 				D1CD139324BB9A5500913AE7 /* AppDelegate.m in Sources */,
 				D1CD13A424BB9A5700913AE7 /* main.m in Sources */,
 				D1CD139624BB9A5500913AE7 /* SceneDelegate.m in Sources */,
+				D1CD13CB24BCCFFD00913AE7 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
