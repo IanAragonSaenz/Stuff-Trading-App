@@ -34,7 +34,11 @@
     self.usernameText.text = post.author.username;
     self.titleText.text = post.title;
     self.descriptionText.text = post.desc;
-    //self.userImage = post.author.image;
+    [post.author.image getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
+        if(!error){
+            self.userImage.image = [UIImage imageWithData:data];
+        }
+    }];
 }
 
 @end
