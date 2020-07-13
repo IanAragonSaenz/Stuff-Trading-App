@@ -196,96 +196,96 @@ It's an app where people can put up what items they would like to trade or give 
 | Update | PUT       | Change user's password               |
 | Delete | Delete    | Delete an existing user              |
 
-    - Login Screen
-        - (Create/POST) Creating a new user
-           ```Objective-C
-           if([self usernameEmpty:self.usernameText.text password:self.passwordText.text])
-               return;
+- Login Screen
+    - (Create/POST) Creating a new user
+       ```Objective-C
+       if([self usernameEmpty:self.usernameText.text password:self.passwordText.text])
+           return;
 
-           PFUser *newUser = [PFUser user];
-           newUser.username = self.usernameText.text;
-           newUser.password = self.passwordText.text;
+       PFUser *newUser = [PFUser user];
+       newUser.username = self.usernameText.text;
+       newUser.password = self.passwordText.text;
 
-           [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-               if(succeeded){
-                   //let user in
-               }else{
-                   //alert user of error
-               }
-           }];
-           ```
-        - (Read/GET) Login the user
-            ```Objective-C
-            if([self usernameEmpty:self.usernameText.text password:self.passwordText.text])
-                return;
-            
-            NSString *username = self.usernameText.text;
-            NSString *password = self.passwordText.text;
-
-            [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * _Nullable user, NSError * _Nullable error) {
-                if(error){
-                    //alert user of error
-                }else{
-                    //let user in
-                }
-            }];
-            ```
-    - Home Feed Screen
-        - (Read/GET) Fetching posts for user's feed 
-            ```Objective-C
-            PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-            query.limit = 20;
-            [query orderByDescending:@"createdAt"];
-            [query includeKey:@"author"];
-            
-            [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
-                if(!error){
-                    //do something with posts
-                }else{
-                    //error
-                }
-            }];
-            ```
-        - (Create/POST) Logout from current session
-            ```Objective-C
-            //change scenes
-            [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
-                //do something
-            }];
-            ```
-    - Messages Screen
-        - (Read/GET) Fetch the user's chats
+       [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+           if(succeeded){
+               //let user in
+           }else{
+               //alert user of error
+           }
+       }];
+       ```
+    - (Read/GET) Login the user
+        ```Objective-C
+        if([self usernameEmpty:self.usernameText.text password:self.passwordText.text])
+            return;
         
-    - Profile Screen
-        - (Read/GET) Get an existing user 
+        NSString *username = self.usernameText.text;
+        NSString *password = self.passwordText.text;
+
+        [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * _Nullable user, NSError * _Nullable error) {
+            if(error){
+                //alert user of error
+            }else{
+                //let user in
+            }
+        }];
+        ```
+- Home Feed Screen
+    - (Read/GET) Fetching posts for user's feed 
+        ```Objective-C
+        PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+        query.limit = 20;
+        [query orderByDescending:@"createdAt"];
+        [query includeKey:@"author"];
+        
+        [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
+            if(!error){
+                //do something with posts
+            }else{
+                //error
+            }
+        }];
+        ```
+    - (Create/POST) Logout from current session
+        ```Objective-C
+        //change scenes
+        [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+            //do something
+        }];
+        ```
+- Messages Screen
+    - (Read/GET) Fetch the user's chats
     
-    - Compose Post Screen
-        - (Create/POST) Create a post   
-            ```Objective-C
-            Post *newPost = [Post new];
-            newPost.image = [self getPFFileFromImage:image];
-            newPost.author = [PFUser currentUser];
-            newPost.caption = caption;
-            newPost.likeCount = @(0);
-            newPost.commentCount = @(0);
-            
-            [newPost saveInBackgroundWithBlock:];
-            ```
-            
-    - User Settings Screen
-        - (Update/PUT) Update existing user profile picture   
-            ```Objective-C
-            ```
-        - (Update/PUT) Change user's name 
-        - (Update/PUT) Change user's password 
-        - (Delete) Delete an existing user
+- Profile Screen
+    - (Read/GET) Get an existing user 
+
+- Compose Post Screen
+    - (Create/POST) Create a post   
+        ```Objective-C
+        Post *newPost = [Post new];
+        newPost.image = [self getPFFileFromImage:image];
+        newPost.author = [PFUser currentUser];
+        newPost.caption = caption;
+        newPost.likeCount = @(0);
+        newPost.commentCount = @(0);
         
-    - Compose Post Screen
-        - (Create/POST) Create a post   
-            ```Objective-C
-            ```
-    - Direct Messages Screen
-        - (Read/GET) Get messages from a chat  
-        - (Read/GET) Send message to another user
+        [newPost saveInBackgroundWithBlock:];
+        ```
+        
+- User Settings Screen
+    - (Update/PUT) Update existing user profile picture   
+        ```Objective-C
+        ```
+    - (Update/PUT) Change user's name 
+    - (Update/PUT) Change user's password 
+    - (Delete) Delete an existing user
+    
+- Compose Post Screen
+    - (Create/POST) Create a post   
+        ```Objective-C
+        ```
+- Direct Messages Screen
+    - (Read/GET) Get messages from a chat  
+    - (Read/GET) Send message to another user
         
 - [OPTIONAL: List endpoints if using existing API such as Yelp]
