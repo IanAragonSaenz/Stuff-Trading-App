@@ -12,6 +12,7 @@
 #import <Parse/Parse.h>
 #import "User.h"
 #import "UserViewController.h"
+#import "DetailPostViewController.h"
 
 @interface FeedViewController () <UITableViewDelegate, UITableViewDataSource, PostCellDelegate>
 
@@ -88,6 +89,12 @@
     return self.posts.count;
 }
 
+#pragma mark - Table View Delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self performSegueWithIdentifier:@"detailSegue" sender:self.posts[indexPath.row]];
+}
+
 #pragma mark - Post Cell Delegate Function
 
 - (void)tapUser:(User * _Nullable)user {
@@ -128,6 +135,9 @@
     if([segue.identifier isEqualToString:@"userSegue"]){
         UserViewController *userView = [segue destinationViewController];
         userView.user = sender;
+    }
+    if([segue.identifier isEqualToString:@"detailSegue"]){
+        
     }
 }
 
