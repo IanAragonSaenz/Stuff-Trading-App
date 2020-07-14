@@ -24,6 +24,8 @@
     // Do any additional setup after loading the view.
 }
 
+#pragma mark - Login
+
 - (IBAction)login:(id)sender {
     if([self isEmpty:self.usernameText.text password:self.passwordText.text])
         return;
@@ -37,6 +39,8 @@
     }];
 }
 
+#pragma mark - SignUp
+
 - (IBAction)signUp:(id)sender {
     if([self isEmpty:self.usernameText.text password:self.passwordText.text])
         return;
@@ -44,7 +48,6 @@
     User *user = [User user];
     user.username = self.usernameText.text;
     user.password = self.passwordText.text;
-    //user.image = nil;
     
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if(error){
@@ -54,6 +57,8 @@
         }
     }];
 }
+
+#pragma mark - Empty Checker
 
 - (BOOL)isEmpty:(NSString *)username password:(NSString *)password{
     if([username isEqualToString:@""]){
@@ -65,6 +70,8 @@
     }
     return NO;
 }
+
+#pragma mark - Error Alert
 
 - (void)sendError:(NSString *)error{
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error preferredStyle:UIAlertControllerStyleAlert];
