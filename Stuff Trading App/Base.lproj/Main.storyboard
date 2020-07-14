@@ -10,7 +10,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginView" id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -360,6 +360,11 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Feed" id="3bY-LK-4IW"/>
                     <navigationItem key="navigationItem" id="NFK-yA-5Uj">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="Vaz-j9-YIo">
+                            <connections>
+                                <action selector="logout:" destination="Xtq-Iq-aon" id="qcR-hF-G3S"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Post" id="6wG-02-SEc">
                             <connections>
                                 <action selector="composePost:" destination="Xtq-Iq-aon" id="v4B-Jx-XoA"/>

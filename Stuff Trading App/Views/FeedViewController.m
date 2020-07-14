@@ -8,7 +8,9 @@
 
 #import "FeedViewController.h"
 #import "PostCell.h"
+#import "SceneDelegate.h"
 #import <Parse/Parse.h>
+#import "User.h"
 
 @interface FeedViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -84,6 +86,7 @@
     return self.posts.count;
 }
 
+
 #pragma mark - Error
 
 - (void)sendError:(NSString *)error{
@@ -93,6 +96,19 @@
     [alert addAction:ok];
     
     [self presentViewController:alert animated:YES completion:nil];
+}
+    
+#pragma mark - Logout
+
+- (IBAction)logout:(id)sender {
+    SceneDelegate *sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *loginView = [storyBoard instantiateViewControllerWithIdentifier:@"loginView"];
+    sceneDelegate.window.rootViewController = loginView;
+    
+    [User logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+        //needs to be open so that current user sets to nil
+    }];
 }
 
 /*
