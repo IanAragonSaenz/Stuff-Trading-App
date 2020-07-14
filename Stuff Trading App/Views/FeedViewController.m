@@ -11,8 +11,9 @@
 #import "SceneDelegate.h"
 #import <Parse/Parse.h>
 #import "User.h"
+#import "UserViewController.h"
 
-@interface FeedViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface FeedViewController () <UITableViewDelegate, UITableViewDataSource, PostCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *posts;
@@ -74,11 +75,12 @@
     [self.refresh endRefreshing];
 }
 
-#pragma mark - Data Source
+#pragma mark - Table View Data Source
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
     [cell setPost:self.posts[indexPath.row]];
+    cell.delegate = self;
     return cell;
 }
 
@@ -86,6 +88,11 @@
     return self.posts.count;
 }
 
+#pragma mark - Post Cell Delegate Function
+
+- (void)tapUser:(User * _Nullable)user {
+    [self performSegueWithIdentifier:@"userSegue" sender:user];
+}
 
 #pragma mark - Error
 
@@ -111,14 +118,18 @@
     }];
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if([segue.identifier isEqualToString:@"userSegue"]){
+        UserViewController *userView = [segue destinationViewController];
+        userView.user = sender;
+    }
 }
-*/
+
 
 @end

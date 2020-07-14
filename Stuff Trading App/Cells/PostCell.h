@@ -8,11 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "Post.h"
+#import "User.h"
+
+@protocol PostCellDelegate
+
+- (void)tapUser:(User *_Nullable)user;
+
+@end
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PostCell : UITableViewCell
 
+@property (strong, nonatomic) id<PostCellDelegate> delegate;
 - (void)setPost:(Post *)post;
 
 @end
