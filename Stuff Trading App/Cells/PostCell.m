@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *descriptionText;
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (strong, nonatomic) Post *post;
 
 @end
 
@@ -24,6 +25,9 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    UITapGestureRecognizer *tapUser = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(SegueUser)];
+    [self.userImage addGestureRecognizer:tapUser];
+    [self.userImage setUserInteractionEnabled:YES];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -33,6 +37,7 @@
 }
 
 - (void)setPost:(Post *)post{
+    _post = post;
     self.usernameText.text = post.author.username;
     self.titleText.text = post.title;
     self.descriptionText.text = post.desc;
@@ -42,6 +47,10 @@
         }
     }];
     self.timeLabel.text = post.createdAt.timeAgoSinceNow;
+}
+
+- (void)SegueUser{
+    [self.delegate tapUser:self.post.author];
 }
 
 @end
