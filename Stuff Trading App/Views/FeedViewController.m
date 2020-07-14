@@ -11,10 +11,9 @@
 #import "SceneDelegate.h"
 #import <Parse/Parse.h>
 #import "User.h"
-#import "UserViewController.h"
 #import "DetailPostViewController.h"
 
-@interface FeedViewController () <UITableViewDelegate, UITableViewDataSource, PostCellDelegate>
+@interface FeedViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *posts;
@@ -81,7 +80,6 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
     [cell setPost:self.posts[indexPath.row]];
-    cell.delegate = self;
     return cell;
 }
 
@@ -93,12 +91,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self performSegueWithIdentifier:@"detailSegue" sender:self.posts[indexPath.row]];
-}
-
-#pragma mark - Post Cell Delegate Function
-
-- (void)tapUser:(User * _Nullable)user {
-    [self performSegueWithIdentifier:@"userSegue" sender:user];
 }
 
 #pragma mark - Error
@@ -132,12 +124,9 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if([segue.identifier isEqualToString:@"userSegue"]){
-        UserViewController *userView = [segue destinationViewController];
-        userView.user = sender;
-    }
     if([segue.identifier isEqualToString:@"detailSegue"]){
-        
+        DetailPostViewController *detailPostView = [segue destinationViewController];
+        detailPostView.post = sender;
     }
 }
 
