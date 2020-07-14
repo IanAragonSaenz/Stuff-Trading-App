@@ -7,6 +7,7 @@
 //
 
 #import "PostCell.h"
+#import "DateTools.h"
 
 @interface PostCell ()
 
@@ -14,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleText;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionText;
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 
 @end
 
@@ -39,6 +41,7 @@
             self.userImage.image = [UIImage imageWithData:data];
         }
     }];
+    self.timeLabel.text = post.createdAt.timeAgoSinceNow;
 }
 
 @end

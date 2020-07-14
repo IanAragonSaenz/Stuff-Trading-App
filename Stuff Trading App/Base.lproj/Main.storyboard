@@ -293,9 +293,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lz6-mo-UyY">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lz6-mo-UyY">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="174" id="wj6-qs-MVH" customClass="PostCell">
@@ -330,10 +329,21 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="748" text="time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZaB-S5-fzO">
+                                                    <rect key="frame" x="360.66666666666669" y="11" width="33.333333333333314" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="YG3-ci-rGS"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="WCx-ne-rqw" firstAttribute="leading" secondItem="ajS-79-g5B" secondAttribute="trailing" constant="8" id="8ek-ne-o1p"/>
                                                 <constraint firstItem="8KP-Jz-ehD" firstAttribute="top" secondItem="WCx-ne-rqw" secondAttribute="bottom" constant="8" id="Aum-cw-uBD"/>
+                                                <constraint firstItem="ZaB-S5-fzO" firstAttribute="top" secondItem="ZBH-Vw-4Xk" secondAttribute="top" constant="11" id="AwK-cS-AD7"/>
+                                                <constraint firstAttribute="trailing" secondItem="ZaB-S5-fzO" secondAttribute="trailing" constant="20" id="DfI-l5-0vC"/>
                                                 <constraint firstItem="8KP-Jz-ehD" firstAttribute="leading" secondItem="ajS-79-g5B" secondAttribute="trailing" constant="8" id="Ky7-V7-5Bh"/>
                                                 <constraint firstItem="ajS-79-g5B" firstAttribute="leading" secondItem="ZBH-Vw-4Xk" secondAttribute="leading" constant="20" id="Owp-c4-XDf"/>
                                                 <constraint firstItem="WCx-ne-rqw" firstAttribute="top" secondItem="ZBH-Vw-4Xk" secondAttribute="top" constant="11" id="PCP-au-9Bq"/>
@@ -347,6 +357,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="descriptionText" destination="LeZ-ur-iKE" id="pbw-YP-QSw"/>
+                                            <outlet property="timeLabel" destination="ZaB-S5-fzO" id="Bpr-tT-8yK"/>
                                             <outlet property="titleText" destination="8KP-Jz-ehD" id="ihW-iz-mSt"/>
                                             <outlet property="userImage" destination="ajS-79-g5B" id="K5C-yJ-WSF"/>
                                             <outlet property="usernameText" destination="WCx-ne-rqw" id="2SU-vx-Jh3"/>
@@ -356,6 +367,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="lz6-mo-UyY" firstAttribute="top" secondItem="WFm-0C-bxR" secondAttribute="top" id="CtZ-vS-1nD"/>
+                            <constraint firstItem="lz6-mo-UyY" firstAttribute="leading" secondItem="WFm-0C-bxR" secondAttribute="leading" id="SNl-X7-tb6"/>
+                            <constraint firstAttribute="trailing" secondItem="lz6-mo-UyY" secondAttribute="trailing" id="cUo-fo-DoI"/>
+                            <constraint firstAttribute="bottom" secondItem="lz6-mo-UyY" secondAttribute="bottom" id="wuG-L3-7i7"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="2Gg-WX-o1v"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Feed" id="3bY-LK-4IW"/>
