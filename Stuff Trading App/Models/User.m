@@ -11,6 +11,7 @@
 @implementation User
 
 @dynamic image;
+@dynamic userDescription;
 
 + (User *)user{
     return (User *)[PFUser user];
@@ -19,6 +20,18 @@
 + (void)setProfilePic:(UIImage *)image{
     User *user = [User currentUser];
     user.image = [self getPFFileFromImage:image];
+    [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if(succeeded){
+            NSLog(@"profile pic changed");
+        } else {
+            NSLog(@"pfile pic failed: %@", error.localizedDescription);
+        }
+    }];
+}
+
++ (void)setProfileDescription:(NSString *)desc{
+    User *user = [User currentUser];
+    user.userDescription = desc;
     [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded){
             NSLog(@"profile pic changed");
