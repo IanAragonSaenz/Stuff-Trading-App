@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -467,9 +468,51 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="iDP-Fu-Ahi">
+                                                <rect key="frame" x="0.0" y="246" width="414" height="448"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lH6-QN-H0Y">
+                                                    <size key="itemSize" width="160" height="160"/>
+                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                </collectionViewFlowLayout>
+                                                <cells>
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProfilePostCell" id="PaB-dg-ZIS" customClass="ProfilePostCollectionCell">
+                                                        <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="5g9-Xb-8PU">
+                                                            <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6pT-di-x4p">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                </imageView>
+                                                            </subviews>
+                                                        </collectionViewCellContentView>
+                                                        <size key="customSize" width="160" height="160"/>
+                                                        <connections>
+                                                            <outlet property="postImage" destination="6pT-di-x4p" id="M4R-k3-Du0"/>
+                                                        </connections>
+                                                    </collectionViewCell>
+                                                </cells>
+                                            </collectionView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Posts:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wTj-mw-fGE">
+                                                <rect key="frame" x="8" y="211" width="56" height="23"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
+                                            <constraint firstItem="iDP-Fu-Ahi" firstAttribute="leading" secondItem="jdq-Da-y6Z" secondAttribute="leading" id="6Oi-C9-PuU"/>
+                                            <constraint firstItem="iDP-Fu-Ahi" firstAttribute="top" secondItem="wTj-mw-fGE" secondAttribute="bottom" constant="12" id="7R0-Ps-50k"/>
+                                            <constraint firstItem="wTj-mw-fGE" firstAttribute="leading" secondItem="jdq-Da-y6Z" secondAttribute="leading" constant="8" id="7fw-6T-vhI"/>
+                                            <constraint firstItem="wTj-mw-fGE" firstAttribute="top" secondItem="Pck-k7-Kzx" secondAttribute="bottom" constant="8" id="IME-LN-5OO"/>
+                                            <constraint firstAttribute="bottom" secondItem="iDP-Fu-Ahi" secondAttribute="bottom" constant="42" id="Olh-5E-HXG"/>
+                                            <constraint firstAttribute="trailing" secondItem="iDP-Fu-Ahi" secondAttribute="trailing" id="Pex-6O-kzO"/>
                                             <constraint firstItem="hj3-HQ-KTK" firstAttribute="top" secondItem="jdq-Da-y6Z" secondAttribute="top" constant="25.000000000000078" id="VEj-ZH-DxO"/>
                                             <constraint firstItem="Pck-k7-Kzx" firstAttribute="leading" secondItem="jdq-Da-y6Z" secondAttribute="leading" constant="8" id="bxd-ip-RKF"/>
                                             <constraint firstItem="hj3-HQ-KTK" firstAttribute="leading" secondItem="jdq-Da-y6Z" secondAttribute="leading" constant="8" id="mUw-Jy-4df"/>
@@ -503,6 +546,7 @@
                     <tabBarItem key="tabBarItem" title="Profile" id="CUb-6Z-QO3"/>
                     <navigationItem key="navigationItem" id="NXc-JG-Tj9"/>
                     <connections>
+                        <outlet property="collectionView" destination="iDP-Fu-Ahi" id="3UN-ap-0kf"/>
                         <outlet property="profileImage" destination="hj3-HQ-KTK" id="rK4-ef-fR3"/>
                         <outlet property="userDescription" destination="Pck-k7-Kzx" id="MWJ-Vn-Yg0"/>
                         <outlet property="username" destination="jzE-Vu-9nF" id="zSy-c5-0oR"/>

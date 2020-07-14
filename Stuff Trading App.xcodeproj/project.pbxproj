@@ -24,6 +24,7 @@
 		D1CD13D824BCFB8F00913AE7 /* ComposePostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD13D724BCFB8F00913AE7 /* ComposePostViewController.m */; };
 		D1CD13DB24BD0C4300913AE7 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD13DA24BD0C4300913AE7 /* User.m */; };
 		D1CD13DE24BE12C700913AE7 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD13DD24BE12C700913AE7 /* ProfileViewController.m */; };
+		D1CD13E124BE1C3D00913AE7 /* ProfilePostCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD13E024BE1C3D00913AE7 /* ProfilePostCollectionCell.m */; };
 		D65BB463A653D572E6FDEEEC /* Pods_Stuff_Trading_App_Stuff_Trading_AppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F99B29F3CEA47A55E372814 /* Pods_Stuff_Trading_App_Stuff_Trading_AppUITests.framework */; };
 		D7778A2AE8AD54E7C362689C /* Pods_Stuff_Trading_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D5F991D0116DEDE482F951D /* Pods_Stuff_Trading_App.framework */; };
 /* End PBXBuildFile section */
@@ -87,6 +88,8 @@
 		D1CD13DA24BD0C4300913AE7 /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		D1CD13DC24BE12C700913AE7 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		D1CD13DD24BE12C700913AE7 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		D1CD13DF24BE1C3D00913AE7 /* ProfilePostCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfilePostCollectionCell.h; sourceTree = "<group>"; };
+		D1CD13E024BE1C3D00913AE7 /* ProfilePostCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfilePostCollectionCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +211,8 @@
 			children = (
 				D1CD13CF24BCEA1C00913AE7 /* PostCell.h */,
 				D1CD13D024BCEA1C00913AE7 /* PostCell.m */,
+				D1CD13DF24BE1C3D00913AE7 /* ProfilePostCollectionCell.h */,
+				D1CD13E024BE1C3D00913AE7 /* ProfilePostCollectionCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -479,6 +484,7 @@
 				D1CD13D824BCFB8F00913AE7 /* ComposePostViewController.m in Sources */,
 				D1CD139324BB9A5500913AE7 /* AppDelegate.m in Sources */,
 				D1CD13A424BB9A5700913AE7 /* main.m in Sources */,
+				D1CD13E124BE1C3D00913AE7 /* ProfilePostCollectionCell.m in Sources */,
 				D1CD139624BB9A5500913AE7 /* SceneDelegate.m in Sources */,
 				D1CD13D124BCEA1C00913AE7 /* PostCell.m in Sources */,
 				D1CD13CE24BCE9B700913AE7 /* FeedViewController.m in Sources */,

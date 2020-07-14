@@ -8,12 +8,15 @@
 
 #import "ProfileViewController.h"
 #import "User.h"
+#import "ProfilePostCollectionCell.h"
 
-@interface ProfileViewController ()
+@interface ProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 @property (weak, nonatomic) IBOutlet UILabel *username;
 @property (weak, nonatomic) IBOutlet UILabel *userDescription;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic) NSArray *posts;
 
 @end
 
@@ -29,6 +32,43 @@
         if(!error)
             self.profileImage.image = [UIImage imageWithData:data];
     }];
+    
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    [self fetchposts];
+    
+    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
+    layout.minimumInteritemSpacing = 2;
+    layout.minimumLineSpacing = 2;
+    
+    CGFloat posters = 2.2;
+    CGFloat itemWidth = (self.collectionView.frame.size.width - layout.minimumInteritemSpacing * (layout.minimumLineSpacing)) / posters;
+    CGFloat itemHeight = itemWidth;
+    layout.itemSize = CGSizeMake(itemWidth, itemHeight);
+}
+
+- (void)fetchposts{
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    [query includeKey:@"author"];
+    [query whereKey:@"author" equalTo:[User currentUser]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
+        if(!error){
+            self.posts = posts;
+            [self.collectionView reloadData];
+        } else {
+            NSLog(@"Error when loading current user posts: %@", error.localizedDescription);
+        }
+    }];
+}
+
+- (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    ProfilePostCollectionCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"ProfilePostCell" forIndexPath:indexPath];
+    [cell setCell:self.posts[indexPath.item]];
+    return cell;
+}
+
+- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.posts.count;
 }
 
 /*
