@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *posts;
 @property (strong, nonatomic) UIRefreshControl *refresh;
+@property (assign, nonatomic) BOOL isLoadingMoreData;
 
 @end
 
@@ -25,6 +26,7 @@
     // Do any additional setup after loading the view.
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.posts = [NSArray array];
     
     self.refresh = [[UIRefreshControl alloc] init];
     [self.refresh addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
@@ -32,22 +34,41 @@
     [self fetchPosts];
 }
 
-#pragma mark - Fetching Posts
+#pragma mark - Infinite Scrolling
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if(!self.isLoadingMoreData){
+        int scrollViewContentHeight = self.tableView.contentSize.height;
+        int scrollOffsetThreshold = scrollViewContentHeight - self.tableView.bounds.size.height;
+        
+        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging){
+            self.isLoadingMoreData = YES;
+            [self fetchPosts];
+        }
+    }
+}
 
 - (void)fetchPosts{
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    query.limit = 20;
+    query.limit = 10;
+    BOOL isRefreshing = [self.refresh isRefreshing];
+    if(!isRefreshing)
+        query.skip = self.posts.count;
     [query orderByDescending:@"createdAt"];
     [query includeKey:@"author"];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
         if(!error){
-            self.posts = posts;
+            if(isRefreshing)
+                self.posts = posts;
+            else
+                self.posts = [self.posts arrayByAddingObjectsFromArray:posts];
             [self.tableView reloadData];
-        } else {
-            NSLog(@"Error when loading posts");
+        }else{
+            NSLog(@"error getting posts: %@", error.localizedDescription);
         }
     }];
+    self.isLoadingMoreData = false;
     [self.refresh endRefreshing];
 }
 
@@ -61,6 +82,17 @@
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.posts.count;
+}
+
+#pragma mark - Error
+
+- (void)sendError:(NSString *)error{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:ok];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 /*
