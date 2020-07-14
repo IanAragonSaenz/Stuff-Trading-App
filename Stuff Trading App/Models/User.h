@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface User : PFUser <PFSubclassing>
 
 @property (copy, nonatomic) PFFileObject *image;
+@property (strong, nonatomic) NSString *userDescription;
 
 @end
 
