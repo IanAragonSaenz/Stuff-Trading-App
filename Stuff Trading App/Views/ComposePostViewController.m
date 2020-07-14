@@ -11,7 +11,7 @@
 #import "Post.h"
 #import <Parse/Parse.h>
 
-@interface ComposePostViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface ComposePostViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *postImage;
 @property (weak, nonatomic) IBOutlet UITextView *titleText;
@@ -27,6 +27,14 @@
     UITapGestureRecognizer *tapPhoto = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(takePhoto)];
     [self.postImage addGestureRecognizer:tapPhoto];
     [self.postImage setUserInteractionEnabled:YES];
+    
+    self.titleText.delegate = self;
+    self.desc.delegate = self;
+    
+    self.titleText.text = @"Type your title here...";
+    self.titleText.textColor = UIColor.lightGrayColor;
+    self.desc.text = @"Type your description here...";
+    self.desc.textColor = UIColor.lightGrayColor;
 }
 
 #pragma mark - Photo
@@ -79,6 +87,26 @@
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *login = [storyBoard instantiateViewControllerWithIdentifier:@"tabBar"];
     sceneDelegate.window.rootViewController = login;
+}
+
+#pragma mark - Buttons
+
+- (void)textViewDidBeginEditing:(UITextView *)textView{
+    if(textView.textColor == UIColor.lightGrayColor){
+        textView.text = nil;
+        textView.textColor = UIColor.blackColor;
+    }
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView{
+    if([self.titleText.text isEqualToString:@""]){
+        self.titleText.text = @"Type your title here...";
+        self.titleText.textColor = UIColor.lightGrayColor;
+    }
+    if([self.desc.text isEqualToString:@""]){
+        self.desc.text = @"Type your description here...";
+        self.desc.textColor = UIColor.lightGrayColor;
+    }
 }
 
 /*
