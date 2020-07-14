@@ -25,9 +25,6 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    UITapGestureRecognizer *tapUser = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(SegueUser)];
-    [self.userImage addGestureRecognizer:tapUser];
-    [self.userImage setUserInteractionEnabled:YES];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -49,8 +46,5 @@
     self.timeLabel.text = post.createdAt.timeAgoSinceNow;
 }
 
-- (void)SegueUser{
-    [self.delegate tapUser:self.post.author];
-}
 
 @end

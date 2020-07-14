@@ -1,8 +1,8 @@
 //
-//  PostCell.h
+//  DetailPostViewController.h
 //  Stuff Trading App
 //
-//  Created by Ian Andre Aragon Saenz on 13/07/20.
+//  Created by Ian Andre Aragon Saenz on 14/07/20.
 //  Copyright © 2020 IanAragon. All rights reserved.
 //
 
@@ -11,9 +11,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PostCell : UITableViewCell
+@interface DetailPostViewController : UIViewController
 
-- (void)setPost:(Post *)post;
+@property (strong, nonatomic) Post *post;
 
 @end
 
