@@ -125,10 +125,10 @@
                                         <rect key="frame" x="0.0" y="-44" width="414" height="736"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Title" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SlP-eQ-I4x">
-                                                <rect key="frame" x="14" y="232" width="374" height="32"/>
+                                                <rect key="frame" x="14" y="232" width="374" height="67"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="32" id="fAL-By-Efb"/>
+                                                    <constraint firstAttribute="height" constant="67" id="fAL-By-Efb"/>
                                                 </constraints>
                                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
@@ -157,7 +157,7 @@
                                             <constraint firstItem="SlP-eQ-I4x" firstAttribute="top" secondItem="PWO-4E-wCa" secondAttribute="bottom" constant="40.670000000000002" id="AdN-hB-eR5"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="2p5-BE-wfe" secondAttribute="bottom" constant="20" id="OvC-ef-gzI"/>
                                             <constraint firstItem="PWO-4E-wCa" firstAttribute="leading" secondItem="tBb-fN-K0i" secondAttribute="leading" constant="14" id="cLl-dI-6Hz"/>
-                                            <constraint firstItem="2p5-BE-wfe" firstAttribute="top" secondItem="SlP-eQ-I4x" secondAttribute="bottom" constant="57" id="ndc-XT-7Ib"/>
+                                            <constraint firstItem="2p5-BE-wfe" firstAttribute="top" secondItem="SlP-eQ-I4x" secondAttribute="bottom" constant="22" id="ndc-XT-7Ib"/>
                                             <constraint firstItem="SlP-eQ-I4x" firstAttribute="leading" secondItem="tBb-fN-K0i" secondAttribute="leading" constant="14" id="oD9-gQ-pdN"/>
                                             <constraint firstItem="PWO-4E-wCa" firstAttribute="top" secondItem="tBb-fN-K0i" secondAttribute="top" constant="71" id="pkN-tr-79L"/>
                                             <constraint firstItem="2p5-BE-wfe" firstAttribute="leading" secondItem="tBb-fN-K0i" secondAttribute="leading" constant="14" id="rgY-c1-iUz"/>
