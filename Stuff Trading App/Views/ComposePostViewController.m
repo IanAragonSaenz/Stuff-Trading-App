@@ -43,7 +43,29 @@
     UIImagePickerController *imagePC = [UIImagePickerController new];
     imagePC.delegate = self;
     imagePC.allowsEditing = YES;
-    imagePC.sourceType = UIImagePickerControllerSourceTypeCamera;
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Choose Media" message:@"Choose camera vs photo library" preferredStyle:(UIAlertControllerStyleActionSheet)];
+    UIAlertAction *camera = [UIAlertAction actionWithTitle:@"Camera" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+            imagePC.sourceType = UIImagePickerControllerSourceTypeCamera;
+        } else {
+            [self sendError:@"Camera source not found"];
+            return;
+        }
+        [self presentViewController:imagePC animated:YES completion:nil];
+    }];
+    [alert addAction:camera];
+    
+    UIAlertAction *photoLibrary = [UIAlertAction actionWithTitle:@"Photo Library" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]){
+            imagePC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        } else {
+            [self sendError:@"Camera source not found"];
+            return;
+        }
+        [self presentViewController:imagePC animated:YES completion:nil];
+    }];
+    [alert addAction:photoLibrary];
     
     [self presentViewController:imagePC animated:YES completion:nil];
 }
@@ -107,6 +129,15 @@
         self.desc.text = @"Type your description here...";
         self.desc.textColor = UIColor.lightGrayColor;
     }
+}
+
+#pragma mark - Error
+
+- (void)sendError:(NSString *)error{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:ok];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 /*

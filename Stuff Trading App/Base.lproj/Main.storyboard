@@ -11,7 +11,6 @@
         <!--Register-->
         <scene sceneID="xXl-v1-Kup">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="15R-Am-3RV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="g0y-uH-VRL" customClass="RegisterViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gI2-8u-UhC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
@@ -95,6 +94,7 @@
                         <segue destination="Frs-c1-Ztn" kind="presentation" identifier="loginSegue" id="9uy-DO-imk"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="15R-Am-3RV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-642.02898550724638" y="741.84782608695662"/>
         </scene>
@@ -792,14 +792,14 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description of user" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uCS-xe-4en">
-                                                <rect key="frame" x="8" y="182" width="146" height="21"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description of user" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uCS-xe-4en">
+                                                <rect key="frame" x="8" y="182" width="398" height="20.333333333333343"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Wh0-6U-wbD">
-                                                <rect key="frame" x="0.0" y="246" width="414" height="448"/>
+                                                <rect key="frame" x="0.0" y="245.33333333333334" width="414" height="448.66666666666663"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bWa-1P-JRo">
                                                     <size key="itemSize" width="160" height="160"/>
@@ -829,7 +829,7 @@
                                                 </cells>
                                             </collectionView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Posts:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wq5-1a-vVO">
-                                                <rect key="frame" x="8" y="211" width="56" height="23"/>
+                                                <rect key="frame" x="8" y="210.33333333333334" width="56" height="23"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -848,6 +848,7 @@
                                             <constraint firstAttribute="trailing" secondItem="Wh0-6U-wbD" secondAttribute="trailing" id="fmB-b2-psE"/>
                                             <constraint firstItem="Wh0-6U-wbD" firstAttribute="top" secondItem="wq5-1a-vVO" secondAttribute="bottom" constant="12" id="jMA-Sf-xnf"/>
                                             <constraint firstItem="wq5-1a-vVO" firstAttribute="top" secondItem="uCS-xe-4en" secondAttribute="bottom" constant="8" id="uHl-ZG-cbn"/>
+                                            <constraint firstAttribute="trailing" secondItem="uCS-xe-4en" secondAttribute="trailing" constant="8" id="w1e-02-2ah"/>
                                             <constraint firstItem="nn4-KI-q9b" firstAttribute="top" secondItem="3OO-Ym-wy2" secondAttribute="bottom" constant="8" id="wZA-e4-SaU"/>
                                         </constraints>
                                     </view>
@@ -885,7 +886,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ey1-du-1fW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1129" y="2689"/>
+            <point key="canvasLocation" x="1128.985507246377" y="2688.5869565217395"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
