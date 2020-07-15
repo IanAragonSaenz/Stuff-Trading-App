@@ -637,14 +637,14 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description of user" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pck-k7-Kzx">
-                                                <rect key="frame" x="8" y="182" width="146" height="21"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description of user" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pck-k7-Kzx">
+                                                <rect key="frame" x="8" y="182" width="398" height="20.333333333333343"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="iDP-Fu-Ahi">
-                                                <rect key="frame" x="0.0" y="246" width="414" height="448"/>
+                                                <rect key="frame" x="0.0" y="245.33333333333334" width="414" height="448.66666666666663"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lH6-QN-H0Y">
                                                     <size key="itemSize" width="160" height="160"/>
@@ -674,7 +674,7 @@
                                                 </cells>
                                             </collectionView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Posts:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wTj-mw-fGE">
-                                                <rect key="frame" x="8" y="211" width="56" height="23"/>
+                                                <rect key="frame" x="8" y="210.33333333333334" width="56" height="23"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -689,6 +689,7 @@
                                             <constraint firstAttribute="bottom" secondItem="iDP-Fu-Ahi" secondAttribute="bottom" constant="42" id="Olh-5E-HXG"/>
                                             <constraint firstAttribute="trailing" secondItem="iDP-Fu-Ahi" secondAttribute="trailing" id="Pex-6O-kzO"/>
                                             <constraint firstItem="hj3-HQ-KTK" firstAttribute="top" secondItem="jdq-Da-y6Z" secondAttribute="top" constant="25.000000000000078" id="VEj-ZH-DxO"/>
+                                            <constraint firstAttribute="trailing" secondItem="Pck-k7-Kzx" secondAttribute="trailing" constant="8" id="W0j-uj-YEt"/>
                                             <constraint firstItem="Pck-k7-Kzx" firstAttribute="leading" secondItem="jdq-Da-y6Z" secondAttribute="leading" constant="8" id="bxd-ip-RKF"/>
                                             <constraint firstItem="hj3-HQ-KTK" firstAttribute="leading" secondItem="jdq-Da-y6Z" secondAttribute="leading" constant="8" id="mUw-Jy-4df"/>
                                             <constraint firstItem="Pck-k7-Kzx" firstAttribute="top" secondItem="jzE-Vu-9nF" secondAttribute="bottom" constant="8" id="nX1-VW-cA0"/>
