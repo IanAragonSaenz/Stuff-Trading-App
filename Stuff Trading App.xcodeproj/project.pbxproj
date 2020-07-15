@@ -27,6 +27,7 @@
 		D1CD13E124BE1C3D00913AE7 /* ProfilePostCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD13E024BE1C3D00913AE7 /* ProfilePostCollectionCell.m */; };
 		D1CD13E424BE3D1C00913AE7 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD13E324BE3D1C00913AE7 /* UserViewController.m */; };
 		D1CD13E724BE56DE00913AE7 /* DetailPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD13E624BE56DE00913AE7 /* DetailPostViewController.m */; };
+		D1D6CEB024BF5494006F2AF5 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1D6CEAF24BF5494006F2AF5 /* RegisterViewController.m */; };
 		D65BB463A653D572E6FDEEEC /* Pods_Stuff_Trading_App_Stuff_Trading_AppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F99B29F3CEA47A55E372814 /* Pods_Stuff_Trading_App_Stuff_Trading_AppUITests.framework */; };
 		D7778A2AE8AD54E7C362689C /* Pods_Stuff_Trading_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D5F991D0116DEDE482F951D /* Pods_Stuff_Trading_App.framework */; };
 /* End PBXBuildFile section */
@@ -96,6 +97,8 @@
 		D1CD13E324BE3D1C00913AE7 /* UserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
 		D1CD13E524BE56DE00913AE7 /* DetailPostViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailPostViewController.h; sourceTree = "<group>"; };
 		D1CD13E624BE56DE00913AE7 /* DetailPostViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailPostViewController.m; sourceTree = "<group>"; };
+		D1D6CEAE24BF5494006F2AF5 /* RegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		D1D6CEAF24BF5494006F2AF5 /* RegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +215,8 @@
 				D1CD13E324BE3D1C00913AE7 /* UserViewController.m */,
 				D1CD13E524BE56DE00913AE7 /* DetailPostViewController.h */,
 				D1CD13E624BE56DE00913AE7 /* DetailPostViewController.m */,
+				D1D6CEAE24BF5494006F2AF5 /* RegisterViewController.h */,
+				D1D6CEAF24BF5494006F2AF5 /* RegisterViewController.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -499,6 +504,7 @@
 				D1CD13D124BCEA1C00913AE7 /* PostCell.m in Sources */,
 				D1CD13CE24BCE9B700913AE7 /* FeedViewController.m in Sources */,
 				D1CD13E724BE56DE00913AE7 /* DetailPostViewController.m in Sources */,
+				D1D6CEB024BF5494006F2AF5 /* RegisterViewController.m in Sources */,
 				D1CD13DE24BE12C700913AE7 /* ProfileViewController.m in Sources */,
 				D1CD13CB24BCCFFD00913AE7 /* LoginViewController.m in Sources */,
 				D1CD13E424BE3D1C00913AE7 /* UserViewController.m in Sources */,
