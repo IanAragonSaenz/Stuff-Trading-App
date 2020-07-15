@@ -8,6 +8,7 @@
 
 #import "UserViewController.h"
 #import "ProfilePostCollectionCell.h"
+#import "Chat.h"
 
 @interface UserViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -74,6 +75,12 @@
     return self.posts.count;
 }
 
+#pragma mark - Message
+
+- (IBAction)messageUser:(id)sender {
+    [Chat createChat:self.user];
+    [self performSegueWithIdentifier:@"messageSegue" sender:nil];
+}
 /*
 #pragma mark - Navigation
 

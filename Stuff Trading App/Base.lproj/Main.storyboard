@@ -462,9 +462,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c7Q-k0-03k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1129" y="3523"/>
+            <point key="canvasLocation" x="1129" y="3542"/>
         </scene>
-        <!--View Controller-->
+        <!--Settings-->
         <scene sceneID="EaO-1P-jkM">
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="nDF-wS-sBS" sceneMemberID="viewController">
@@ -474,6 +474,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="tak-RR-sVc"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Settings" id="Lhu-9i-Qr2"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Jd-nU-bnB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -724,7 +725,7 @@
                         <outlet property="profileImage" destination="hj3-HQ-KTK" id="rK4-ef-fR3"/>
                         <outlet property="userDescription" destination="Pck-k7-Kzx" id="MWJ-Vn-Yg0"/>
                         <outlet property="username" destination="jzE-Vu-9nF" id="zSy-c5-0oR"/>
-                        <segue destination="nDF-wS-sBS" kind="presentation" identifier="settingsSegue" id="86v-VJ-Qpv"/>
+                        <segue destination="nDF-wS-sBS" kind="show" id="Lwt-qF-Vaw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WvQ-OJ-GVV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -746,7 +747,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oYv-1V-shL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3103" y="1079"/>
+            <point key="canvasLocation" x="3164" y="1079"/>
         </scene>
         <!--Messages-->
         <scene sceneID="SlV-R5-4hB">
@@ -760,10 +761,13 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Messages" id="Hbm-PG-8en"/>
                     <navigationItem key="navigationItem" title="Messages" id="LL8-AR-lS8"/>
+                    <connections>
+                        <segue destination="6Jy-n2-OZN" kind="show" identifier="messageSegue" id="hnd-S3-CGc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NCW-XD-bO7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3104" y="1855"/>
+            <point key="canvasLocation" x="3165" y="2689"/>
         </scene>
         <!--User-->
         <scene sceneID="k3q-T2-kbB">
@@ -834,6 +838,17 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vPo-us-yzP">
+                                                <rect key="frame" x="314" y="115" width="62" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="YHV-JD-4Yu"/>
+                                                    <constraint firstAttribute="width" constant="62" id="YeQ-yO-8xF"/>
+                                                </constraints>
+                                                <state key="normal" title="Message"/>
+                                                <connections>
+                                                    <action selector="messageUser:" destination="GXx-kA-pC6" eventType="touchUpInside" id="igI-YA-gYX"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
@@ -842,9 +857,11 @@
                                             <constraint firstItem="uCS-xe-4en" firstAttribute="leading" secondItem="sdh-5J-rJc" secondAttribute="leading" constant="8" id="BEO-xI-aqt"/>
                                             <constraint firstItem="3OO-Ym-wy2" firstAttribute="leading" secondItem="sdh-5J-rJc" secondAttribute="leading" constant="8" id="HEE-qx-5he"/>
                                             <constraint firstItem="Wh0-6U-wbD" firstAttribute="leading" secondItem="sdh-5J-rJc" secondAttribute="leading" id="Qze-ga-PTw"/>
+                                            <constraint firstItem="vPo-us-yzP" firstAttribute="top" secondItem="sdh-5J-rJc" secondAttribute="top" constant="115" id="Rfz-XG-KKh"/>
                                             <constraint firstItem="3OO-Ym-wy2" firstAttribute="top" secondItem="sdh-5J-rJc" secondAttribute="top" constant="25.000000000000078" id="Rmx-Xz-iEr"/>
                                             <constraint firstItem="nn4-KI-q9b" firstAttribute="leading" secondItem="sdh-5J-rJc" secondAttribute="leading" constant="8" id="SzA-ts-ByB"/>
                                             <constraint firstAttribute="bottom" secondItem="Wh0-6U-wbD" secondAttribute="bottom" constant="42" id="VMK-on-qno"/>
+                                            <constraint firstAttribute="trailing" secondItem="vPo-us-yzP" secondAttribute="trailing" constant="38" id="bRe-Mg-prD"/>
                                             <constraint firstAttribute="trailing" secondItem="Wh0-6U-wbD" secondAttribute="trailing" id="fmB-b2-psE"/>
                                             <constraint firstItem="Wh0-6U-wbD" firstAttribute="top" secondItem="wq5-1a-vVO" secondAttribute="bottom" constant="12" id="jMA-Sf-xnf"/>
                                             <constraint firstItem="wq5-1a-vVO" firstAttribute="top" secondItem="uCS-xe-4en" secondAttribute="bottom" constant="8" id="uHl-ZG-cbn"/>
@@ -890,7 +907,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="KJ6-HT-lny"/>
+        <segue reference="hnd-S3-CGc"/>
+        <segue reference="9uy-DO-imk"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="person" catalog="system" width="128" height="117"/>

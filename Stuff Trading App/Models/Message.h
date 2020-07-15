@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) Chat *chat;
 @property (strong, nonatomic) User *sender;
 
++ (void)createMessage:(NSString *)message;
+
 @end
 
 NS_ASSUME_NONNULL_END

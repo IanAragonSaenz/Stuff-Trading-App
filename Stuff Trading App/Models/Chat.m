@@ -31,7 +31,6 @@
             chat.userA = userA;
             chat.userB = userB;
             [chat saveInBackground];
-            NSLog(@" number: %d", number);
         }
     }];
 }

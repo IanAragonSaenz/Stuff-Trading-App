@@ -10,13 +10,15 @@
 #import "User.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
+@class User;
 @interface Chat : PFObject<PFSubclassing>
 
 @property (strong, nonatomic) NSString *chatID;
 @property (strong, nonatomic) NSString *userId;
 @property (strong, nonatomic) User *userA;
 @property (strong, nonatomic) User *userB;
+
++ (void)createChat:(User *)userB;
 
 @end
 
