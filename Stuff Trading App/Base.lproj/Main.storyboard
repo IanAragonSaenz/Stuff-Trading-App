@@ -12,7 +12,7 @@
         <scene sceneID="xXl-v1-Kup">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="15R-Am-3RV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <viewController id="g0y-uH-VRL" sceneMemberID="viewController">
+                <viewController id="g0y-uH-VRL" customClass="RegisterViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gI2-8u-UhC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -34,23 +34,42 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="yYx-Bf-i6q">
-                                <rect key="frame" x="39" y="401" width="355" height="191"/>
+                                <rect key="frame" x="39" y="401" width="355" height="144"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WnQ-C1-fQc">
+                                <rect key="frame" x="317" y="566" width="57" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Register"/>
+                                <connections>
+                                    <action selector="signUp:" destination="g0y-uH-VRL" eventType="touchUpInside" id="8bW-lN-gDt"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="3ts-oE-cTP"/>
                     </view>
                     <navigationItem key="navigationItem" title="Register" id="UDv-7K-KH5">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="T6i-gb-O0l"/>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="T6i-gb-O0l">
+                            <connections>
+                                <action selector="cancel:" destination="g0y-uH-VRL" id="HdZ-K1-vpN"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="password" destination="INC-cS-eMr" id="iKl-um-CSU"/>
+                        <outlet property="userDescription" destination="yYx-Bf-i6q" id="AXx-WZ-jvY"/>
+                        <outlet property="userImage" destination="Yhn-gK-sYY" id="kr4-0x-jQX"/>
+                        <outlet property="username" destination="8QX-Yu-j5j" id="GyU-Gz-ggB"/>
+                        <segue destination="Frs-c1-Ztn" kind="presentation" identifier="loginSegue" id="9uy-DO-imk"/>
+                    </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="-1636.2318840579712" y="779.34782608695662"/>
+            <point key="canvasLocation" x="-641" y="742"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="EGo-zh-l0A">
@@ -66,7 +85,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JGE-MS-BuK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-839" y="780"/>
+            <point key="canvasLocation" x="-1435" y="742"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -128,12 +147,12 @@
                         <outlet property="passwordText" destination="tqH-jY-gJG" id="PH8-dD-M1X"/>
                         <outlet property="usernameText" destination="Vnu-bt-4JV" id="FlE-1S-cJ4"/>
                         <segue destination="Frs-c1-Ztn" kind="presentation" identifier="loginSegue" id="KJ6-HT-lny"/>
-                        <segue destination="wlf-6x-lXI" kind="presentation" id="dUm-Lk-PvY"/>
+                        <segue destination="wlf-6x-lXI" kind="presentation" identifier="registerSegue" id="dUm-Lk-PvY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="138"/>
+            <point key="canvasLocation" x="-642" y="-27"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="7ke-jO-7DW">
@@ -842,6 +861,9 @@
             <point key="canvasLocation" x="1129" y="2689"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="9uy-DO-imk"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.badge.plus" catalog="system" width="128" height="116"/>
