@@ -17,40 +17,67 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type your username here..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8QX-Yu-j5j">
-                                <rect key="frame" x="39" y="264" width="355" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type your password here..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="INC-cS-eMr">
-                                <rect key="frame" x="39" y="327" width="355" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.badge.plus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Yhn-gK-sYY">
-                                <rect key="frame" x="39" y="92.66666666666697" width="120" height="120"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="yYx-Bf-i6q">
-                                <rect key="frame" x="39" y="401" width="355" height="144"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WnQ-C1-fQc">
-                                <rect key="frame" x="317" y="566" width="57" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Register"/>
-                                <connections>
-                                    <action selector="signUp:" destination="g0y-uH-VRL" eventType="touchUpInside" id="8bW-lN-gDt"/>
-                                </connections>
-                            </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UXi-8E-vip">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5eQ-Aj-NNz">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type your username here..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8QX-Yu-j5j">
+                                                <rect key="frame" x="19" y="177" width="355" height="34"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type your password here..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="INC-cS-eMr">
+                                                <rect key="frame" x="19" y="241" width="355" height="34"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="yYx-Bf-i6q">
+                                                <rect key="frame" x="19" y="311" width="355" height="144"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WnQ-C1-fQc">
+                                                <rect key="frame" x="317" y="475" width="57" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Register"/>
+                                                <connections>
+                                                    <action selector="signUp:" destination="g0y-uH-VRL" eventType="touchUpInside" id="8bW-lN-gDt"/>
+                                                </connections>
+                                            </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.badge.plus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Yhn-gK-sYY">
+                                                <rect key="frame" x="19" y="20.666666666666742" width="120" height="120"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="5eQ-Aj-NNz" secondAttribute="trailing" id="OHp-1g-bJg"/>
+                                    <constraint firstItem="5eQ-Aj-NNz" firstAttribute="leading" secondItem="UXi-8E-vip" secondAttribute="leading" id="Sjr-Rn-ZwC"/>
+                                    <constraint firstAttribute="bottom" secondItem="5eQ-Aj-NNz" secondAttribute="bottom" id="k8a-Gg-rer"/>
+                                    <constraint firstItem="5eQ-Aj-NNz" firstAttribute="top" secondItem="UXi-8E-vip" secondAttribute="top" id="nPR-VC-f6i"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="sU1-Ks-jMR"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="0DQ-xA-fSO"/>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="UXi-8E-vip" secondAttribute="bottom" id="2ZI-eE-WO0"/>
+                            <constraint firstItem="UXi-8E-vip" firstAttribute="top" secondItem="gI2-8u-UhC" secondAttribute="top" id="7l4-7O-dKH"/>
+                            <constraint firstAttribute="trailing" secondItem="UXi-8E-vip" secondAttribute="trailing" id="U1P-Y7-wc2"/>
+                            <constraint firstItem="UXi-8E-vip" firstAttribute="leading" secondItem="gI2-8u-UhC" secondAttribute="leading" id="hHe-us-RyB"/>
+                            <constraint firstItem="5eQ-Aj-NNz" firstAttribute="height" secondItem="gI2-8u-UhC" secondAttribute="height" id="kEY-Xd-y3D"/>
+                            <constraint firstItem="5eQ-Aj-NNz" firstAttribute="width" secondItem="gI2-8u-UhC" secondAttribute="width" id="rOb-sm-ONt"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="3ts-oE-cTP"/>
                     </view>
                     <navigationItem key="navigationItem" title="Register" id="UDv-7K-KH5">
@@ -69,7 +96,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="-641" y="742"/>
+            <point key="canvasLocation" x="-642.02898550724638" y="741.84782608695662"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="EGo-zh-l0A">
