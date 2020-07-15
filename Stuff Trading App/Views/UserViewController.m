@@ -8,6 +8,7 @@
 
 #import "UserViewController.h"
 #import "ProfilePostCollectionCell.h"
+#import "DetailPostViewController.h"
 #import "Chat.h"
 
 @interface UserViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
@@ -75,11 +76,19 @@
     return self.posts.count;
 }
 
+#pragma mark - Collection View Delegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    DetailPostViewController *detailView = [self.storyboard instantiateViewControllerWithIdentifier:@"detailPostViewController"];
+    detailView.post = self.posts[indexPath.item];
+    [self.navigationController pushViewController:detailView animated:YES];
+}
+
 #pragma mark - Message
 
 - (IBAction)messageUser:(id)sender {
     [Chat createChat:self.user];
-    [self performSegueWithIdentifier:@"messageSegue" sender:nil];
+    [self performSegueWithIdentifier:@"messageSegue" sender:self.user];
 }
 /*
 #pragma mark - Navigation

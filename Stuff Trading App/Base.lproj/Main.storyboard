@@ -351,7 +351,7 @@
         <!--Posts-->
         <scene sceneID="kHf-yb-IEr">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="HNb-q5-TGn" customClass="DetailPostViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="detailPostViewController" modalPresentationStyle="fullScreen" id="HNb-q5-TGn" customClass="DetailPostViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cSH-Rw-vKo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -726,6 +726,7 @@
                         <outlet property="userDescription" destination="Pck-k7-Kzx" id="MWJ-Vn-Yg0"/>
                         <outlet property="username" destination="jzE-Vu-9nF" id="zSy-c5-0oR"/>
                         <segue destination="nDF-wS-sBS" kind="show" id="Lwt-qF-Vaw"/>
+                        <segue destination="HNb-q5-TGn" kind="show" id="EBo-n6-yZq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WvQ-OJ-GVV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -772,7 +773,7 @@
         <!--User-->
         <scene sceneID="k3q-T2-kbB">
             <objects>
-                <viewController id="GXx-kA-pC6" userLabel="User" customClass="UserViewController" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="GXx-kA-pC6" userLabel="User" customClass="UserViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xcH-yP-fFy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -907,7 +908,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="hnd-S3-CGc"/>
+        <segue reference="u6y-DR-7R5"/>
+        <segue reference="EBo-n6-yZq"/>
         <segue reference="9uy-DO-imk"/>
     </inferredMetricsTieBreakers>
     <resources>
