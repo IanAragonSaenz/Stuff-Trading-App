@@ -64,6 +64,7 @@ It's an app where people can put up what items they would like to trade or give 
   * You can sign up with a new user profile 
 * Profile (our profile)
     * The user can see his own profile.
+    * The user profiles show their posts in a collection view.
 * Feed
     * The user can upload a post of something that they want to trade to the feed.
     * The posts load in with animation.
@@ -74,6 +75,7 @@ It's an app where people can put up what items they would like to trade or give 
     * The user go to other user profile by clicking the profile pic in a post.
 * User (other user profile)
     * The user can see other users profiles.
+    * The user profiles show their posts in a collection view.
 * ComposePost
     * The user can upload a post of something that they want to trade to the feed.
     * The user can post an image.
@@ -163,7 +165,6 @@ It's an app where people can put up what items they would like to trade or give 
 | objectId      | String   | unique id for the message (default field) |
 | userA         | Pointer to User       | user from chat |
 | userB   | Pointer to User   | user from chat |
-| messages   | Array   | pointers to messages |
 | createdAt     | DateTime | date when post is created (default field) |
 | updatedAt     | DateTime | date when post is last updated (default field) |
 
@@ -172,7 +173,8 @@ It's an app where people can put up what items they would like to trade or give 
 | ------------- | -------- | ------------|
 | objectId      | String   | unique id for the message (default field) |
 | message         | String       | user's message |
-| sender   | Pointer to User   | user's name |
+| sender   | Pointer to User   | user object |
+| chat   | Pointer to Chat   | chat object |
 | createdAt     | DateTime | date when post is created (default field) |
 | updatedAt     | DateTime | date when post is last updated (default field) |
 
