@@ -27,13 +27,12 @@
     self.tableView.dataSource = self;
     
     self.title = self.chat.userA.username;
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(fetchMessages) userInfo:nil repeats:true];
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(fetchMessages) userInfo:nil repeats:YES];
     [self fetchMessages];
 }
 
 - (void)fetchMessages{
     PFQuery *query = [PFQuery queryWithClassName:@"Message"];
-    [query includeKey:@"chat"];
     [query includeKey:@"sender"];
     [query whereKey:@"chat" equalTo:self.chat];
     [query orderByAscending:@"createdAt"];

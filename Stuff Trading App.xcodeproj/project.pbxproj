@@ -12,6 +12,8 @@
 		D132DB2E24C0A87A002A9501 /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = D132DB2D24C0A87A002A9501 /* Chat.m */; };
 		D132DB3124C0BBE3002A9501 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D132DB3024C0BBE3002A9501 /* MessageViewController.m */; };
 		D132DB3424C0C2A5002A9501 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D132DB3324C0C2A5002A9501 /* MessageCell.m */; };
+		D132DB3724C0E951002A9501 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D132DB3624C0E951002A9501 /* ChatViewController.m */; };
+		D132DB3A24C0EB52002A9501 /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D132DB3924C0EB52002A9501 /* ChatCell.m */; };
 		D1CD139324BB9A5500913AE7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD139224BB9A5500913AE7 /* AppDelegate.m */; };
 		D1CD139624BB9A5500913AE7 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD139524BB9A5500913AE7 /* SceneDelegate.m */; };
 		D1CD139924BB9A5500913AE7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD139824BB9A5500913AE7 /* ViewController.m */; };
@@ -71,6 +73,10 @@
 		D132DB3024C0BBE3002A9501 /* MessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		D132DB3224C0C2A5002A9501 /* MessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
 		D132DB3324C0C2A5002A9501 /* MessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
+		D132DB3524C0E951002A9501 /* ChatViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
+		D132DB3624C0E951002A9501 /* ChatViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
+		D132DB3824C0EB52002A9501 /* ChatCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatCell.h; sourceTree = "<group>"; };
+		D132DB3924C0EB52002A9501 /* ChatCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatCell.m; sourceTree = "<group>"; };
 		D1CD138E24BB9A5500913AE7 /* Stuff Trading App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stuff Trading App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1CD139124BB9A5500913AE7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D1CD139224BB9A5500913AE7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -231,6 +237,8 @@
 				D1D6CEAF24BF5494006F2AF5 /* RegisterViewController.m */,
 				D132DB2F24C0BBE3002A9501 /* MessageViewController.h */,
 				D132DB3024C0BBE3002A9501 /* MessageViewController.m */,
+				D132DB3524C0E951002A9501 /* ChatViewController.h */,
+				D132DB3624C0E951002A9501 /* ChatViewController.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -244,6 +252,8 @@
 				D1CD13E024BE1C3D00913AE7 /* ProfilePostCollectionCell.m */,
 				D132DB3224C0C2A5002A9501 /* MessageCell.h */,
 				D132DB3324C0C2A5002A9501 /* MessageCell.m */,
+				D132DB3824C0EB52002A9501 /* ChatCell.h */,
+				D132DB3924C0EB52002A9501 /* ChatCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -516,6 +526,7 @@
 			files = (
 				D1CD13DB24BD0C4300913AE7 /* User.m in Sources */,
 				D1CD139924BB9A5500913AE7 /* ViewController.m in Sources */,
+				D132DB3724C0E951002A9501 /* ChatViewController.m in Sources */,
 				D1CD13D824BCFB8F00913AE7 /* ComposePostViewController.m in Sources */,
 				D132DB2E24C0A87A002A9501 /* Chat.m in Sources */,
 				D1CD139324BB9A5500913AE7 /* AppDelegate.m in Sources */,
@@ -528,6 +539,7 @@
 				D1CD13E724BE56DE00913AE7 /* DetailPostViewController.m in Sources */,
 				D1D6CEB024BF5494006F2AF5 /* RegisterViewController.m in Sources */,
 				D132DB3424C0C2A5002A9501 /* MessageCell.m in Sources */,
+				D132DB3A24C0EB52002A9501 /* ChatCell.m in Sources */,
 				D1CD13DE24BE12C700913AE7 /* ProfileViewController.m in Sources */,
 				D132DB2A24BF7544002A9501 /* Message.m in Sources */,
 				D1CD13CB24BCCFFD00913AE7 /* LoginViewController.m in Sources */,
