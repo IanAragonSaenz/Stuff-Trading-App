@@ -448,10 +448,10 @@
             </objects>
             <point key="canvasLocation" x="131.8840579710145" y="2688.5869565217395"/>
         </scene>
-        <!--View Controller-->
+        <!--Message View Controller-->
         <scene sceneID="FEY-GW-LEW">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="6Jy-n2-OZN" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="6Jy-n2-OZN" customClass="MessageViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V1I-dF-r2N">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -545,6 +545,9 @@
                         <viewLayoutGuide key="safeArea" id="wh4-oa-0dM"/>
                     </view>
                     <navigationItem key="navigationItem" id="HBY-bo-teu"/>
+                    <connections>
+                        <outlet property="tableView" destination="cdt-GJ-Zfm" id="ZXz-za-Eki"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c7Q-k0-03k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1012,7 +1015,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="hnd-S3-CGc"/>
+        <segue reference="u6y-DR-7R5"/>
         <segue reference="hUk-dZ-6Zk"/>
         <segue reference="9uy-DO-imk"/>
     </inferredMetricsTieBreakers>
