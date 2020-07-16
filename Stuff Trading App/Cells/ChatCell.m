@@ -34,6 +34,7 @@
     } else {
         self.username.text = chat.userA.username;
     }
+    self.latestMessage.text = chat.latestMessage;
 }
 
 @end

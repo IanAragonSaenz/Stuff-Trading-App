@@ -14,7 +14,7 @@
 @dynamic userId;
 @dynamic userA;
 @dynamic userB;
-
+@dynamic latestMessage;
 
 + (nonnull NSString *)parseClassName {
     return @"Chat";

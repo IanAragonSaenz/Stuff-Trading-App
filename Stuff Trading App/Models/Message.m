@@ -26,6 +26,8 @@
     newMessage.message = message;
     newMessage.chat = chat;
     [newMessage saveInBackground];
+    chat.latestMessage = message;
+    [chat saveInBackground];
 }
 
 @end
