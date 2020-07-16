@@ -42,6 +42,7 @@ It's an app where people can put up what items they would like to trade or give 
 * User should display the relative timestamp for each message "8m", "7h"
 * User should display the relative timestamp for each post "8m", "7h"
 * Your app incorporates an external library to add visual polish.
+* The user profiles show their posts in a collection view.
 
 
 **Optional Nice-to-have Stories**
@@ -162,6 +163,7 @@ It's an app where people can put up what items they would like to trade or give 
 | objectId      | String   | unique id for the message (default field) |
 | userA         | Pointer to User       | user from chat |
 | userB   | Pointer to User   | user from chat |
+| messages   | Array   | pointers to messages |
 | createdAt     | DateTime | date when post is created (default field) |
 | updatedAt     | DateTime | date when post is last updated (default field) |
 
@@ -170,8 +172,7 @@ It's an app where people can put up what items they would like to trade or give 
 | ------------- | -------- | ------------|
 | objectId      | String   | unique id for the message (default field) |
 | message         | String       | user's message |
-| author   | Pointer to User   | user's name |
-| chat   | Pointer to Chat   | chat's objectid |
+| sender   | Pointer to User   | user's name |
 | createdAt     | DateTime | date when post is created (default field) |
 | updatedAt     | DateTime | date when post is last updated (default field) |
 

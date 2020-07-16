@@ -9,6 +9,7 @@
 #import "ProfileViewController.h"
 #import "User.h"
 #import "ProfilePostCollectionCell.h"
+#import "DetailPostViewController.h"
 
 @interface ProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -47,6 +48,8 @@
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
 }
 
+#pragma mark - Fetching Posts
+
 - (void)fetchposts{
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query includeKey:@"author"];
@@ -61,6 +64,8 @@
     }];
 }
 
+#pragma mark - Collection View Data Source
+
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ProfilePostCollectionCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"ProfilePostCell" forIndexPath:indexPath];
     [cell setCell:self.posts[indexPath.item]];
@@ -69,6 +74,14 @@
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.posts.count;
+}
+
+#pragma mark - Collection View Delegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    DetailPostViewController *detailView = [self.storyboard instantiateViewControllerWithIdentifier:@"detailPostViewController"];
+    detailView.post = self.posts[indexPath.item];
+    [self.navigationController pushViewController:detailView animated:YES];
 }
 
 /*
