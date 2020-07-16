@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Chat.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ChatCell : UITableViewCell
+
+- (void)setCell:(Chat *)chat;
 
 @end
 

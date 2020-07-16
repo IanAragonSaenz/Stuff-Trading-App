@@ -8,6 +8,8 @@
 
 #import "ChatViewController.h"
 #import "ChatCell.h"
+#import <Parse/Parse.h>
+#import "User.h"
 
 @interface ChatViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -23,10 +25,30 @@
     // Do any additional setup after loading the view.
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(fetchChats) userInfo:nil repeats:YES];
 }
+
+- (void)fetchChats{
+    User *user = [User currentUser];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userA = %@ OR userB = %@", user, user];
+    PFQuery *query = [PFQuery queryWithClassName:@"Chat" predicate:predicate];
+    [query includeKeys:@[@"userA", @"userB"]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable chats, NSError * _Nullable error) {
+        if(error){
+            NSLog(@"error loading chats: %@", error.localizedDescription);
+        } else {
+            self.chats = chats;
+            [self.tableView reloadData];
+        }
+    }];
+}
+
+#pragma mark - Table View Data Source
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ChatCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ChatCell"];
+    [cell setCell:self.chats[indexPath.row]];
     return cell;
 }
 
