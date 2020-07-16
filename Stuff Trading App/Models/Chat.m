@@ -12,7 +12,6 @@
 
 @dynamic chatID;
 @dynamic userId;
-@dynamic messages;
 @dynamic userA;
 @dynamic userB;
 
@@ -33,7 +32,6 @@
                 Chat *chat = [Chat new];
                 chat.userA = userA;
                 chat.userB = user;
-                chat.messages = [NSArray array];
                 [chat saveInBackground];
             }
         }

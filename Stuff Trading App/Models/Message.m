@@ -14,6 +14,7 @@
 @dynamic userId;
 @dynamic message;
 @dynamic sender;
+@dynamic chat;
 
 + (nonnull NSString *)parseClassName {
     return @"Message";
@@ -22,9 +23,9 @@
 + (void)createMessage:(NSString *)message inChat:(Chat *)chat{
     Message *newMessage = [Message new];
     newMessage.sender = [User currentUser];
+    newMessage.message = message;
+    newMessage.chat = chat;
     [newMessage saveInBackground];
-    [chat.messages arrayByAddingObject:newMessage];
-    [chat saveInBackground];
 }
 
 @end

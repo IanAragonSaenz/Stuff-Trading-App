@@ -15,7 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) NSString *chatID;
 @property (strong, nonatomic) NSString *userId;
-@property (strong, nonatomic) NSArray *messages;
 @property (strong, nonatomic) User *userA;
 @property (strong, nonatomic) User *userB;
 

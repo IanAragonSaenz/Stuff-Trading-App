@@ -8,12 +8,13 @@
 
 #import "MessageViewController.h"
 #import "MessageCell.h"
-#import "Chat.h"
+#import "Message.h"
 
 @interface MessageViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) Chat *chat;
+@property (strong, nonatomic) NSArray *messages;
+@property (weak, nonatomic) IBOutlet UITextField *messageText;
 
 @end
 
@@ -22,36 +23,47 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = self.user.username;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
+    self.title = self.chat.userA.username;
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(fetchMessages) userInfo:nil repeats:true];
+    [self fetchMessages];
 }
 
 - (void)fetchMessages{
-    User *userA = [User currentUser];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(userA = %@ AND userB = %@) OR (userA = %@ AND userB = %@)", userA, self.user, self.user, userA];
-    PFQuery *query = [PFQuery queryWithClassName:@"Chat" predicate:predicate];
-    [query includeKey:@"userA"];
-    [query includeKey:@"userB"];
-    [query includeKey:@"messages"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable chats, NSError * _Nullable error) {
+    PFQuery *query = [PFQuery queryWithClassName:@"Message"];
+    [query includeKey:@"chat"];
+    [query includeKey:@"sender"];
+    [query whereKey:@"chat" equalTo:self.chat];
+    [query orderByAscending:@"createdAt"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable messages, NSError * _Nullable error) {
         if(error){
-            NSLog(@"Error loading chat: %@", error.localizedDescription);
-        } else if(chats){
-            self.chat = (Chat *)chats[0];
+            NSLog(@"error loading messages: %@", error.localizedDescription);
+        } else if(messages){
+            self.messages = messages;
+            NSLog(@"message: %@", self.messages);
             [self.tableView reloadData];
         }
     }];
 }
+
 #pragma mark - Table View Data Source
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     MessageCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"MessageCell"];
-    [cell setCell:self.chat.messages[indexPath.row]];
+    [cell setCell:self.messages[indexPath.row]];
     return cell;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.chat.messages.count;
+    return self.messages.count;
+}
+
+#pragma mark - Create Message
+
+- (IBAction)sendMessage:(id)sender {
+    [Message createMessage:self.messageText.text inChat:self.chat];
 }
 
 /*
