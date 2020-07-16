@@ -10,21 +10,21 @@
 
 @implementation Message
 
-@dynamic chatID;
+@dynamic messageID;
 @dynamic userId;
 @dynamic message;
-@dynamic chat;
 @dynamic sender;
 
 + (nonnull NSString *)parseClassName {
     return @"Message";
 }
 
-+ (void)createMessage:(NSString *)message{
++ (void)createMessage:(NSString *)message inChat:(Chat *)chat{
     Message *newMessage = [Message new];
-    newMessage.message = message;
     newMessage.sender = [User currentUser];
     [newMessage saveInBackground];
+    [chat.messages arrayByAddingObject:newMessage];
+    [chat saveInBackground];
 }
 
 @end

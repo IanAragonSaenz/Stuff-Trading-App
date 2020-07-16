@@ -9,7 +9,7 @@
 #import "UserViewController.h"
 #import "ProfilePostCollectionCell.h"
 #import "DetailPostViewController.h"
-#import "Chat.h"
+#import "Message.h"
 
 @interface UserViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -87,7 +87,7 @@
 #pragma mark - Message
 
 - (IBAction)messageUser:(id)sender {
-    [Chat createChat:self.user];
+    [Chat createChatWithUser:self.user];
     [self performSegueWithIdentifier:@"messageSegue" sender:self.user];
 }
 /*

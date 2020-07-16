@@ -14,13 +14,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Message : PFObject<PFSubclassing>
 
-@property (strong, nonatomic) NSString *chatID;
+@property (strong, nonatomic) NSString *messageID;
 @property (strong, nonatomic) NSString *userId;
 @property (strong, nonatomic) NSString *message;
-@property (strong, nonatomic) Chat *chat;
 @property (strong, nonatomic) User *sender;
 
-+ (void)createMessage:(NSString *)message;
++ (void)createMessage:(NSString *)message inChat:(Chat *)chat;
 
 @end
 

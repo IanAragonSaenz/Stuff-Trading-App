@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4A12B2A9D3CE5522C9B43B04 /* Pods_Stuff_Trading_AppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE87B3FA21F7C1491669A661 /* Pods_Stuff_Trading_AppTests.framework */; };
-		D132DB2724BF7537002A9501 /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = D132DB2624BF7537002A9501 /* Chat.m */; };
 		D132DB2A24BF7544002A9501 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = D132DB2924BF7544002A9501 /* Message.m */; };
+		D132DB2E24C0A87A002A9501 /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = D132DB2D24C0A87A002A9501 /* Chat.m */; };
 		D1CD139324BB9A5500913AE7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD139224BB9A5500913AE7 /* AppDelegate.m */; };
 		D1CD139624BB9A5500913AE7 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD139524BB9A5500913AE7 /* SceneDelegate.m */; };
 		D1CD139924BB9A5500913AE7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD139824BB9A5500913AE7 /* ViewController.m */; };
@@ -61,10 +61,10 @@
 		83697454E9B2C3B0CF2D0E8B /* Pods-Stuff Trading App-Stuff Trading AppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stuff Trading App-Stuff Trading AppUITests.release.xcconfig"; path = "Target Support Files/Pods-Stuff Trading App-Stuff Trading AppUITests/Pods-Stuff Trading App-Stuff Trading AppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A2EE6D082620DFBBC1DBF205 /* Pods-Stuff Trading App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stuff Trading App.debug.xcconfig"; path = "Target Support Files/Pods-Stuff Trading App/Pods-Stuff Trading App.debug.xcconfig"; sourceTree = "<group>"; };
 		CE87B3FA21F7C1491669A661 /* Pods_Stuff_Trading_AppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stuff_Trading_AppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D132DB2524BF7537002A9501 /* Chat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Chat.h; sourceTree = "<group>"; };
-		D132DB2624BF7537002A9501 /* Chat.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Chat.m; sourceTree = "<group>"; };
 		D132DB2824BF7544002A9501 /* Message.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		D132DB2924BF7544002A9501 /* Message.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		D132DB2C24C0A87A002A9501 /* Chat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Chat.h; sourceTree = "<group>"; };
+		D132DB2D24C0A87A002A9501 /* Chat.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Chat.m; sourceTree = "<group>"; };
 		D1CD138E24BB9A5500913AE7 /* Stuff Trading App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stuff Trading App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1CD139124BB9A5500913AE7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D1CD139224BB9A5500913AE7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -245,10 +245,10 @@
 				D1CD13D424BCEE8800913AE7 /* Post.m */,
 				D1CD13D924BD0C4300913AE7 /* User.h */,
 				D1CD13DA24BD0C4300913AE7 /* User.m */,
-				D132DB2524BF7537002A9501 /* Chat.h */,
-				D132DB2624BF7537002A9501 /* Chat.m */,
 				D132DB2824BF7544002A9501 /* Message.h */,
 				D132DB2924BF7544002A9501 /* Message.m */,
+				D132DB2C24C0A87A002A9501 /* Chat.h */,
+				D132DB2D24C0A87A002A9501 /* Chat.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -505,9 +505,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1CD13DB24BD0C4300913AE7 /* User.m in Sources */,
-				D132DB2724BF7537002A9501 /* Chat.m in Sources */,
 				D1CD139924BB9A5500913AE7 /* ViewController.m in Sources */,
 				D1CD13D824BCFB8F00913AE7 /* ComposePostViewController.m in Sources */,
+				D132DB2E24C0A87A002A9501 /* Chat.m in Sources */,
 				D1CD139324BB9A5500913AE7 /* AppDelegate.m in Sources */,
 				D1CD13A424BB9A5700913AE7 /* main.m in Sources */,
 				D1CD13E124BE1C3D00913AE7 /* ProfilePostCollectionCell.m in Sources */,
