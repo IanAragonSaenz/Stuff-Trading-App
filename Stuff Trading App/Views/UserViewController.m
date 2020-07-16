@@ -89,20 +89,7 @@
 
 - (IBAction)messageUser:(id)sender {
     [Chat createChatWithUser:self.user];
-    User *userA = [User currentUser];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(userA = %@ AND userB = %@) OR (userA = %@ AND userB = %@)", userA, self.user, self.user, userA];
-    PFQuery *query = [PFQuery queryWithClassName:@"Chat" predicate:predicate];
-    [query includeKey:@"userA"];
-    [query includeKey:@"userB"];
-    [query includeKey:@"messages"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable chats, NSError * _Nullable error) {
-        if(error){
-            NSLog(@"Error loading chat: %@", error.localizedDescription);
-        } else if(chats){
-            Chat *chat = (Chat *)chats[0];
-           [self performSegueWithIdentifier:@"messageSegue" sender:chat];
-        }
-    }];
+    [self performSegueWithIdentifier:@"messageSegue" sender:self.user];
 }
 
 #pragma mark - Navigation
@@ -113,7 +100,7 @@
     // Pass the selected object to the new view controller.
     if([segue.identifier isEqualToString:@"messageSegue"]){
         MessageViewController *messageView = [segue destinationViewController];
-        messageView.chat = sender;
+        messageView.user = sender;
     }
 }
 
