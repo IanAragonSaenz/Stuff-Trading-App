@@ -113,7 +113,6 @@
     // Pass the selected object to the new view controller.
     if([segue.identifier isEqualToString:@"messageSegue"]){
         MessageViewController *messageView = [segue destinationViewController];
-        NSLog(@"userrrr  %@", sender);
         messageView.chat = sender;
     }
 }
