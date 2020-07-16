@@ -42,6 +42,7 @@ It's an app where people can put up what items they would like to trade or give 
 * User should display the relative timestamp for each message "8m", "7h"
 * User should display the relative timestamp for each post "8m", "7h"
 * Your app incorporates an external library to add visual polish.
+* The user profiles show their posts in a collection view.
 
 
 **Optional Nice-to-have Stories**

@@ -7,8 +7,9 @@
 //
 
 #import "MessageViewController.h"
+#import "MessageCell.h"
 
-@interface MessageViewController ()
+@interface MessageViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -19,6 +20,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+#pragma mark - Table View Data Source
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    MessageCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"MessageCell"];
+    [cell setCell:self.chat.messages[indexPath.row]];
+    return cell;
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.chat.messages.count;
 }
 
 /*

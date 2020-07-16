@@ -7,7 +7,6 @@
 //
 
 #import "MessageCell.h"
-#import "Message.h"
 #import "DateTools.h"
 
 @interface MessageCell ()
