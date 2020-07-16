@@ -33,7 +33,6 @@
 
 - (void)fetchMessages{
     PFQuery *query = [PFQuery queryWithClassName:@"Message"];
-    [query includeKey:@"chat"];
     [query includeKey:@"sender"];
     [query whereKey:@"chat" equalTo:self.chat];
     [query orderByAscending:@"createdAt"];

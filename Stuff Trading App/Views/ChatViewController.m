@@ -10,6 +10,7 @@
 #import "ChatCell.h"
 #import <Parse/Parse.h>
 #import "User.h"
+#import "MessageViewController.h"
 
 @interface ChatViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -56,14 +57,23 @@
     return self.chats.count;
 }
 
-/*
+#pragma mark - Table View Delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self performSegueWithIdentifier:@"messageSegue" sender:self.chats[indexPath.row]];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if([segue.identifier isEqualToString:@"messageSegue"]){
+        MessageViewController *messageView = [segue destinationViewController];
+        messageView.chat = sender;
+    }
 }
-*/
+
 
 @end
