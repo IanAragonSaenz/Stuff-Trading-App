@@ -8,6 +8,7 @@ target 'Stuff Trading App' do
   # Pods for Stuff Trading App
   pod 'Parse'
   pod 'DateTools'
+  pod 'IQKeyboardManager'
 
   target 'Stuff Trading AppTests' do
     inherit! :search_paths

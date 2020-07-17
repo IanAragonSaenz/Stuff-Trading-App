@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
 #import "User.h"
+#import "UIAlertController+Utils.h"
 
 @interface LoginViewController ()
 
@@ -24,13 +25,15 @@
     // Do any additional setup after loading the view.
 }
 
+#pragma mark - Sign Up / Login
+
 - (IBAction)login:(id)sender {
     if([self isEmpty:self.usernameText.text password:self.passwordText.text])
         return;
     
     [User logInWithUsernameInBackground:self.usernameText.text password:self.passwordText.text block:^(PFUser * _Nullable user, NSError * _Nullable error) {
-        if(error){
-            [self sendError:error.localizedDescription];
+        if(error) {
+            [UIAlertController sendError:error.localizedDescription onView:self];
         } else {
             [self performSegueWithIdentifier:@"loginSegue" sender:nil];
         }
@@ -41,24 +44,17 @@
     [self performSegueWithIdentifier:@"registerSegue" sender:nil];
 }
 
-- (BOOL)isEmpty:(NSString *)username password:(NSString *)password{
-    if([username isEqualToString:@""]){
-        [self sendError:@"Username is empty"];
+#pragma mark - Check if Empty
+
+- (BOOL)isEmpty:(NSString *)username password:(NSString *)password {
+    if([username isEqualToString:@""]) {
+        [UIAlertController sendError:@"Username is empty" onView:self];
         return YES;
-    } else if([password isEqualToString:@""]){
-        [self sendError:@"Password is empty"];
+    } else if([password isEqualToString:@""]) {
+        [UIAlertController sendError:@"Password is empty" onView:self];
         return YES;
     }
     return NO;
-}
-
-- (void)sendError:(NSString *)error{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
-    [alert addAction:ok];
-    
-    [self presentViewController:alert animated:YES completion:nil];
 }
 
 /*

@@ -12,6 +12,7 @@
 #import <Parse/Parse.h>
 #import "User.h"
 #import "DetailPostViewController.h"
+#import "UIAlertController+Utils.h"
 
 @interface FeedViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -39,12 +40,12 @@
 
 #pragma mark - Infinite Scrolling
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    if(!self.isLoadingMoreData){
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if(!self.isLoadingMoreData) {
         int scrollViewContentHeight = self.tableView.contentSize.height;
         int scrollOffsetThreshold = scrollViewContentHeight - self.tableView.bounds.size.height;
         
-        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging){
+        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging) {
             self.isLoadingMoreData = YES;
             [self fetchPosts];
         }
@@ -61,14 +62,15 @@
     [query includeKey:@"author"];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
-        if(!error){
+        if(!error) {
             if(isRefreshing)
                 self.posts = posts;
             else
                 self.posts = [self.posts arrayByAddingObjectsFromArray:posts];
             [self.tableView reloadData];
-        }else{
-            NSLog(@"error getting posts: %@", error.localizedDescription);
+        } else {
+            [UIAlertController sendError:error.localizedDescription onView:self];
+            
         }
     }];
     self.isLoadingMoreData = false;
@@ -89,19 +91,8 @@
 
 #pragma mark - Table View Delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self performSegueWithIdentifier:@"detailSegue" sender:self.posts[indexPath.row]];
-}
-
-#pragma mark - Error
-
-- (void)sendError:(NSString *)error{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
-    [alert addAction:ok];
-    
-    [self presentViewController:alert animated:YES completion:nil];
 }
     
 #pragma mark - Logout

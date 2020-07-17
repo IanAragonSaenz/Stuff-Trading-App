@@ -13,11 +13,13 @@
 @dynamic image;
 @dynamic userDescription;
 
-+ (User *)user{
++ (User *)user {
     return (User *)[PFUser user];
 }
 
-+ (void)signUpUser:(UIImage *)image username:(NSString *)username password:(NSString *)password description:(NSString *)description withCompletion:(PFBooleanResultBlock _Nullable)completion{
+#pragma mark - Sign Up User
+
++ (void)signUpUser:(UIImage *)image username:(NSString *)username password:(NSString *)password description:(NSString *)description withCompletion:(PFBooleanResultBlock _Nullable)completion {
     User *user = [User user];
     user.username = username;
     user.password = password;
@@ -27,11 +29,13 @@
     [user signUpInBackgroundWithBlock:completion];
 }
 
-+ (void)setProfilePic:(UIImage *)image{
+#pragma mark - Change Values in User
+
++ (void)setProfilePic:(UIImage *)image {
     User *user = [User currentUser];
     user.image = [self getPFFileFromImage:image];
     [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        if(succeeded){
+        if(succeeded) {
             NSLog(@"profile pic changed");
         } else {
             NSLog(@"pfile pic failed: %@", error.localizedDescription);
@@ -39,11 +43,11 @@
     }];
 }
 
-+ (void)setProfileDescription:(NSString *)desc{
++ (void)setProfileDescription:(NSString *)desc {
     User *user = [User currentUser];
     user.userDescription = desc;
     [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        if(succeeded){
+        if(succeeded) {
             NSLog(@"profile pic changed");
         } else {
             NSLog(@"pfile pic failed: %@", error.localizedDescription);
@@ -51,7 +55,9 @@
     }];
 }
 
-+ (PFFileObject *)getPFFileFromImage:(UIImage *_Nullable)image{
+#pragma mark - Get PFFile from Image
+
++ (PFFileObject *)getPFFileFromImage:(UIImage *_Nullable)image {
    if (!image) {
        return nil;
    }

@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *userDescription;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UIButton *messageButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
 @property (strong, nonatomic) NSArray *posts;
 
 @end
@@ -29,7 +31,6 @@
     // Do any additional setup after loading the view.
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    [self fetchposts];
     
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
     layout.minimumInteritemSpacing = 2;
@@ -40,6 +41,17 @@
     CGFloat itemHeight = itemWidth;
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
     
+    if(!self.user){
+        self.user = [User currentUser];
+    }
+    if([self.user.username isEqual:[User currentUser].username]){
+        self.messageButton.userInteractionEnabled = NO;
+        self.messageButton.hidden = YES;
+    } else {
+        [self.settingsButton setEnabled:NO];
+        [self.settingsButton setTintColor:[UIColor clearColor]];
+    }
+    
     self.title = self.user.username;
     self.usernameLabel.text = self.user.username;
     self.userDescription.text = self.user.userDescription;
@@ -47,16 +59,17 @@
         if(!error)
             self.userImage.image = [UIImage imageWithData:data];
     }];
+    [self fetchposts];
 }
 
 #pragma mark - Fetching of Posts
 
-- (void)fetchposts{
+- (void)fetchposts {
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query includeKey:@"author"];
     [query whereKey:@"author" equalTo:self.user];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
-        if(!error){
+        if(!error) {
             self.posts = posts;
             [self.collectionView reloadData];
         } else {
@@ -79,7 +92,7 @@
 
 #pragma mark - Collection View Delegate
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     DetailPostViewController *detailView = [self.storyboard instantiateViewControllerWithIdentifier:@"detailPostViewController"];
     detailView.post = self.posts[indexPath.item];
     [self.navigationController pushViewController:detailView animated:YES];
@@ -96,9 +109,9 @@
     [query includeKey:@"userB"];
     query.limit = 1;
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable chats, NSError * _Nullable error) {
-        if(error){
+        if(error) {
             NSLog(@"Error loading chat: %@", error.localizedDescription);
-        } else if(chats){
+        } else if(chats.count > 0) {
             Chat *chat = chats[0];
             [self performSegueWithIdentifier:@"messageSegue" sender:chat];
         }

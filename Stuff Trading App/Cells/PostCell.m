@@ -33,13 +33,15 @@
     // Configure the view for the selected state
 }
 
-- (void)setPost:(Post *)post{
+#pragma mark - Set Cell
+
+- (void)setPost:(Post *)post {
     _post = post;
     self.usernameText.text = post.author.username;
     self.titleText.text = post.title;
     self.descriptionText.text = post.desc;
     [post.image getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
-        if(!error){
+        if(!error) {
             self.userImage.image = [UIImage imageWithData:data];
         }
     }];

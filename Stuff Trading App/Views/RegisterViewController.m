@@ -9,8 +9,9 @@
 #import "RegisterViewController.h"
 #import "User.h"
 #import "SceneDelegate.h"
+#import "UIAlertController+Utils.h"
 
-@interface RegisterViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface RegisterViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
 @property (weak, nonatomic) IBOutlet UITextField *username;
@@ -24,6 +25,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.username.delegate = self;
+    self.password.delegate = self;
+    
     UITapGestureRecognizer *tapPhoto = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(takePhoto)];
     [self.userImage addGestureRecognizer:tapPhoto];
     [self.userImage setUserInteractionEnabled:YES];
@@ -31,32 +35,29 @@
 
 #pragma mark - Taking Picture
 
-- (void)takePhoto{
+- (void)takePhoto {
     UIImagePickerController *imagePC = [UIImagePickerController new];
     imagePC.delegate = self;
     imagePC.allowsEditing = YES;
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Choose Media" message:@"Choose camera vs photo library" preferredStyle:(UIAlertControllerStyleActionSheet)];
-    
     UIAlertAction *camera = [UIAlertAction actionWithTitle:@"Camera" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
             imagePC.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [self presentViewController:imagePC animated:YES completion:nil];
         } else {
-            [self sendError:@"Camera source not found"];
-            return;
+            [UIAlertController sendError:@"Camera source not found" onView:self];
         }
-        [self presentViewController:imagePC animated:YES completion:nil];
     }];
     [alert addAction:camera];
     
     UIAlertAction *photoLibrary = [UIAlertAction actionWithTitle:@"Photo Library" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]){
+        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
             imagePC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [self presentViewController:imagePC animated:YES completion:nil];
         } else {
-            [self sendError:@"Photo library source not found"];
-            return;
+            [UIAlertController sendError:@"Photo library source not found" onView:self];
         }
-        [self presentViewController:imagePC animated:YES completion:nil];
     }];
     [alert addAction:photoLibrary];
     
@@ -66,7 +67,7 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info{
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     
     self.userImage.image = [self resizeImage:originalImage withSize:(CGSizeMake(325, 325))];
@@ -75,7 +76,7 @@
 
 #pragma mark - Sizing Image
 
-- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size{
+- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
     UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     
     resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -105,7 +106,7 @@
     
     [User signUpUser:self.userImage.image username:self.username.text password:self.password.text description:self.userDescription.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if(error){
-            [self sendError:error.localizedDescription];
+            [UIAlertController sendError:error.localizedDescription onView:self];
         } else {
             [self performSegueWithIdentifier:@"loginSegue" sender:nil];
         }
@@ -114,24 +115,22 @@
 
 #pragma mark - Error && Checkers
 
-- (BOOL)isEmpty:(NSString *)username password:(NSString *)password{
-    if([username isEqualToString:@""]){
-        [self sendError:@"Username is empty"];
+- (BOOL)isEmpty:(NSString *)username password:(NSString *)password {
+    if([username isEqualToString:@""]) {
+        [UIAlertController sendError:@"Username is empty" onView:self];
         return YES;
-    } else if([password isEqualToString:@""]){
-        [self sendError:@"Password is empty"];
+    } else if([password isEqualToString:@""]) {
+        [UIAlertController sendError:@"Password is empty" onView:self];
         return YES;
     }
     return NO;
 }
+#pragma mark - Keyboard
 
-- (void)sendError:(NSString *)error{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
-    [alert addAction:ok];
-    
-    [self presentViewController:alert animated:YES completion:nil];
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 /*

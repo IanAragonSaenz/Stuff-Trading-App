@@ -30,7 +30,9 @@
     // Configure the view for the selected state
 }
 
-- (void)setCell:(Message *)message{
+#pragma mark - Set Cell
+
+- (void)setCell:(Message *)message {
     self.username.text = message.sender.username;
     self.message.text = message.message;
     self.timeAgo.text = message.createdAt.timeAgoSinceNow;

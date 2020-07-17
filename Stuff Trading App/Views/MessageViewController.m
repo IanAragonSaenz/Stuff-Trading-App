@@ -10,7 +10,7 @@
 #import "MessageCell.h"
 #import "Message.h"
 
-@interface MessageViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface MessageViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *messages;
@@ -25,13 +25,16 @@
     // Do any additional setup after loading the view.
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.messageText.delegate = self;
     
     self.title = self.chat.userA.username;
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(fetchMessages) userInfo:nil repeats:YES];
     [self fetchMessages];
 }
 
-- (void)fetchMessages{
+#pragma mark - Fetch Messages
+
+- (void)fetchMessages {
     PFQuery *query = [PFQuery queryWithClassName:@"Message"];
     [query includeKey:@"sender"];
     [query whereKey:@"chat" equalTo:self.chat];
@@ -41,7 +44,6 @@
             NSLog(@"error loading messages: %@", error.localizedDescription);
         } else if(messages){
             self.messages = messages;
-            NSLog(@"message: %@", self.messages);
             [self.tableView reloadData];
         }
     }];
@@ -63,6 +65,14 @@
 
 - (IBAction)sendMessage:(id)sender {
     [Message createMessage:self.messageText.text inChat:self.chat];
+}
+
+#pragma mark - Keyboard
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 /*
