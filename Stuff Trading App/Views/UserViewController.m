@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *userDescription;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UIButton *messageButton;
 @property (strong, nonatomic) NSArray *posts;
 
 @end
@@ -29,7 +30,6 @@
     // Do any additional setup after loading the view.
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    [self fetchposts];
     
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
     layout.minimumInteritemSpacing = 2;
@@ -40,6 +40,14 @@
     CGFloat itemHeight = itemWidth;
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
     
+    if(!self.user){
+        self.user = [User currentUser];
+    }
+    if([self.user.username isEqual:[User currentUser].username]){
+        self.messageButton.userInteractionEnabled = NO;
+        self.messageButton.hidden = YES;
+    }
+    
     self.title = self.user.username;
     self.usernameLabel.text = self.user.username;
     self.userDescription.text = self.user.userDescription;
@@ -47,6 +55,7 @@
         if(!error)
             self.userImage.image = [UIImage imageWithData:data];
     }];
+    [self fetchposts];
 }
 
 #pragma mark - Fetching of Posts

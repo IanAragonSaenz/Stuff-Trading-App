@@ -701,7 +701,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="hEx-Ic-lkp" kind="relationship" relationship="rootViewController" id="WK3-df-c94"/>
+                        <segue destination="GXx-kA-pC6" kind="relationship" relationship="rootViewController" id="5AZ-L4-jdQ"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="18H-lu-IDP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1042,6 +1042,7 @@
                     <navigationItem key="navigationItem" id="Crg-wg-eo0"/>
                     <connections>
                         <outlet property="collectionView" destination="Wh0-6U-wbD" id="j9r-UN-K8B"/>
+                        <outlet property="messageButton" destination="vPo-us-yzP" id="ojM-0e-qKJ"/>
                         <outlet property="userDescription" destination="uCS-xe-4en" id="8fL-mp-Z3M"/>
                         <outlet property="userImage" destination="3OO-Ym-wy2" id="n0J-Py-3fV"/>
                         <outlet property="usernameLabel" destination="nn4-KI-q9b" id="r8L-Dr-7Aa"/>
@@ -1054,7 +1055,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="hnd-S3-CGc"/>
+        <segue reference="5AZ-L4-jdQ"/>
+        <segue reference="u6y-DR-7R5"/>
         <segue reference="hUk-dZ-6Zk"/>
         <segue reference="9uy-DO-imk"/>
     </inferredMetricsTieBreakers>
