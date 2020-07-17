@@ -18,7 +18,7 @@
 
 @implementation ProfilePostCollectionCell
 
-- (void)setCell:(Post *)post{
+- (void)setCell:(Post *)post {
     self.post = post;
     [post.image getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
         if(!error)

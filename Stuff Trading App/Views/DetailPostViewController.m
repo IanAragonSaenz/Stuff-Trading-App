@@ -51,7 +51,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if([segue.identifier isEqualToString:@"userSegue"]){
+    if([segue.identifier isEqualToString:@"userSegue"]) {
          UserViewController *userView = [segue destinationViewController];
          userView.user = sender;
      }

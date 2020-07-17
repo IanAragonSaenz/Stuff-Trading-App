@@ -31,7 +31,7 @@
 
 #pragma mark - Taking Picture
 
-- (void)takePhoto{
+- (void)takePhoto {
     UIImagePickerController *imagePC = [UIImagePickerController new];
     imagePC.delegate = self;
     imagePC.allowsEditing = YES;
@@ -39,24 +39,22 @@
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Choose Media" message:@"Choose camera vs photo library" preferredStyle:(UIAlertControllerStyleActionSheet)];
     
     UIAlertAction *camera = [UIAlertAction actionWithTitle:@"Camera" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
             imagePC.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [self presentViewController:imagePC animated:YES completion:nil];
         } else {
             [self sendError:@"Camera source not found"];
-            return;
         }
-        [self presentViewController:imagePC animated:YES completion:nil];
     }];
     [alert addAction:camera];
     
     UIAlertAction *photoLibrary = [UIAlertAction actionWithTitle:@"Photo Library" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]){
             imagePC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [self presentViewController:imagePC animated:YES completion:nil];
         } else {
             [self sendError:@"Photo library source not found"];
-            return;
         }
-        [self presentViewController:imagePC animated:YES completion:nil];
     }];
     [alert addAction:photoLibrary];
     
@@ -66,7 +64,7 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info{
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     
     self.userImage.image = [self resizeImage:originalImage withSize:(CGSizeMake(325, 325))];
@@ -75,7 +73,7 @@
 
 #pragma mark - Sizing Image
 
-- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size{
+- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
     UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     
     resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -114,11 +112,11 @@
 
 #pragma mark - Error && Checkers
 
-- (BOOL)isEmpty:(NSString *)username password:(NSString *)password{
-    if([username isEqualToString:@""]){
+- (BOOL)isEmpty:(NSString *)username password:(NSString *)password {
+    if([username isEqualToString:@""]) {
         [self sendError:@"Username is empty"];
         return YES;
-    } else if([password isEqualToString:@""]){
+    } else if([password isEqualToString:@""]) {
         [self sendError:@"Password is empty"];
         return YES;
     }

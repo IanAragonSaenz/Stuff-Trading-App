@@ -29,7 +29,7 @@
         return;
     
     [User logInWithUsernameInBackground:self.usernameText.text password:self.passwordText.text block:^(PFUser * _Nullable user, NSError * _Nullable error) {
-        if(error){
+        if(error) {
             [self sendError:error.localizedDescription];
         } else {
             [self performSegueWithIdentifier:@"loginSegue" sender:nil];
@@ -41,18 +41,18 @@
     [self performSegueWithIdentifier:@"registerSegue" sender:nil];
 }
 
-- (BOOL)isEmpty:(NSString *)username password:(NSString *)password{
-    if([username isEqualToString:@""]){
+- (BOOL)isEmpty:(NSString *)username password:(NSString *)password {
+    if([username isEqualToString:@""]) {
         [self sendError:@"Username is empty"];
         return YES;
-    } else if([password isEqualToString:@""]){
+    } else if([password isEqualToString:@""]) {
         [self sendError:@"Password is empty"];
         return YES;
     }
     return NO;
 }
 
-- (void)sendError:(NSString *)error{
+- (void)sendError:(NSString *)error {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];

@@ -55,7 +55,7 @@
     [query includeKey:@"author"];
     [query whereKey:@"author" equalTo:[User currentUser]];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
-        if(!error){
+        if(!error) {
             self.posts = posts;
             [self.collectionView reloadData];
         } else {
@@ -78,7 +78,7 @@
 
 #pragma mark - Collection View Delegate
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     DetailPostViewController *detailView = [self.storyboard instantiateViewControllerWithIdentifier:@"detailPostViewController"];
     detailView.post = self.posts[indexPath.item];
     [self.navigationController pushViewController:detailView animated:YES];

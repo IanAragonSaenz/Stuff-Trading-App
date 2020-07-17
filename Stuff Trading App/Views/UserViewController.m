@@ -51,12 +51,12 @@
 
 #pragma mark - Fetching of Posts
 
-- (void)fetchposts{
+- (void)fetchposts {
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query includeKey:@"author"];
     [query whereKey:@"author" equalTo:self.user];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
-        if(!error){
+        if(!error) {
             self.posts = posts;
             [self.collectionView reloadData];
         } else {
@@ -79,7 +79,7 @@
 
 #pragma mark - Collection View Delegate
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     DetailPostViewController *detailView = [self.storyboard instantiateViewControllerWithIdentifier:@"detailPostViewController"];
     detailView.post = self.posts[indexPath.item];
     [self.navigationController pushViewController:detailView animated:YES];
@@ -96,9 +96,9 @@
     [query includeKey:@"userB"];
     query.limit = 1;
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable chats, NSError * _Nullable error) {
-        if(error){
+        if(error) {
             NSLog(@"Error loading chat: %@", error.localizedDescription);
-        } else if(chats){
+        } else if(chats.count > 0) {
             Chat *chat = chats[0];
             [self performSegueWithIdentifier:@"messageSegue" sender:chat];
         }

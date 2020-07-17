@@ -18,11 +18,11 @@
 @dynamic desc;
 @dynamic likeCount;
 
-+ (nonnull NSString *)parseClassName{
++ (nonnull NSString *)parseClassName {
     return @"Post";
 }
 
-+ (void)postTradeImage:(UIImage *_Nullable)image withTitle:(NSString *_Nullable)title withDescription:(NSString *_Nullable)description withCompletion:(PFBooleanResultBlock _Nullable)completion{
++ (void)postTradeImage:(UIImage *_Nullable)image withTitle:(NSString *_Nullable)title withDescription:(NSString *_Nullable)description withCompletion:(PFBooleanResultBlock _Nullable)completion {
     Post *post = [Post new];
     post.author = [User currentUser];
     post.image = [self getPFFileFromImage:image];
@@ -32,7 +32,7 @@
     [post saveInBackgroundWithBlock: completion];
 }
                    
-+ (PFFileObject *)getPFFileFromImage:(UIImage *_Nullable)image{
++ (PFFileObject *)getPFFileFromImage:(UIImage *_Nullable)image {
    if (!image) {
        return nil;
    }

@@ -20,7 +20,7 @@
     return @"Message";
 }
 
-+ (void)createMessage:(NSString *)message inChat:(Chat *)chat{
++ (void)createMessage:(NSString *)message inChat:(Chat *)chat {
     Message *newMessage = [Message new];
     newMessage.sender = [User currentUser];
     newMessage.message = message;
