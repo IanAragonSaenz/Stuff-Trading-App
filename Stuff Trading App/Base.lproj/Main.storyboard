@@ -915,10 +915,13 @@
                         <viewLayoutGuide key="safeArea" id="FGA-Jn-4BV"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" id="Ryw-Sh-o0M"/>
-                    <navigationItem key="navigationItem" id="Crg-wg-eo0"/>
+                    <navigationItem key="navigationItem" id="Crg-wg-eo0">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" image="gear" catalog="system" id="0tA-23-xAa"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="Wh0-6U-wbD" id="j9r-UN-K8B"/>
                         <outlet property="messageButton" destination="vPo-us-yzP" id="ojM-0e-qKJ"/>
+                        <outlet property="settingsButton" destination="0tA-23-xAa" id="kFX-HZ-har"/>
                         <outlet property="userDescription" destination="uCS-xe-4en" id="8fL-mp-Z3M"/>
                         <outlet property="userImage" destination="3OO-Ym-wy2" id="n0J-Py-3fV"/>
                         <outlet property="usernameLabel" destination="nn4-KI-q9b" id="r8L-Dr-7Aa"/>
@@ -937,6 +940,7 @@
         <segue reference="9uy-DO-imk"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="gear" catalog="system" width="128" height="119"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.badge.plus" catalog="system" width="128" height="116"/>
         <image name="square.and.arrow.down" catalog="system" width="121" height="128"/>

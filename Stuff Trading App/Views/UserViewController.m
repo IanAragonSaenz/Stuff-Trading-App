@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *userDescription;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIButton *messageButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
 @property (strong, nonatomic) NSArray *posts;
 
 @end
@@ -46,6 +47,9 @@
     if([self.user.username isEqual:[User currentUser].username]){
         self.messageButton.userInteractionEnabled = NO;
         self.messageButton.hidden = YES;
+    } else {
+        [self.settingsButton setEnabled:NO];
+        [self.settingsButton setTintColor:[UIColor clearColor]];
     }
     
     self.title = self.user.username;
