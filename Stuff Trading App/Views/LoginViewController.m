@@ -9,7 +9,7 @@
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
 #import "User.h"
-#import "UIAlertController+Error.h"
+#import "UIAlertController+Utils.h"
 
 @interface LoginViewController ()
 

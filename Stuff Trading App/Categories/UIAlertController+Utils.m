@@ -1,14 +1,14 @@
 //
-//  UIAlertController+Error.m
+//  UIAlertController+Utils.m
 //  Stuff Trading App
 //
 //  Created by Ian Andre Aragon Saenz on 17/07/20.
 //  Copyright © 2020 IanAragon. All rights reserved.
 //
 
-#import "UIAlertController+Error.h"
+#import "UIAlertController+Utils.h"
 
-@implementation UIAlertController (Error)
+@implementation UIAlertController (Utils)
 
 + (void)sendError:(NSString *)error onView:(UIViewController *)view {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error preferredStyle:UIAlertControllerStyleAlert];

@@ -9,7 +9,7 @@
 #import "RegisterViewController.h"
 #import "User.h"
 #import "SceneDelegate.h"
-#import "UIAlertController+Error.h"
+#import "UIAlertController+Utils.h"
 
 @interface RegisterViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate>
 

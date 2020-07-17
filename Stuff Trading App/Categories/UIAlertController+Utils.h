@@ -1,5 +1,5 @@
 //
-//  UIAlertController+Error.h
+//  UIAlertController+Utils.h
 //  Stuff Trading App
 //
 //  Created by Ian Andre Aragon Saenz on 17/07/20.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIAlertController (Error)
+@interface UIAlertController (Utils)
 
 + (void)sendError:(NSString *)error onView:(UIViewController *)view;
 

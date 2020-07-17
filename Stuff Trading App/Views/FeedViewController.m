@@ -12,7 +12,7 @@
 #import <Parse/Parse.h>
 #import "User.h"
 #import "DetailPostViewController.h"
-#import "UIAlertController+Error.h"
+#import "UIAlertController+Utils.h"
 
 @interface FeedViewController () <UITableViewDelegate, UITableViewDataSource>
 

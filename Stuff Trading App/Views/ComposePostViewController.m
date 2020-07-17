@@ -10,7 +10,7 @@
 #import "SceneDelegate.h"
 #import "Post.h"
 #import <Parse/Parse.h>
-#import "UIAlertController+Error.h"
+#import "UIAlertController+Utils.h"
 
 @interface ComposePostViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate>
 
