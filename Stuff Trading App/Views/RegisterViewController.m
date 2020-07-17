@@ -47,7 +47,6 @@
             [self presentViewController:imagePC animated:YES completion:nil];
         } else {
             [UIAlertController sendError:@"Camera source not found" onView:self];
-            
         }
     }];
     [alert addAction:camera];
