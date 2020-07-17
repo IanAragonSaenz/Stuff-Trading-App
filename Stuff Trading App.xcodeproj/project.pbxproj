@@ -30,7 +30,6 @@
 		D1CD13D524BCEE8800913AE7 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD13D424BCEE8800913AE7 /* Post.m */; };
 		D1CD13D824BCFB8F00913AE7 /* ComposePostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD13D724BCFB8F00913AE7 /* ComposePostViewController.m */; };
 		D1CD13DB24BD0C4300913AE7 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD13DA24BD0C4300913AE7 /* User.m */; };
-		D1CD13DE24BE12C700913AE7 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD13DD24BE12C700913AE7 /* ProfileViewController.m */; };
 		D1CD13E124BE1C3D00913AE7 /* ProfilePostCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD13E024BE1C3D00913AE7 /* ProfilePostCollectionCell.m */; };
 		D1CD13E424BE3D1C00913AE7 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD13E324BE3D1C00913AE7 /* UserViewController.m */; };
 		D1CD13E724BE56DE00913AE7 /* DetailPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD13E624BE56DE00913AE7 /* DetailPostViewController.m */; };
@@ -110,8 +109,6 @@
 		D1CD13D724BCFB8F00913AE7 /* ComposePostViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposePostViewController.m; sourceTree = "<group>"; };
 		D1CD13D924BD0C4300913AE7 /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		D1CD13DA24BD0C4300913AE7 /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		D1CD13DC24BE12C700913AE7 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
-		D1CD13DD24BE12C700913AE7 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		D1CD13DF24BE1C3D00913AE7 /* ProfilePostCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfilePostCollectionCell.h; sourceTree = "<group>"; };
 		D1CD13E024BE1C3D00913AE7 /* ProfilePostCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfilePostCollectionCell.m; sourceTree = "<group>"; };
 		D1CD13E224BE3D1C00913AE7 /* UserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
@@ -240,8 +237,6 @@
 				D1CD13CD24BCE9B700913AE7 /* FeedViewController.m */,
 				D1CD13D624BCFB8F00913AE7 /* ComposePostViewController.h */,
 				D1CD13D724BCFB8F00913AE7 /* ComposePostViewController.m */,
-				D1CD13DC24BE12C700913AE7 /* ProfileViewController.h */,
-				D1CD13DD24BE12C700913AE7 /* ProfileViewController.m */,
 				D1CD13E224BE3D1C00913AE7 /* UserViewController.h */,
 				D1CD13E324BE3D1C00913AE7 /* UserViewController.m */,
 				D1CD13E524BE56DE00913AE7 /* DetailPostViewController.h */,
@@ -553,7 +548,6 @@
 				D1D6CEB024BF5494006F2AF5 /* RegisterViewController.m in Sources */,
 				D132DB3424C0C2A5002A9501 /* MessageCell.m in Sources */,
 				D132DB3A24C0EB52002A9501 /* ChatCell.m in Sources */,
-				D1CD13DE24BE12C700913AE7 /* ProfileViewController.m in Sources */,
 				D132DB2A24BF7544002A9501 /* Message.m in Sources */,
 				D1CD13CB24BCCFFD00913AE7 /* LoginViewController.m in Sources */,
 				D1CD13E424BE3D1C00913AE7 /* UserViewController.m in Sources */,
