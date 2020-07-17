@@ -10,6 +10,7 @@
 #import "SceneDelegate.h"
 #import "Post.h"
 #import <Parse/Parse.h>
+#import "UIAlertController+Error.h"
 
 @interface ComposePostViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate>
 
@@ -50,7 +51,7 @@
             imagePC.sourceType = UIImagePickerControllerSourceTypeCamera;
             [self presentViewController:imagePC animated:YES completion:nil];
         } else {
-            [self sendError:@"Camera source not found"];
+            [UIAlertController sendError:@"Camera source not found" onView:self];
         }
     }];
     [alert addAction:camera];
@@ -60,7 +61,7 @@
             imagePC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
             [self presentViewController:imagePC animated:YES completion:nil];
         } else {
-            [self sendError:@"Camera source not found"];
+            [UIAlertController sendError:@"Photo library source not found" onView:self];
         }
     }];
     [alert addAction:photoLibrary];
@@ -96,7 +97,7 @@
         if(succeeded){
             NSLog(@"Post succeded");
         } else {
-            NSLog(@"post failed: %@", error.localizedDescription);
+            [UIAlertController sendError:error.localizedDescription onView:self];
         }
     }];
     [self cancel:nil];
@@ -127,15 +128,6 @@
         self.desc.text = @"Type your description here...";
         self.desc.textColor = UIColor.lightGrayColor;
     }
-}
-
-#pragma mark - Error
-
-- (void)sendError:(NSString *)error {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
-    [alert addAction:ok];
-    [self presentViewController:alert animated:YES completion:nil];
 }
 
 /*

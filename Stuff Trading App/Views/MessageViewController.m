@@ -42,7 +42,6 @@
             NSLog(@"error loading messages: %@", error.localizedDescription);
         } else if(messages){
             self.messages = messages;
-            NSLog(@"message: %@", self.messages);
             [self.tableView reloadData];
         }
     }];

@@ -12,6 +12,7 @@
 #import <Parse/Parse.h>
 #import "User.h"
 #import "DetailPostViewController.h"
+#import "UIAlertController+Error.h"
 
 @interface FeedViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -68,7 +69,8 @@
                 self.posts = [self.posts arrayByAddingObjectsFromArray:posts];
             [self.tableView reloadData];
         } else {
-            NSLog(@"error getting posts: %@", error.localizedDescription);
+            [UIAlertController sendError:error.localizedDescription onView:self];
+            
         }
     }];
     self.isLoadingMoreData = false;
@@ -91,17 +93,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self performSegueWithIdentifier:@"detailSegue" sender:self.posts[indexPath.row]];
-}
-
-#pragma mark - Error
-
-- (void)sendError:(NSString *)error {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
-    [alert addAction:ok];
-    
-    [self presentViewController:alert animated:YES completion:nil];
 }
     
 #pragma mark - Logout

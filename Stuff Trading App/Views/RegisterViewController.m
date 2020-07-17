@@ -9,6 +9,7 @@
 #import "RegisterViewController.h"
 #import "User.h"
 #import "SceneDelegate.h"
+#import "UIAlertController+Error.h"
 
 @interface RegisterViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate>
 
@@ -40,23 +41,23 @@
     imagePC.allowsEditing = YES;
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Choose Media" message:@"Choose camera vs photo library" preferredStyle:(UIAlertControllerStyleActionSheet)];
-    
     UIAlertAction *camera = [UIAlertAction actionWithTitle:@"Camera" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
             imagePC.sourceType = UIImagePickerControllerSourceTypeCamera;
             [self presentViewController:imagePC animated:YES completion:nil];
         } else {
-            [self sendError:@"Camera source not found"];
+            [UIAlertController sendError:@"Camera source not found" onView:self];
+            
         }
     }];
     [alert addAction:camera];
     
     UIAlertAction *photoLibrary = [UIAlertAction actionWithTitle:@"Photo Library" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]){
+        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
             imagePC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
             [self presentViewController:imagePC animated:YES completion:nil];
         } else {
-            [self sendError:@"Photo library source not found"];
+            [UIAlertController sendError:@"Photo library source not found" onView:self];
         }
     }];
     [alert addAction:photoLibrary];
@@ -106,7 +107,7 @@
     
     [User signUpUser:self.userImage.image username:self.username.text password:self.password.text description:self.userDescription.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if(error){
-            [self sendError:error.localizedDescription];
+            [UIAlertController sendError:error.localizedDescription onView:self];
         } else {
             [self performSegueWithIdentifier:@"loginSegue" sender:nil];
         }
@@ -117,24 +118,14 @@
 
 - (BOOL)isEmpty:(NSString *)username password:(NSString *)password {
     if([username isEqualToString:@""]) {
-        [self sendError:@"Username is empty"];
+        [UIAlertController sendError:@"Username is empty" onView:self];
         return YES;
     } else if([password isEqualToString:@""]) {
-        [self sendError:@"Password is empty"];
+        [UIAlertController sendError:@"Password is empty" onView:self];
         return YES;
     }
     return NO;
 }
-
-- (void)sendError:(NSString *)error{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
-    [alert addAction:ok];
-    
-    [self presentViewController:alert animated:YES completion:nil];
-}
-
 #pragma mark - Keyboard
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
