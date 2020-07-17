@@ -200,11 +200,11 @@
             </objects>
             <point key="canvasLocation" x="1130" y="138"/>
         </scene>
-        <!--Feed-->
+        <!--Navigation Controller-->
         <scene sceneID="TQd-r8-UrD">
             <objects>
                 <navigationController id="l52-eq-iaP" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Feed" id="cDc-zM-z93"/>
+                    <tabBarItem key="tabBarItem" title="" image="house.fill" catalog="system" id="cDc-zM-z93"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="SRZ-gm-0u9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -668,7 +668,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2Gg-WX-o1v"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Feed" id="3bY-LK-4IW"/>
+                    <tabBarItem key="tabBarItem" title="" image="house" catalog="system" id="3bY-LK-4IW"/>
                     <navigationItem key="navigationItem" title="Home" id="NFK-yA-5Uj">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="Vaz-j9-YIo">
                             <connections>
@@ -691,11 +691,11 @@
             </objects>
             <point key="canvasLocation" x="131.8840579710145" y="1854.6195652173915"/>
         </scene>
-        <!--Profile-->
+        <!--Navigation Controller-->
         <scene sceneID="yvt-gs-9WI">
             <objects>
                 <navigationController id="Umm-OR-yJn" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" id="BYA-Xd-B8h"/>
+                    <tabBarItem key="tabBarItem" title="" image="person" catalog="system" id="BYA-Xd-B8h"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pZ7-wV-WoC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -708,11 +708,11 @@
             </objects>
             <point key="canvasLocation" x="2099" y="1079"/>
         </scene>
-        <!--Messages-->
+        <!--Navigation Controller-->
         <scene sceneID="gCO-Cw-htr">
             <objects>
                 <navigationController id="jZA-Da-jsC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Messages" id="1TC-Jl-Y59"/>
+                    <tabBarItem key="tabBarItem" title="" image="message" catalog="system" id="1TC-Jl-Y59"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eBT-QU-IsS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -941,6 +941,9 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="gear" catalog="system" width="128" height="119"/>
+        <image name="house" catalog="system" width="128" height="110"/>
+        <image name="house.fill" catalog="system" width="128" height="106"/>
+        <image name="message" catalog="system" width="128" height="113"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.badge.plus" catalog="system" width="128" height="116"/>
         <image name="square.and.arrow.down" catalog="system" width="121" height="128"/>
