@@ -10,7 +10,7 @@
 #import "User.h"
 #import "SceneDelegate.h"
 
-@interface RegisterViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface RegisterViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
 @property (weak, nonatomic) IBOutlet UITextField *username;
@@ -24,6 +24,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.username.delegate = self;
+    self.password.delegate = self;
+    
     UITapGestureRecognizer *tapPhoto = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(takePhoto)];
     [self.userImage addGestureRecognizer:tapPhoto];
     [self.userImage setUserInteractionEnabled:YES];
@@ -130,6 +133,14 @@
     [alert addAction:ok];
     
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+#pragma mark - Keyboard
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 /*

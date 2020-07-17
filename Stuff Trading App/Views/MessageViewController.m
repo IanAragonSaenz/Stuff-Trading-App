@@ -10,7 +10,7 @@
 #import "MessageCell.h"
 #import "Message.h"
 
-@interface MessageViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface MessageViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *messages;
@@ -25,6 +25,7 @@
     // Do any additional setup after loading the view.
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.messageText.delegate = self;
     
     self.title = self.chat.userA.username;
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(fetchMessages) userInfo:nil repeats:YES];
@@ -63,6 +64,14 @@
 
 - (IBAction)sendMessage:(id)sender {
     [Message createMessage:self.messageText.text inChat:self.chat];
+}
+
+#pragma mark - Keyboard
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 /*
