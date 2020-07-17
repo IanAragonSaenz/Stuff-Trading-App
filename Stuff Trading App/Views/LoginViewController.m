@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
 #import "User.h"
+#import "UIAlertController+Error.h"
 
 @interface LoginViewController ()
 
@@ -30,7 +31,7 @@
     
     [User logInWithUsernameInBackground:self.usernameText.text password:self.passwordText.text block:^(PFUser * _Nullable user, NSError * _Nullable error) {
         if(error) {
-            [self sendError:error.localizedDescription];
+            [UIAlertController sendError:error.localizedDescription onView:self];
         } else {
             [self performSegueWithIdentifier:@"loginSegue" sender:nil];
         }
@@ -43,22 +44,13 @@
 
 - (BOOL)isEmpty:(NSString *)username password:(NSString *)password {
     if([username isEqualToString:@""]) {
-        [self sendError:@"Username is empty"];
+        [UIAlertController sendError:@"Username is empty" onView:self];
         return YES;
     } else if([password isEqualToString:@""]) {
-        [self sendError:@"Password is empty"];
+        [UIAlertController sendError:@"Password is empty" onView:self];
         return YES;
     }
     return NO;
-}
-
-- (void)sendError:(NSString *)error {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
-    [alert addAction:ok];
-    
-    [self presentViewController:alert animated:YES completion:nil];
 }
 
 /*
