@@ -18,6 +18,8 @@
 
 @implementation ProfilePostCollectionCell
 
+#pragma mark - Set Cell
+
 - (void)setCell:(Post *)post {
     self.post = post;
     [post.image getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {

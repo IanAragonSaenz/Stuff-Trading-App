@@ -33,6 +33,8 @@
     // Configure the view for the selected state
 }
 
+#pragma mark - Set Cell
+
 - (void)setPost:(Post *)post {
     _post = post;
     self.usernameText.text = post.author.username;

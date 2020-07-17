@@ -30,6 +30,8 @@
     // Configure the view for the selected state
 }
 
+#pragma mark - Set Cell
+
 - (void)setCell:(Message *)message {
     self.username.text = message.sender.username;
     self.message.text = message.message;

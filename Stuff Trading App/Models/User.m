@@ -17,6 +17,8 @@
     return (User *)[PFUser user];
 }
 
+#pragma mark - Sign Up User
+
 + (void)signUpUser:(UIImage *)image username:(NSString *)username password:(NSString *)password description:(NSString *)description withCompletion:(PFBooleanResultBlock _Nullable)completion {
     User *user = [User user];
     user.username = username;
@@ -26,6 +28,8 @@
     
     [user signUpInBackgroundWithBlock:completion];
 }
+
+#pragma mark - Change Values in User
 
 + (void)setProfilePic:(UIImage *)image {
     User *user = [User currentUser];
@@ -50,6 +54,8 @@
         }
     }];
 }
+
+#pragma mark - Get PFFile from Image
 
 + (PFFileObject *)getPFFileFromImage:(UIImage *_Nullable)image {
    if (!image) {

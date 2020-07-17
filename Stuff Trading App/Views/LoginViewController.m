@@ -25,6 +25,8 @@
     // Do any additional setup after loading the view.
 }
 
+#pragma mark - Sign Up / Login
+
 - (IBAction)login:(id)sender {
     if([self isEmpty:self.usernameText.text password:self.passwordText.text])
         return;
@@ -41,6 +43,8 @@
 - (IBAction)signUp:(id)sender {
     [self performSegueWithIdentifier:@"registerSegue" sender:nil];
 }
+
+#pragma mark - Check if Empty
 
 - (BOOL)isEmpty:(NSString *)username password:(NSString *)password {
     if([username isEqualToString:@""]) {

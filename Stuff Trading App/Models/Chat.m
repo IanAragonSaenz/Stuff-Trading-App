@@ -20,6 +20,8 @@
     return @"Chat";
 }
 
+#pragma mark - Create Chat
+
 + (void)createChatWithUser:(User *)user {
     User *userA = [User currentUser];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(userA = %@ AND userB = %@) OR (userA = %@ AND userB = %@)", userA, user, user, userA];

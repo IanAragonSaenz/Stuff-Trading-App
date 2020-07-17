@@ -30,6 +30,8 @@
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(fetchChats) userInfo:nil repeats:YES];
 }
 
+#pragma mark - Fetch Chats
+
 - (void)fetchChats {
     User *user = [User currentUser];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userA = %@ OR userB = %@", user, user];

@@ -32,6 +32,8 @@
     [self fetchMessages];
 }
 
+#pragma mark - Fetch Messages
+
 - (void)fetchMessages {
     PFQuery *query = [PFQuery queryWithClassName:@"Message"];
     [query includeKey:@"sender"];

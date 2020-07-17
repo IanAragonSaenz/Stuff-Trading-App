@@ -28,6 +28,8 @@
     // Configure the view for the selected state
 }
 
+#pragma mark - Set Cell
+
 - (void)setCell:(Chat *)chat {
     if(chat.userA.username == [User currentUser].username) {
         self.username.text = chat.userB.username;
