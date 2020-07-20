@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LocationSearchTable : UITableViewController
+@interface LocationSearchTable : UITableViewController <UISearchResultsUpdating>
 
 @end
 

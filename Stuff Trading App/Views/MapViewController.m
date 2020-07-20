@@ -7,6 +7,7 @@
 //
 
 #import "MapViewController.h"
+#import "LocationSearchTable.h"
 
 @interface MapViewController ()
 
@@ -17,6 +18,7 @@
 @implementation MapViewController
 
 CLLocationManager *locationManager;
+UISearchController *searchController;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,22 +29,36 @@ CLLocationManager *locationManager;
     [locationManager requestWhenInUseAuthorization];
     [locationManager requestLocation];
     
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    LocationSearchTable *locationSearchTable = [storyBoard instantiateViewControllerWithIdentifier:@"locationSearchTable"];
+    searchController = [[UISearchController alloc] initWithSearchResultsController:locationSearchTable];
+    searchController.searchResultsUpdater = locationSearchTable;
+    
+    UISearchBar *searchBar = searchController.searchBar;
+    [searchBar sizeToFit];
+    searchBar.placeholder = @"Search for places";
+    self.navigationItem.titleView = searchController.searchBar;
+    
+    searchController.hidesNavigationBarDuringPresentation = NO;
+    self.definesPresentationContext = YES;
 }
 
-- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
+#pragma mark - Location Manager Delegate
+
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     if(status == kCLAuthorizationStatusAuthorizedWhenInUse){
         [locationManager requestLocation];
     }
 }
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     CLLocation *location = [locations firstObject];
     MKCoordinateSpan span = MKCoordinateSpanMake(0.05, 0.05);
     MKCoordinateRegion region = MKCoordinateRegionMake(location.coordinate, span);
     [_mapView setRegion:region animated:YES];
 }
 
-- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     NSLog(@"error with location manager: %@", error.localizedDescription);
 }
 
