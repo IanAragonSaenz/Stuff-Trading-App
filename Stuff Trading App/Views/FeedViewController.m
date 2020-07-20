@@ -17,6 +17,7 @@
 @interface FeedViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) NSArray *posts;
 @property (strong, nonatomic) UIRefreshControl *refresh;
 @property (assign, nonatomic) BOOL isLoadingMoreData;
@@ -53,6 +54,7 @@
 }
 
 - (void)fetchPosts{
+    [self.activityIndicator startAnimating];
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     query.limit = 10;
     BOOL isRefreshing = [self.refresh isRefreshing];
@@ -70,8 +72,8 @@
             [self.tableView reloadData];
         } else {
             [UIAlertController sendError:error.localizedDescription onView:self];
-            
         }
+        [self.activityIndicator stopAnimating];
     }];
     self.isLoadingMoreData = false;
     [self.refresh endRefreshing];

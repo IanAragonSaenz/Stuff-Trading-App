@@ -475,7 +475,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cdt-GJ-Zfm">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="632"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="681"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="96" id="boI-eh-FR2" customClass="MessageCell">
@@ -530,18 +530,22 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="eAd-br-vIz">
+                                <rect key="frame" x="188.66666666666666" y="349.66666666666669" width="37" height="37"/>
+                                <color key="color" cocoaTouchSystemColor="darkTextColor"/>
+                            </activityIndicatorView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3UM-Le-Uo6">
-                                <rect key="frame" x="0.0" y="632" width="414" height="55"/>
+                                <rect key="frame" x="0.0" y="681" width="414" height="55"/>
                                 <color key="backgroundColor" systemColor="secondarySystemFillColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o1Z-99-IvG">
-                                <rect key="frame" x="20" y="640" width="330" height="34"/>
+                                <rect key="frame" x="20" y="689" width="330" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IsB-Da-Uvx">
-                                <rect key="frame" x="360" y="644" width="36" height="30"/>
+                                <rect key="frame" x="360" y="693" width="36" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="3HV-8J-oBT"/>
                                     <constraint firstAttribute="width" constant="36" id="ZO6-m8-9PP"/>
@@ -557,29 +561,33 @@
                             <constraint firstItem="wh4-oa-0dM" firstAttribute="bottom" secondItem="IsB-Da-Uvx" secondAttribute="bottom" constant="13" id="0Z5-li-vo5"/>
                             <constraint firstItem="wh4-oa-0dM" firstAttribute="trailing" secondItem="IsB-Da-Uvx" secondAttribute="trailing" constant="18" id="5SF-TN-LkZ"/>
                             <constraint firstItem="IsB-Da-Uvx" firstAttribute="leading" secondItem="o1Z-99-IvG" secondAttribute="trailing" constant="10" id="E8b-YZ-6kA"/>
-                            <constraint firstItem="3UM-Le-Uo6" firstAttribute="bottom" secondItem="V1I-dF-r2N" secondAttribute="bottom" constant="-49" id="H7R-jk-nAH"/>
+                            <constraint firstItem="3UM-Le-Uo6" firstAttribute="bottom" secondItem="V1I-dF-r2N" secondAttribute="bottom" id="H7R-jk-nAH"/>
                             <constraint firstItem="IsB-Da-Uvx" firstAttribute="top" secondItem="cdt-GJ-Zfm" secondAttribute="bottom" constant="12" id="IU3-6h-IbZ"/>
-                            <constraint firstItem="cdt-GJ-Zfm" firstAttribute="leading" secondItem="wh4-oa-0dM" secondAttribute="leading" id="Ij4-NJ-NjC"/>
+                            <constraint firstItem="cdt-GJ-Zfm" firstAttribute="leading" secondItem="V1I-dF-r2N" secondAttribute="leading" id="Ij4-NJ-NjC"/>
                             <constraint firstItem="3UM-Le-Uo6" firstAttribute="top" secondItem="cdt-GJ-Zfm" secondAttribute="bottom" id="ND0-1W-SUi"/>
                             <constraint firstItem="wh4-oa-0dM" firstAttribute="bottom" secondItem="o1Z-99-IvG" secondAttribute="bottom" constant="13" id="OEV-D1-4xf"/>
+                            <constraint firstItem="eAd-br-vIz" firstAttribute="centerX" secondItem="V1I-dF-r2N" secondAttribute="centerX" id="VHR-EZ-RMH"/>
                             <constraint firstItem="3UM-Le-Uo6" firstAttribute="leading" secondItem="wh4-oa-0dM" secondAttribute="leading" id="XTM-ET-NPE"/>
                             <constraint firstItem="3UM-Le-Uo6" firstAttribute="trailing" secondItem="wh4-oa-0dM" secondAttribute="trailing" id="Zka-9E-nQy"/>
                             <constraint firstItem="o1Z-99-IvG" firstAttribute="leading" secondItem="V1I-dF-r2N" secondAttribute="leading" constant="20" id="pix-A9-XgG"/>
+                            <constraint firstItem="eAd-br-vIz" firstAttribute="centerY" secondItem="V1I-dF-r2N" secondAttribute="centerY" id="sNw-LS-Omu"/>
                             <constraint firstItem="cdt-GJ-Zfm" firstAttribute="top" secondItem="V1I-dF-r2N" secondAttribute="top" id="yUk-V6-LDm"/>
                             <constraint firstItem="o1Z-99-IvG" firstAttribute="top" secondItem="cdt-GJ-Zfm" secondAttribute="bottom" constant="8" id="ypb-bS-jQd"/>
-                            <constraint firstItem="cdt-GJ-Zfm" firstAttribute="trailing" secondItem="wh4-oa-0dM" secondAttribute="trailing" id="zsh-KR-Ets"/>
+                            <constraint firstItem="cdt-GJ-Zfm" firstAttribute="trailing" secondItem="V1I-dF-r2N" secondAttribute="trailing" id="zsh-KR-Ets"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wh4-oa-0dM"/>
                     </view>
                     <navigationItem key="navigationItem" id="HBY-bo-teu"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="eAd-br-vIz" id="IIv-8P-MJ7"/>
                         <outlet property="messageText" destination="o1Z-99-IvG" id="emo-Jd-Qh9"/>
                         <outlet property="tableView" destination="cdt-GJ-Zfm" id="ZXz-za-Eki"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c7Q-k0-03k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="799" y="3623"/>
+            <point key="canvasLocation" x="798.55072463768124" y="3622.826086956522"/>
         </scene>
         <!--Settings-->
         <scene sceneID="EaO-1P-jkM">
@@ -678,12 +686,18 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="nrW-z1-ssf">
+                                <rect key="frame" x="188.66666666666666" y="349.66666666666669" width="37" height="37"/>
+                                <color key="color" cocoaTouchSystemColor="darkTextColor"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="lz6-mo-UyY" firstAttribute="top" secondItem="WFm-0C-bxR" secondAttribute="top" id="CtZ-vS-1nD"/>
                             <constraint firstItem="lz6-mo-UyY" firstAttribute="leading" secondItem="WFm-0C-bxR" secondAttribute="leading" id="SNl-X7-tb6"/>
                             <constraint firstAttribute="trailing" secondItem="lz6-mo-UyY" secondAttribute="trailing" id="cUo-fo-DoI"/>
+                            <constraint firstItem="nrW-z1-ssf" firstAttribute="centerY" secondItem="WFm-0C-bxR" secondAttribute="centerY" id="pJe-9G-kD7"/>
+                            <constraint firstItem="nrW-z1-ssf" firstAttribute="centerX" secondItem="WFm-0C-bxR" secondAttribute="centerX" id="uJW-eV-Jy2"/>
                             <constraint firstAttribute="bottom" secondItem="lz6-mo-UyY" secondAttribute="bottom" id="wuG-L3-7i7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2Gg-WX-o1v"/>
@@ -703,6 +717,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="nrW-z1-ssf" id="HaY-DQ-VgL"/>
                         <outlet property="tableView" destination="lz6-mo-UyY" id="UbZ-AA-XGy"/>
                         <segue destination="HNb-q5-TGn" kind="show" identifier="detailSegue" id="hUk-dZ-6Zk"/>
                     </connections>
@@ -753,9 +768,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Oqj-an-nL8">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Oqj-an-nL8">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatCell" rowHeight="91" id="ofO-U1-yhf" customClass="ChatCell">
@@ -797,13 +811,26 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="J3B-8L-y7J">
+                                <rect key="frame" x="188.66666666666666" y="349.66666666666669" width="37" height="37"/>
+                                <color key="color" cocoaTouchSystemColor="darkTextColor"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Oqj-an-nL8" secondAttribute="bottom" id="bFM-oN-Hn4"/>
+                            <constraint firstItem="Oqj-an-nL8" firstAttribute="trailing" secondItem="XgH-vy-Jyc" secondAttribute="trailing" id="dBe-xs-u0s"/>
+                            <constraint firstItem="Oqj-an-nL8" firstAttribute="top" secondItem="EzJ-b2-B5W" secondAttribute="top" id="fNT-ip-KBG"/>
+                            <constraint firstItem="J3B-8L-y7J" firstAttribute="centerY" secondItem="EzJ-b2-B5W" secondAttribute="centerY" id="fnX-PG-cYS"/>
+                            <constraint firstItem="J3B-8L-y7J" firstAttribute="centerX" secondItem="EzJ-b2-B5W" secondAttribute="centerX" id="tdX-2K-ees"/>
+                            <constraint firstItem="Oqj-an-nL8" firstAttribute="leading" secondItem="XgH-vy-Jyc" secondAttribute="leading" id="zIA-Rj-Bav"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="XgH-vy-Jyc"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Messages" id="Hbm-PG-8en"/>
                     <navigationItem key="navigationItem" title="Messages" id="LL8-AR-lS8" customClass="c"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="J3B-8L-y7J" id="tuR-FR-GT1"/>
                         <outlet property="tableView" destination="Oqj-an-nL8" id="7Bd-1b-4jS"/>
                         <segue destination="6Jy-n2-OZN" kind="show" identifier="messageSegue" id="hnd-S3-CGc"/>
                     </connections>
@@ -885,7 +912,6 @@
                                                 <rect key="frame" x="314" y="115" width="62" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="YHV-JD-4Yu"/>
-                                                    <constraint firstAttribute="width" constant="62" id="YeQ-yO-8xF"/>
                                                 </constraints>
                                                 <state key="normal" title="Message"/>
                                                 <connections>
@@ -946,7 +972,7 @@
                         <outlet property="userImage" destination="3OO-Ym-wy2" id="n0J-Py-3fV"/>
                         <outlet property="usernameLabel" destination="nn4-KI-q9b" id="r8L-Dr-7Aa"/>
                         <segue destination="6Jy-n2-OZN" kind="show" identifier="messageSegue" id="u6y-DR-7R5"/>
-                        <segue destination="nDF-wS-sBS" kind="show" id="3Jo-E7-eZN"/>
+                        <segue destination="nDF-wS-sBS" kind="show" identifier="settingsSegue" id="3Jo-E7-eZN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ey1-du-1fW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -956,7 +982,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="5AZ-L4-jdQ"/>
-        <segue reference="u6y-DR-7R5"/>
+        <segue reference="hnd-S3-CGc"/>
         <segue reference="9uy-DO-imk"/>
     </inferredMetricsTieBreakers>
     <resources>
