@@ -133,6 +133,10 @@
     }
 }
 
+- (IBAction)locationButton:(id)sender {
+    [self performSegueWithIdentifier:@"mapSegue" sender:nil];
+}
+
 /*
 #pragma mark - Navigation
 

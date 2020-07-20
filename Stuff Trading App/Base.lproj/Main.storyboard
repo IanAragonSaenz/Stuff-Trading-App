@@ -276,6 +276,14 @@
                                                     <constraint firstAttribute="height" constant="120.33" id="vsF-MK-Uf0"/>
                                                 </constraints>
                                             </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HGE-lq-QjE">
+                                                <rect key="frame" x="142" y="111" width="90" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Add Location"/>
+                                                <connections>
+                                                    <action selector="locationButton:" destination="EZH-At-OdJ" eventType="touchUpInside" id="Ejk-pC-4BE"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
@@ -343,7 +351,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="baR-FQ-BoI">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="baR-FQ-BoI">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </mapView>
                         </subviews>
@@ -724,7 +732,7 @@
                                 <action selector="logout:" destination="Xtq-Iq-aon" id="qcR-hF-G3S"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Post" id="6wG-02-SEc">
+                        <barButtonItem key="rightBarButtonItem" title="Share" id="6wG-02-SEc">
                             <connections>
                                 <action selector="composePost:" destination="Xtq-Iq-aon" id="v4B-Jx-XoA"/>
                                 <segue destination="lnB-H8-OXN" kind="presentation" id="CWO-8G-ei3"/>
