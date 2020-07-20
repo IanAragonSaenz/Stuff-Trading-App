@@ -328,27 +328,37 @@
                         <outlet property="desc" destination="2p5-BE-wfe" id="8Fm-Jd-HRN"/>
                         <outlet property="postImage" destination="PWO-4E-wCa" id="3xj-n3-3lx"/>
                         <outlet property="titleText" destination="SlP-eQ-I4x" id="rNN-fr-fEc"/>
-                        <segue destination="r74-kK-bOL" kind="presentation" identifier="mapSegue" id="gbH-ZS-j9T"/>
+                        <segue destination="r74-kK-bOL" kind="show" identifier="mapSegue" id="gbH-ZS-j9T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F3E-z3-NAb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1317.3913043478262" y="1854.6195652173915"/>
         </scene>
-        <!--View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="Te0-it-ngB">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="r74-kK-bOL" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mapViewController" modalPresentationStyle="fullScreen" id="r74-kK-bOL" customClass="MapViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="X5c-lE-k9e">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="baR-FQ-BoI">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="8I5-Km-UCP"/>
                     </view>
+                    <navigationItem key="navigationItem" id="HbK-FB-zjC"/>
+                    <connections>
+                        <outlet property="mapView" destination="baR-FQ-BoI" id="tnC-cF-leA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EQi-3g-jgL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1316" y="2689"/>
+            <point key="canvasLocation" x="-1317.3913043478262" y="2688.5869565217395"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7Vn-68-7SS">
