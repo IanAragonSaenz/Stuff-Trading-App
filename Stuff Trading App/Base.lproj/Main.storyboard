@@ -563,7 +563,7 @@
                             <constraint firstItem="IsB-Da-Uvx" firstAttribute="leading" secondItem="o1Z-99-IvG" secondAttribute="trailing" constant="10" id="E8b-YZ-6kA"/>
                             <constraint firstItem="3UM-Le-Uo6" firstAttribute="bottom" secondItem="V1I-dF-r2N" secondAttribute="bottom" id="H7R-jk-nAH"/>
                             <constraint firstItem="IsB-Da-Uvx" firstAttribute="top" secondItem="cdt-GJ-Zfm" secondAttribute="bottom" constant="12" id="IU3-6h-IbZ"/>
-                            <constraint firstItem="cdt-GJ-Zfm" firstAttribute="leading" secondItem="wh4-oa-0dM" secondAttribute="leading" id="Ij4-NJ-NjC"/>
+                            <constraint firstItem="cdt-GJ-Zfm" firstAttribute="leading" secondItem="V1I-dF-r2N" secondAttribute="leading" id="Ij4-NJ-NjC"/>
                             <constraint firstItem="3UM-Le-Uo6" firstAttribute="top" secondItem="cdt-GJ-Zfm" secondAttribute="bottom" id="ND0-1W-SUi"/>
                             <constraint firstItem="wh4-oa-0dM" firstAttribute="bottom" secondItem="o1Z-99-IvG" secondAttribute="bottom" constant="13" id="OEV-D1-4xf"/>
                             <constraint firstItem="eAd-br-vIz" firstAttribute="centerX" secondItem="V1I-dF-r2N" secondAttribute="centerX" id="VHR-EZ-RMH"/>
@@ -573,7 +573,7 @@
                             <constraint firstItem="eAd-br-vIz" firstAttribute="centerY" secondItem="V1I-dF-r2N" secondAttribute="centerY" id="sNw-LS-Omu"/>
                             <constraint firstItem="cdt-GJ-Zfm" firstAttribute="top" secondItem="V1I-dF-r2N" secondAttribute="top" id="yUk-V6-LDm"/>
                             <constraint firstItem="o1Z-99-IvG" firstAttribute="top" secondItem="cdt-GJ-Zfm" secondAttribute="bottom" constant="8" id="ypb-bS-jQd"/>
-                            <constraint firstItem="cdt-GJ-Zfm" firstAttribute="trailing" secondItem="wh4-oa-0dM" secondAttribute="trailing" id="zsh-KR-Ets"/>
+                            <constraint firstItem="cdt-GJ-Zfm" firstAttribute="trailing" secondItem="V1I-dF-r2N" secondAttribute="trailing" id="zsh-KR-Ets"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wh4-oa-0dM"/>
                     </view>
@@ -768,9 +768,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Oqj-an-nL8">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Oqj-an-nL8">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatCell" rowHeight="91" id="ofO-U1-yhf" customClass="ChatCell">
@@ -819,8 +818,12 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Oqj-an-nL8" secondAttribute="bottom" id="bFM-oN-Hn4"/>
+                            <constraint firstItem="Oqj-an-nL8" firstAttribute="trailing" secondItem="XgH-vy-Jyc" secondAttribute="trailing" id="dBe-xs-u0s"/>
+                            <constraint firstItem="Oqj-an-nL8" firstAttribute="top" secondItem="EzJ-b2-B5W" secondAttribute="top" id="fNT-ip-KBG"/>
                             <constraint firstItem="J3B-8L-y7J" firstAttribute="centerY" secondItem="EzJ-b2-B5W" secondAttribute="centerY" id="fnX-PG-cYS"/>
                             <constraint firstItem="J3B-8L-y7J" firstAttribute="centerX" secondItem="EzJ-b2-B5W" secondAttribute="centerX" id="tdX-2K-ees"/>
+                            <constraint firstItem="Oqj-an-nL8" firstAttribute="leading" secondItem="XgH-vy-Jyc" secondAttribute="leading" id="zIA-Rj-Bav"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="XgH-vy-Jyc"/>
                     </view>
