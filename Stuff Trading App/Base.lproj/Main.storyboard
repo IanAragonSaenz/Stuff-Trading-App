@@ -530,6 +530,10 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="eAd-br-vIz">
+                                <rect key="frame" x="188.66666666666666" y="349.66666666666669" width="37" height="37"/>
+                                <color key="color" cocoaTouchSystemColor="darkTextColor"/>
+                            </activityIndicatorView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3UM-Le-Uo6">
                                 <rect key="frame" x="0.0" y="681" width="414" height="55"/>
                                 <color key="backgroundColor" systemColor="secondarySystemFillColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
@@ -562,9 +566,11 @@
                             <constraint firstItem="cdt-GJ-Zfm" firstAttribute="leading" secondItem="wh4-oa-0dM" secondAttribute="leading" id="Ij4-NJ-NjC"/>
                             <constraint firstItem="3UM-Le-Uo6" firstAttribute="top" secondItem="cdt-GJ-Zfm" secondAttribute="bottom" id="ND0-1W-SUi"/>
                             <constraint firstItem="wh4-oa-0dM" firstAttribute="bottom" secondItem="o1Z-99-IvG" secondAttribute="bottom" constant="13" id="OEV-D1-4xf"/>
+                            <constraint firstItem="eAd-br-vIz" firstAttribute="centerX" secondItem="V1I-dF-r2N" secondAttribute="centerX" id="VHR-EZ-RMH"/>
                             <constraint firstItem="3UM-Le-Uo6" firstAttribute="leading" secondItem="wh4-oa-0dM" secondAttribute="leading" id="XTM-ET-NPE"/>
                             <constraint firstItem="3UM-Le-Uo6" firstAttribute="trailing" secondItem="wh4-oa-0dM" secondAttribute="trailing" id="Zka-9E-nQy"/>
                             <constraint firstItem="o1Z-99-IvG" firstAttribute="leading" secondItem="V1I-dF-r2N" secondAttribute="leading" constant="20" id="pix-A9-XgG"/>
+                            <constraint firstItem="eAd-br-vIz" firstAttribute="centerY" secondItem="V1I-dF-r2N" secondAttribute="centerY" id="sNw-LS-Omu"/>
                             <constraint firstItem="cdt-GJ-Zfm" firstAttribute="top" secondItem="V1I-dF-r2N" secondAttribute="top" id="yUk-V6-LDm"/>
                             <constraint firstItem="o1Z-99-IvG" firstAttribute="top" secondItem="cdt-GJ-Zfm" secondAttribute="bottom" constant="8" id="ypb-bS-jQd"/>
                             <constraint firstItem="cdt-GJ-Zfm" firstAttribute="trailing" secondItem="wh4-oa-0dM" secondAttribute="trailing" id="zsh-KR-Ets"/>
@@ -574,6 +580,7 @@
                     <navigationItem key="navigationItem" id="HBY-bo-teu"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="eAd-br-vIz" id="IIv-8P-MJ7"/>
                         <outlet property="messageText" destination="o1Z-99-IvG" id="emo-Jd-Qh9"/>
                         <outlet property="tableView" destination="cdt-GJ-Zfm" id="ZXz-za-Eki"/>
                     </connections>

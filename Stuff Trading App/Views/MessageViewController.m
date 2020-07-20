@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *messages;
 @property (weak, nonatomic) IBOutlet UITextField *messageText;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end
 
@@ -30,6 +31,8 @@
     [self.navigationController.toolbar setHidden:YES];
     [self.tabBarController.tabBar setHidden:YES];
     self.title = self.chat.userA.username;
+    [self.activityIndicator startAnimating];
+    
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(fetchMessages) userInfo:nil repeats:YES];
     [self fetchMessages];
 }
@@ -53,6 +56,7 @@
             self.messages = messages;
             [self.tableView reloadData];
         }
+        [self.activityIndicator stopAnimating];
     }];
 }
 
