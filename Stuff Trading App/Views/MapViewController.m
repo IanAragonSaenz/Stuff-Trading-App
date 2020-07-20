@@ -23,7 +23,27 @@ CLLocationManager *locationManager;
     // Do any additional setup after loading the view.
     locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [locationManager requestWhenInUseAuthorization];
+    [locationManager requestLocation];
     
+}
+
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
+    if(status == kCLAuthorizationStatusAuthorizedWhenInUse){
+        [locationManager requestLocation];
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
+    CLLocation *location = [locations firstObject];
+    MKCoordinateSpan span = MKCoordinateSpanMake(0.05, 0.05);
+    MKCoordinateRegion region = MKCoordinateRegionMake(location.coordinate, span);
+    [_mapView setRegion:region animated:YES];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    NSLog(@"error with location manager: %@", error.localizedDescription);
 }
 
 /*
