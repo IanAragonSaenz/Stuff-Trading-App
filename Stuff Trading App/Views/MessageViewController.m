@@ -27,9 +27,16 @@
     self.tableView.dataSource = self;
     self.messageText.delegate = self;
     
+    [self.navigationController.toolbar setHidden:YES];
+    [self.tabBarController.tabBar setHidden:YES];
     self.title = self.chat.userA.username;
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(fetchMessages) userInfo:nil repeats:YES];
     [self fetchMessages];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.navigationController.toolbar setHidden:NO];
+    [self.tabBarController.tabBar setHidden:NO];
 }
 
 #pragma mark - Fetch Messages
