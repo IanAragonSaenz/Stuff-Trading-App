@@ -679,12 +679,18 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="nrW-z1-ssf">
+                                <rect key="frame" x="188.66666666666666" y="349.66666666666669" width="37" height="37"/>
+                                <color key="color" cocoaTouchSystemColor="darkTextColor"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="lz6-mo-UyY" firstAttribute="top" secondItem="WFm-0C-bxR" secondAttribute="top" id="CtZ-vS-1nD"/>
                             <constraint firstItem="lz6-mo-UyY" firstAttribute="leading" secondItem="WFm-0C-bxR" secondAttribute="leading" id="SNl-X7-tb6"/>
                             <constraint firstAttribute="trailing" secondItem="lz6-mo-UyY" secondAttribute="trailing" id="cUo-fo-DoI"/>
+                            <constraint firstItem="nrW-z1-ssf" firstAttribute="centerY" secondItem="WFm-0C-bxR" secondAttribute="centerY" id="pJe-9G-kD7"/>
+                            <constraint firstItem="nrW-z1-ssf" firstAttribute="centerX" secondItem="WFm-0C-bxR" secondAttribute="centerX" id="uJW-eV-Jy2"/>
                             <constraint firstAttribute="bottom" secondItem="lz6-mo-UyY" secondAttribute="bottom" id="wuG-L3-7i7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2Gg-WX-o1v"/>
@@ -704,6 +710,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="nrW-z1-ssf" id="HaY-DQ-VgL"/>
                         <outlet property="tableView" destination="lz6-mo-UyY" id="UbZ-AA-XGy"/>
                         <segue destination="HNb-q5-TGn" kind="show" identifier="detailSegue" id="hUk-dZ-6Zk"/>
                     </connections>
