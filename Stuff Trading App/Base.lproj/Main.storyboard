@@ -343,12 +343,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="baR-FQ-BoI">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="baR-FQ-BoI">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="baR-FQ-BoI" firstAttribute="top" secondItem="X5c-lE-k9e" secondAttribute="top" id="7cl-FY-qgK"/>
+                            <constraint firstAttribute="bottom" secondItem="baR-FQ-BoI" secondAttribute="bottom" id="YT8-x8-FPF"/>
+                            <constraint firstAttribute="trailing" secondItem="baR-FQ-BoI" secondAttribute="trailing" id="r90-43-kRz"/>
+                            <constraint firstItem="baR-FQ-BoI" firstAttribute="leading" secondItem="X5c-lE-k9e" secondAttribute="leading" id="w78-46-6Z9"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="8I5-Km-UCP"/>
                     </view>
                     <navigationItem key="navigationItem" id="HbK-FB-zjC"/>
