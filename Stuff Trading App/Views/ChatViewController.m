@@ -15,6 +15,7 @@
 @interface ChatViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) NSArray *chats;
 
 @end
@@ -27,6 +28,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+    [self.activityIndicator startAnimating];
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(fetchChats) userInfo:nil repeats:YES];
 }
 
@@ -44,6 +46,7 @@
             self.chats = chats;
             [self.tableView reloadData];
         }
+        [self.activityIndicator stopAnimating];
     }];
 }
 

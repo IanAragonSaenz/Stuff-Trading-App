@@ -679,7 +679,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="nrW-z1-ssf">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="nrW-z1-ssf">
                                 <rect key="frame" x="188.66666666666666" y="349.66666666666669" width="37" height="37"/>
                                 <color key="color" cocoaTouchSystemColor="darkTextColor"/>
                             </activityIndicatorView>
@@ -805,13 +805,22 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="J3B-8L-y7J">
+                                <rect key="frame" x="188.66666666666666" y="349.66666666666669" width="37" height="37"/>
+                                <color key="color" cocoaTouchSystemColor="darkTextColor"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="J3B-8L-y7J" firstAttribute="centerY" secondItem="EzJ-b2-B5W" secondAttribute="centerY" id="fnX-PG-cYS"/>
+                            <constraint firstItem="J3B-8L-y7J" firstAttribute="centerX" secondItem="EzJ-b2-B5W" secondAttribute="centerX" id="tdX-2K-ees"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="XgH-vy-Jyc"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Messages" id="Hbm-PG-8en"/>
                     <navigationItem key="navigationItem" title="Messages" id="LL8-AR-lS8" customClass="c"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="J3B-8L-y7J" id="tuR-FR-GT1"/>
                         <outlet property="tableView" destination="Oqj-an-nL8" id="7Bd-1b-4jS"/>
                         <segue destination="6Jy-n2-OZN" kind="show" identifier="messageSegue" id="hnd-S3-CGc"/>
                     </connections>
