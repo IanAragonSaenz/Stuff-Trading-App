@@ -104,6 +104,13 @@ MKPlacemark *selectedPin;
     return pinView;
 }
 
+#pragma mark - Set Location
+
+- (IBAction)sendLocation:(id)sender {
+    [self.handlePin setLocation:selectedPin];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 /*
 #pragma mark - Navigation
 

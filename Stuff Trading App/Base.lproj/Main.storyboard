@@ -364,7 +364,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8I5-Km-UCP"/>
                     </view>
-                    <navigationItem key="navigationItem" id="HbK-FB-zjC"/>
+                    <navigationItem key="navigationItem" id="HbK-FB-zjC">
+                        <barButtonItem key="rightBarButtonItem" title="Set" id="9Z1-aq-bub">
+                            <connections>
+                                <action selector="sendLocation:" destination="r74-kK-bOL" id="K7A-6c-6s6"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="baR-FQ-BoI" id="tnC-cF-leA"/>
                     </connections>

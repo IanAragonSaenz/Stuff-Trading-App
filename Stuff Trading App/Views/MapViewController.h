@@ -17,7 +17,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@protocol HandlePin <NSObject>
+
+- (void)setLocation:(MKPlacemark *)placemark;
+
+@end
+
 @interface MapViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, HandleMapSearch>
+
+@property (strong, nonatomic) id<HandlePin> handlePin;
 
 @end
 
