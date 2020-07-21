@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+@import MapKit;
+#import "MapViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LocationSearchTable : UITableViewController <UISearchResultsUpdating>
+
+@property MKMapView *mapView;
+@property id<HandleMapSearch> delegate;
 
 @end
 

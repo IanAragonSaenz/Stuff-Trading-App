@@ -11,7 +11,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MapViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate>
+@protocol HandleMapSearch <NSObject>
+
+- (void)dropPinZoomIn:(MKPlacemark *)placemark;
+
+@end
+
+@interface MapViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, HandleMapSearch>
 
 @end
 

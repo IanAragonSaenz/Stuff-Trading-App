@@ -19,10 +19,12 @@
 
 CLLocationManager *locationManager;
 UISearchController *searchController;
+MKPlacemark *selectedPin;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.mapView.delegate = self;
     locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -41,12 +43,16 @@ UISearchController *searchController;
     
     searchController.hidesNavigationBarDuringPresentation = NO;
     self.definesPresentationContext = YES;
+    
+    locationSearchTable.mapView = self.mapView;
+    locationSearchTable.delegate = self;
+    
 }
 
 #pragma mark - Location Manager Delegate
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
-    if(status == kCLAuthorizationStatusAuthorizedWhenInUse){
+    if(status == kCLAuthorizationStatusAuthorizedWhenInUse) {
         [locationManager requestLocation];
     }
 }
@@ -55,11 +61,47 @@ UISearchController *searchController;
     CLLocation *location = [locations firstObject];
     MKCoordinateSpan span = MKCoordinateSpanMake(0.05, 0.05);
     MKCoordinateRegion region = MKCoordinateRegionMake(location.coordinate, span);
-    [_mapView setRegion:region animated:YES];
+    [self.mapView setRegion:region animated:YES];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     NSLog(@"error with location manager: %@", error.localizedDescription);
+}
+
+#pragma mark - Drop Pin Delegate
+
+- (void)dropPinZoomIn:(MKPlacemark *)placemark {
+    selectedPin = placemark;
+    [self.mapView removeAnnotations:[self.mapView annotations]];
+    MKPointAnnotation *annotation = [MKPointAnnotation new];
+    annotation.coordinate = placemark.coordinate;
+    annotation.title = placemark.name;
+    annotation.subtitle = [NSString stringWithFormat:@"%@ %@",
+                           (placemark.locality == nil ? @"" : placemark.locality),
+                           (placemark.administrativeArea == nil ? @"" : placemark.administrativeArea)];
+    [self.mapView addAnnotation:annotation];
+    MKCoordinateSpan span = MKCoordinateSpanMake(0.05, 0.05);
+    MKCoordinateRegion region = MKCoordinateRegionMake(placemark.coordinate, span);
+    [self.mapView setRegion:region animated:YES];
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    if([annotation isKindOfClass:[MKUserLocation class]]){
+        return nil;
+    }
+    
+    NSString *pin = @"pin";
+    MKPinAnnotationView *pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pin];
+    if(pinView == nil) {
+        pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pin];
+        pinView.enabled = YES;
+        pinView.canShowCallout = YES;
+        pinView.tintColor = [UIColor orangeColor];
+    } else {
+        pinView.annotation = annotation;
+    }
+    
+    return pinView;
 }
 
 /*
