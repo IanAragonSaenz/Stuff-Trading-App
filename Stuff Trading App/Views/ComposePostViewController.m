@@ -97,7 +97,7 @@
 #pragma mark - Buttons
 
 - (IBAction)post:(id)sender {
-    [Post postTradeImage:self.postImage.image withTitle:self.titleText.text withDescription:self.desc.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+    [Post postTradeImage:self.postImage.image withTitle:self.titleText.text withDescription:self.desc.text  withLocation:self.location withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded){
             NSLog(@"Post succeded");
         } else {
