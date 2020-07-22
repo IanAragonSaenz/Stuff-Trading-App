@@ -14,14 +14,16 @@
 #import "DetailPostViewController.h"
 #import "UIAlertController+Utils.h"
 
-@interface FeedViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface FeedViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) NSArray *posts;
+@property (strong, nonatomic) NSArray *filteredPosts;
 @property (strong, nonatomic) UIRefreshControl *refresh;
 @property (assign, nonatomic) BOOL isLoadingMoreData;
 @property (strong, nonatomic) NSArray *sections;
+@property (strong, nonatomic) UISearchBar *searchBar;
 
 @end
 
@@ -33,6 +35,13 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.posts = [NSArray array];
+    
+    self.searchBar = [UISearchBar new];
+    self.searchBar.delegate = self;
+    [self.searchBar sizeToFit];
+    self.searchBar.placeholder = @"Search here...";
+    self.tableView.tableHeaderView = self.searchBar;
+    
     
     self.refresh = [[UIRefreshControl alloc] init];
     [self.refresh addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
@@ -74,11 +83,16 @@
     
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
         if(!error) {
-            if(isRefreshing)
+            if(isRefreshing){
                 self.posts = posts;
-            else
+            } else {
                 self.posts = [self.posts arrayByAddingObjectsFromArray:posts];
+            }
+            self.filteredPosts = self.posts;
             [self.tableView reloadData];
+            if(self.searchBar.text != 0) {
+                [self searchBar:self.searchBar textDidChange:self.searchBar.text];
+            }
         } else {
             [UIAlertController sendError:error.localizedDescription onView:self];
         }
@@ -92,18 +106,32 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
-    [cell setPost:self.posts[indexPath.row]];
+    [cell setPost:self.filteredPosts[indexPath.row]];
     return cell;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.posts.count;
+    return self.filteredPosts.count;
 }
 
 #pragma mark - Table View Delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:@"detailSegue" sender:self.posts[indexPath.row]];
+    [self performSegueWithIdentifier:@"detailSegue" sender:self.filteredPosts[indexPath.row]];
+}
+
+#pragma mark - Search Bar Delegate
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    if (searchText.length != 0) {
+        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(NSDictionary *evaluatedObject, NSDictionary *bindings) {
+            return [evaluatedObject[@"title"] containsString:searchText];
+        }];
+        self.filteredPosts = [self.posts filteredArrayUsingPredicate:predicate];
+    } else {
+        self.filteredPosts = self.posts;
+    }
+    [self.tableView reloadData];
 }
     
 #pragma mark - Logout
