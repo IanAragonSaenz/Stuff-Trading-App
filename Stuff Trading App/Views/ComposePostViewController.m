@@ -133,7 +133,7 @@
     sceneDelegate.window.rootViewController = login;
 }
 
-#pragma mark - Buttons
+#pragma mark - Text View Delegate
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {
     if(textView.textColor == UIColor.lightGrayColor){
