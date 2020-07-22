@@ -12,48 +12,46 @@
 @interface MapViewController ()
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) UISearchController *searchController;
+@property (strong, nonatomic) MKPlacemark *selectedPin;
 
 @end
 
 @implementation MapViewController
 
-CLLocationManager *locationManager;
-UISearchController *searchController;
-MKPlacemark *selectedPin;
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.mapView.delegate = self;
-    locationManager = [[CLLocationManager alloc] init];
-    locationManager.delegate = self;
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    [locationManager requestWhenInUseAuthorization];
-    [locationManager requestLocation];
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [self.locationManager requestWhenInUseAuthorization];
+    [self.locationManager requestLocation];
     
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     LocationSearchTableViewController *locationSearchTable = [storyBoard instantiateViewControllerWithIdentifier:@"locationSearchTable"];
-    searchController = [[UISearchController alloc] initWithSearchResultsController:locationSearchTable];
-    searchController.searchResultsUpdater = locationSearchTable;
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:locationSearchTable];
+    self.searchController.searchResultsUpdater = locationSearchTable;
     
-    UISearchBar *searchBar = searchController.searchBar;
+    UISearchBar *searchBar = self.searchController.searchBar;
     [searchBar sizeToFit];
     searchBar.placeholder = @"Search for places";
-    self.navigationItem.titleView = searchController.searchBar;
+    self.navigationItem.titleView = self.searchController.searchBar;
     
-    searchController.hidesNavigationBarDuringPresentation = NO;
+    self.searchController.hidesNavigationBarDuringPresentation = NO;
     self.definesPresentationContext = YES;
-    
+
     locationSearchTable.mapView = self.mapView;
     locationSearchTable.handleMapSearchDelegate = self;
-    
 }
 
 #pragma mark - Location Manager Delegate
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     if(status == kCLAuthorizationStatusAuthorizedWhenInUse) {
-        [locationManager requestLocation];
+        [self.locationManager requestLocation];
     }
 }
 
@@ -71,7 +69,7 @@ MKPlacemark *selectedPin;
 #pragma mark - Drop Pin Delegate
 
 - (void)dropPinZoomIn:(MKPlacemark *)placemark {
-    selectedPin = placemark;
+    self.selectedPin = placemark;
     [self.mapView removeAnnotations:[self.mapView annotations]];
     MKPointAnnotation *annotation = [MKPointAnnotation new];
     annotation.coordinate = placemark.coordinate;
@@ -109,7 +107,7 @@ MKPlacemark *selectedPin;
 #pragma mark - Set Location
 
 - (IBAction)sendLocation:(id)sender {
-    [self.handlePin setLocation:selectedPin];
+    [self.handlePin setLocation:self.selectedPin];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
