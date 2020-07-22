@@ -17,8 +17,8 @@
 @dynamic title;
 @dynamic desc;
 @dynamic likeCount;
-@dynamic location;
 @dynamic section;
+@dynamic location;
 
 + (nonnull NSString *)parseClassName {
     return @"Post";

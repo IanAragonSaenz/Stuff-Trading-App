@@ -49,7 +49,7 @@
             self.sections = sections;
             [self.postSection removeAllSegments];
             for(int i = 0; i < self.sections.count; i++) {
-                Section *section = (Section *)self.sections[i];
+                Section *section = self.sections[i];
                 [self.postSection insertSegmentWithTitle:section.name atIndex:i animated:NO];
             }
             [self.postSection setApportionsSegmentWidthsByContent:YES];
@@ -116,7 +116,7 @@
 #pragma mark - Buttons
 
 - (IBAction)post:(id)sender {
-    [Post postTradeImage:self.postImage.image withTitle:self.titleText.text withDescription:self.desc.text  withLocation:self.location withSection:[Section new] withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+    [Post postTradeImage:self.postImage.image withTitle:self.titleText.text withDescription:self.desc.text  withLocation:self.location withSection:self.sections[self.postSection.selectedSegmentIndex] withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded){
             NSLog(@"Post succeded");
         } else {
