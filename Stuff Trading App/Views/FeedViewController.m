@@ -21,6 +21,7 @@
 @property (strong, nonatomic) NSArray *posts;
 @property (strong, nonatomic) UIRefreshControl *refresh;
 @property (assign, nonatomic) BOOL isLoadingMoreData;
+@property (strong, nonatomic) NSArray *sections;
 
 @end
 
@@ -37,6 +38,13 @@
     [self.refresh addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refresh atIndex:0];
     [self fetchPosts];
+    [Section fetchSections:^(NSArray * _Nonnull sections, NSError * _Nonnull error) {
+        if(error) {
+            NSLog(@"error fetching sections: %@", error.localizedDescription);
+        } else {
+            self.sections = sections;
+        }
+    }];
 }
 
 #pragma mark - Infinite Scrolling
@@ -62,6 +70,7 @@
         query.skip = self.posts.count;
     [query orderByDescending:@"createdAt"];
     [query includeKey:@"author"];
+    [query includeKey:@"location"];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
         if(!error) {

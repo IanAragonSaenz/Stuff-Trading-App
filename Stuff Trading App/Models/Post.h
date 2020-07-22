@@ -8,6 +8,8 @@
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
 #import "User.h"
+#import "Location.h"
+#import "Section.h"
 @import MapKit;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -21,12 +23,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *desc;
 @property (strong, nonatomic) NSNumber *likeCount;
-@property (strong, nonatomic) PFGeoPoint *coordinate;
-@property (strong, nonatomic) NSString *locationName;
-@property (strong, nonatomic) NSString *locationSubtitle;
+@property (strong, nonatomic) Section *section;
+@property (strong, nonatomic) Location *location;
 
-
-+ (void)postTradeImage:(UIImage *_Nullable)image withTitle:(NSString *_Nullable)title withDescription:(NSString *_Nullable)description withLocation:(MKPlacemark *)placemark withCompletion:(PFBooleanResultBlock _Nullable)completion;
++ (void)postTradeImage:(UIImage *_Nullable)image withTitle:(NSString *_Nullable)title withDescription:(NSString *_Nullable)description withLocation:(MKPlacemark *)placemark withSection:(Section *)section withCompletion:(PFBooleanResultBlock _Nullable)completion;
 
 @end
 

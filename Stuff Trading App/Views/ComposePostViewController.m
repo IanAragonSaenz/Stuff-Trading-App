@@ -18,6 +18,10 @@
 @property (weak, nonatomic) IBOutlet UITextView *titleText;
 @property (weak, nonatomic) IBOutlet UITextView *desc;
 @property (strong, nonatomic) MKPlacemark *location;
+@property (weak, nonatomic) IBOutlet UILabel *locationName;
+@property (weak, nonatomic) IBOutlet UILabel *locationSubtitle;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *postSection;
+@property (strong, nonatomic) NSArray *sections;
 
 @end
 
@@ -37,6 +41,21 @@
     self.titleText.textColor = UIColor.lightGrayColor;
     self.desc.text = @"Type your description here...";
     self.desc.textColor = UIColor.lightGrayColor;
+    
+    [Section fetchSections:^(NSArray * _Nonnull sections, NSError * _Nonnull error) {
+        if(error) {
+            NSLog(@"error fetching sections: %@", error.localizedDescription);
+        } else {
+            self.sections = sections;
+            [self.postSection removeAllSegments];
+            for(int i = 0; i < self.sections.count; i++) {
+                Section *section = self.sections[i];
+                [self.postSection insertSegmentWithTitle:section.name atIndex:i animated:NO];
+            }
+            [self.postSection setApportionsSegmentWidthsByContent:YES];
+            [self.postSection setSelectedSegmentIndex:0];
+        }
+    }];
 }
 
 #pragma mark - Photo
@@ -97,7 +116,7 @@
 #pragma mark - Buttons
 
 - (IBAction)post:(id)sender {
-    [Post postTradeImage:self.postImage.image withTitle:self.titleText.text withDescription:self.desc.text  withLocation:self.location withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+    [Post postTradeImage:self.postImage.image withTitle:self.titleText.text withDescription:self.desc.text  withLocation:self.location withSection:self.sections[self.postSection.selectedSegmentIndex] withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded){
             NSLog(@"Post succeded");
         } else {
@@ -142,6 +161,12 @@
 
 - (void)setLocation:(MKPlacemark *)placemark {
     _location = placemark;
+    if(placemark.name != nil) {
+        self.locationName.text = placemark.name;
+    }
+    if(placemark.thoroughfare != nil) {
+        self.locationSubtitle.text = placemark.thoroughfare;
+    }
 }
 
 #pragma mark - Navigation
