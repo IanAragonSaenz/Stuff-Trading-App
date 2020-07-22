@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) NSString *name;
 
++ (void)fetchSections:(void (^)(NSArray *sections, NSError *error))completion;
+
 @end
 
 NS_ASSUME_NONNULL_END

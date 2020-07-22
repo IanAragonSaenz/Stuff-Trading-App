@@ -16,6 +16,17 @@
     return @"Section";
 }
 
-
++ (void)fetchSections:(void (^)(NSArray *sections, NSError *error))completion {
+    PFQuery *query = [PFQuery queryWithClassName:@"Section"];
+    [query orderByAscending:@"createdAt"];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable sections, NSError * _Nullable error) {
+        if(error) {
+            completion(nil, error);
+        } else {
+            completion(sections, nil);
+        }
+    }];
+}
 
 @end

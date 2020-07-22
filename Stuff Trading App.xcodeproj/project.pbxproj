@@ -186,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				D132DB4B24C62F93002A9501 /* LocationSearchTableViewController.h */,
+				D132DB4C24C62F93002A9501 /* LocationSearchTableViewController.m */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -259,7 +260,6 @@
 				D1CD13C924BCCFFD00913AE7 /* LoginViewController.h */,
 				D1CD13CA24BCCFFD00913AE7 /* LoginViewController.m */,
 				D1CD13CC24BCE9B700913AE7 /* FeedViewController.h */,
-				D132DB4C24C62F93002A9501 /* LocationSearchTableViewController.m */,
 				D1CD13CD24BCE9B700913AE7 /* FeedViewController.m */,
 				D1CD13D624BCFB8F00913AE7 /* ComposePostViewController.h */,
 				D1CD13D724BCFB8F00913AE7 /* ComposePostViewController.m */,
