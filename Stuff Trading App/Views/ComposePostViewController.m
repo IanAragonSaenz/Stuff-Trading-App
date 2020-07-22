@@ -18,6 +18,9 @@
 @property (weak, nonatomic) IBOutlet UITextView *titleText;
 @property (weak, nonatomic) IBOutlet UITextView *desc;
 @property (strong, nonatomic) MKPlacemark *location;
+@property (weak, nonatomic) IBOutlet UILabel *locationName;
+@property (weak, nonatomic) IBOutlet UILabel *locationSubtitle;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *postSection;
 
 @end
 
@@ -142,6 +145,12 @@
 
 - (void)setLocation:(MKPlacemark *)placemark {
     _location = placemark;
+    if(placemark.name != nil) {
+        self.locationName.text = placemark.name;
+    }
+    if(placemark.thoroughfare != nil) {
+        self.locationSubtitle.text = placemark.thoroughfare;
+    }
 }
 
 #pragma mark - Navigation
