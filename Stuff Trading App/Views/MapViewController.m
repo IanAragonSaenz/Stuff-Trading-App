@@ -9,6 +9,8 @@
 #import "MapViewController.h"
 #import "LocationSearchTableViewController.h"
 
+static NSString *const pin = @"pin";
+
 @interface MapViewController ()
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -90,7 +92,6 @@
         return nil;
     }
     
-    NSString *pin = @"pin";
     MKPinAnnotationView *pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pin];
     if(pinView == nil) {
         pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pin];

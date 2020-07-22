@@ -10,6 +10,8 @@
 #import "UserViewController.h"
 @import MapKit;
 
+static NSString *const pin = @"pin";
+
 @interface DetailPostViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
@@ -64,7 +66,6 @@
         return nil;
     }
     
-    NSString *pin = @"pin";
     MKPinAnnotationView *pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pin];
     if(pinView == nil) {
         pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pin];
