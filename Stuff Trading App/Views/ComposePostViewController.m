@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *postImage;
 @property (weak, nonatomic) IBOutlet UITextView *titleText;
 @property (weak, nonatomic) IBOutlet UITextView *desc;
+@property (strong, nonatomic) MKPlacemark *location;
 
 @end
 
@@ -96,7 +97,7 @@
 #pragma mark - Buttons
 
 - (IBAction)post:(id)sender {
-    [Post postTradeImage:self.postImage.image withTitle:self.titleText.text withDescription:self.desc.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+    [Post postTradeImage:self.postImage.image withTitle:self.titleText.text withDescription:self.desc.text  withLocation:self.location withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded){
             NSLog(@"Post succeded");
         } else {
@@ -133,14 +134,25 @@
     }
 }
 
-/*
+- (IBAction)locationButton:(id)sender {
+    [self performSegueWithIdentifier:@"mapSegue" sender:nil];
+}
+
+#pragma mark - HandlePin Delegate
+
+- (void)setLocation:(MKPlacemark *)placemark {
+    _location = placemark;
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    MapViewController *mapView = [segue destinationViewController];
+    mapView.handlePin = self;
 }
-*/
+
 
 @end
