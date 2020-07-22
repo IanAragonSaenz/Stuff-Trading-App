@@ -56,7 +56,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     MKPlacemark *selectedItem = self.matchingItems[indexPath.row].placemark;
-    [self.delegate dropPinZoomIn:selectedItem];
+    [self.handleMapSearchDelegate dropPinZoomIn:selectedItem];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

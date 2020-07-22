@@ -45,7 +45,7 @@ MKPlacemark *selectedPin;
     self.definesPresentationContext = YES;
     
     locationSearchTable.mapView = self.mapView;
-    locationSearchTable.delegate = self;
+    locationSearchTable.handleMapSearchDelegate = self;
     
 }
 
