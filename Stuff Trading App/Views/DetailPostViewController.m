@@ -75,8 +75,9 @@
         pinView.annotation = annotation;
     }
     
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-    [button setImage:[UIImage imageNamed:@"car.fill"] forState:UIControlStateNormal];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 48, 48)];
+    [button setBackgroundImage:[UIImage imageNamed:@"icon-car"]
+                      forState:UIControlStateNormal];
     [button addTarget:self action:@selector(getDirections) forControlEvents:UIControlEventTouchUpInside];
     pinView.leftCalloutAccessoryView = button;
     
