@@ -26,7 +26,7 @@
 
 #pragma mark - Create Post
 
-+ (void)postTradeImage:(UIImage *_Nullable)image withTitle:(NSString *_Nullable)title withDescription:(NSString *_Nullable)description withLocation:(MKPlacemark *)placemark withSection:(NSString *)section withCompletion:(PFBooleanResultBlock _Nullable)completion {
++ (void)postTradeImage:(UIImage *_Nullable)image withTitle:(NSString *_Nullable)title withDescription:(NSString *_Nullable)description withLocation:(MKPlacemark *)placemark withSection:(Section *)section withCompletion:(PFBooleanResultBlock _Nullable)completion {
     Post *post = [Post new];
     post.author = [User currentUser];
     post.image = [self getPFFileFromImage:image];
