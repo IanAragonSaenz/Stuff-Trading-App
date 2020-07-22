@@ -6,15 +6,15 @@
 //  Copyright © 2020 IanAragon. All rights reserved.
 //
 
-#import "LocationSearchTable.h"
+#import "LocationSearchTableViewController.h"
 
-@interface LocationSearchTable ()
+@interface LocationSearchTableViewController ()
 
 @property NSArray<MKMapItem *> *matchingItems;
 
 @end
 
-@implementation LocationSearchTable
+@implementation LocationSearchTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -7,7 +7,7 @@
 //
 
 #import "MapViewController.h"
-#import "LocationSearchTable.h"
+#import "LocationSearchTableViewController.h"
 
 @interface MapViewController ()
 
@@ -32,7 +32,7 @@ MKPlacemark *selectedPin;
     [locationManager requestLocation];
     
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    LocationSearchTable *locationSearchTable = [storyBoard instantiateViewControllerWithIdentifier:@"locationSearchTable"];
+    LocationSearchTableViewController *locationSearchTable = [storyBoard instantiateViewControllerWithIdentifier:@"locationSearchTable"];
     searchController = [[UISearchController alloc] initWithSearchResultsController:locationSearchTable];
     searchController.searchResultsUpdater = locationSearchTable;
     

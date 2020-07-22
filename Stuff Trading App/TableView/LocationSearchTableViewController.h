@@ -1,5 +1,5 @@
 //
-//  LocationSearchTable.h
+//  LocationSearchTableViewController.h
 //  Stuff Trading App
 //
 //  Created by Ian Andre Aragon Saenz on 20/07/20.
@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LocationSearchTable : UITableViewController <UISearchResultsUpdating>
+@interface LocationSearchTableViewController : UITableViewController <UISearchResultsUpdating>
 
 @property MKMapView *mapView;
 @property id<HandleMapSearch> delegate;

@@ -17,7 +17,7 @@
 		D132DB4124C21FC2002A9501 /* UIAlertController+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = D132DB4024C21FC2002A9501 /* UIAlertController+Utils.m */; };
 		D132DB4324C60BAA002A9501 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D132DB4224C60BAA002A9501 /* MapKit.framework */; };
 		D132DB4624C60E62002A9501 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D132DB4524C60E62002A9501 /* MapViewController.m */; };
-		D132DB4D24C62F93002A9501 /* LocationSearchTable.m in Sources */ = {isa = PBXBuildFile; fileRef = D132DB4C24C62F93002A9501 /* LocationSearchTable.m */; };
+		D132DB4D24C62F93002A9501 /* LocationSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D132DB4C24C62F93002A9501 /* LocationSearchTableViewController.m */; };
 		D1CD139324BB9A5500913AE7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD139224BB9A5500913AE7 /* AppDelegate.m */; };
 		D1CD139624BB9A5500913AE7 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD139524BB9A5500913AE7 /* SceneDelegate.m */; };
 		D1CD139924BB9A5500913AE7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD139824BB9A5500913AE7 /* ViewController.m */; };
@@ -85,8 +85,8 @@
 		D132DB4224C60BAA002A9501 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D132DB4424C60E62002A9501 /* MapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		D132DB4524C60E62002A9501 /* MapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
-		D132DB4B24C62F93002A9501 /* LocationSearchTable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationSearchTable.h; sourceTree = "<group>"; };
-		D132DB4C24C62F93002A9501 /* LocationSearchTable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationSearchTable.m; sourceTree = "<group>"; };
+		D132DB4B24C62F93002A9501 /* LocationSearchTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationSearchTableViewController.h; sourceTree = "<group>"; };
+		D132DB4C24C62F93002A9501 /* LocationSearchTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationSearchTableViewController.m; sourceTree = "<group>"; };
 		D1CD138E24BB9A5500913AE7 /* Stuff Trading App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stuff Trading App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1CD139124BB9A5500913AE7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D1CD139224BB9A5500913AE7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -179,8 +179,8 @@
 		D132DB4724C62EDB002A9501 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
-				D132DB4B24C62F93002A9501 /* LocationSearchTable.h */,
-				D132DB4C24C62F93002A9501 /* LocationSearchTable.m */,
+				D132DB4B24C62F93002A9501 /* LocationSearchTableViewController.h */,
+				D132DB4C24C62F93002A9501 /* LocationSearchTableViewController.m */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -561,7 +561,7 @@
 				D132DB2E24C0A87A002A9501 /* Chat.m in Sources */,
 				D1CD139324BB9A5500913AE7 /* AppDelegate.m in Sources */,
 				D1CD13A424BB9A5700913AE7 /* main.m in Sources */,
-				D132DB4D24C62F93002A9501 /* LocationSearchTable.m in Sources */,
+				D132DB4D24C62F93002A9501 /* LocationSearchTableViewController.m in Sources */,
 				D132DB3124C0BBE3002A9501 /* MessageViewController.m in Sources */,
 				D1CD13E124BE1C3D00913AE7 /* ProfilePostCollectionCell.m in Sources */,
 				D1CD139624BB9A5500913AE7 /* SceneDelegate.m in Sources */,
