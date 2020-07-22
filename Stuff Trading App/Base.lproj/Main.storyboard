@@ -444,14 +444,14 @@
             <objects>
                 <viewController storyboardIdentifier="detailPostViewController" modalPresentationStyle="fullScreen" id="HNb-q5-TGn" customClass="DetailPostViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cSH-Rw-vKo">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LvJ-QM-OTQ">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aWv-GB-QTE">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="erR-uU-gRj">
                                                 <rect key="frame" x="8" y="20" width="120" height="120"/>
@@ -484,10 +484,17 @@
                                                     <constraint firstAttribute="width" secondItem="uYo-bc-LkI" secondAttribute="height" multiplier="1:1" id="Zsg-ua-euc"/>
                                                 </constraints>
                                             </imageView>
+                                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="eMb-bi-EZn">
+                                                <rect key="frame" x="0.0" y="629" width="414" height="414"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="eMb-bi-EZn" secondAttribute="height" multiplier="1:1" id="Yls-I8-FJU"/>
+                                                </constraints>
+                                            </mapView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="uYo-bc-LkI" firstAttribute="leading" secondItem="aWv-GB-QTE" secondAttribute="leading" id="5lP-UJ-gnu"/>
+                                            <constraint firstItem="eMb-bi-EZn" firstAttribute="top" secondItem="uYo-bc-LkI" secondAttribute="bottom" constant="8" id="8FO-sj-KEK"/>
                                             <constraint firstItem="BfG-7h-HRV" firstAttribute="leading" secondItem="erR-uU-gRj" secondAttribute="trailing" constant="8" id="A3r-Nv-s3m"/>
                                             <constraint firstItem="iYw-RY-oc6" firstAttribute="top" secondItem="BfG-7h-HRV" secondAttribute="bottom" constant="8" id="EtI-kW-eXh"/>
                                             <constraint firstAttribute="trailing" secondItem="iYw-RY-oc6" secondAttribute="trailing" constant="8" id="HUU-s3-YAJ"/>
@@ -497,9 +504,11 @@
                                             <constraint firstItem="BfG-7h-HRV" firstAttribute="top" secondItem="aWv-GB-QTE" secondAttribute="top" constant="20" id="QFL-Yi-2Zb"/>
                                             <constraint firstAttribute="trailing" secondItem="uYo-bc-LkI" secondAttribute="trailing" id="VnE-PE-WUs"/>
                                             <constraint firstItem="uYo-bc-LkI" firstAttribute="top" secondItem="HKN-g3-3VI" secondAttribute="bottom" constant="38.670000000000002" id="Zcj-rG-ymq"/>
+                                            <constraint firstItem="eMb-bi-EZn" firstAttribute="leading" secondItem="aWv-GB-QTE" secondAttribute="leading" id="ayU-oz-wWy"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="eMb-bi-EZn" secondAttribute="bottom" constant="40" id="iCP-zK-nYL"/>
                                             <constraint firstAttribute="trailing" secondItem="HKN-g3-3VI" secondAttribute="trailing" constant="8" id="imv-in-C0C"/>
-                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="uYo-bc-LkI" secondAttribute="bottom" constant="40" id="kzW-an-G0V"/>
                                             <constraint firstItem="HKN-g3-3VI" firstAttribute="leading" secondItem="aWv-GB-QTE" secondAttribute="leading" constant="8" id="l6D-V3-R6N"/>
+                                            <constraint firstAttribute="trailing" secondItem="eMb-bi-EZn" secondAttribute="trailing" id="oq0-TV-eo5"/>
                                             <constraint firstItem="iYw-RY-oc6" firstAttribute="leading" secondItem="erR-uU-gRj" secondAttribute="trailing" constant="8" id="zH8-1G-7bk"/>
                                         </constraints>
                                     </view>
@@ -518,7 +527,7 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="LvJ-QM-OTQ" secondAttribute="trailing" id="RRM-2W-Rz4"/>
                             <constraint firstItem="LvJ-QM-OTQ" firstAttribute="leading" secondItem="cSH-Rw-vKo" secondAttribute="leading" id="lKv-0K-wME"/>
-                            <constraint firstItem="aWv-GB-QTE" firstAttribute="height" secondItem="cSH-Rw-vKo" secondAttribute="height" id="pYV-aG-VHn"/>
+                            <constraint firstItem="aWv-GB-QTE" firstAttribute="height" secondItem="cSH-Rw-vKo" secondAttribute="height" priority="250" id="pYV-aG-VHn"/>
                             <constraint firstItem="LvJ-QM-OTQ" firstAttribute="top" secondItem="cSH-Rw-vKo" secondAttribute="top" id="s0Q-XM-t8j"/>
                             <constraint firstItem="aWv-GB-QTE" firstAttribute="width" secondItem="cSH-Rw-vKo" secondAttribute="width" id="y5M-G7-8ei"/>
                             <constraint firstAttribute="bottom" secondItem="LvJ-QM-OTQ" secondAttribute="bottom" id="zh3-Oq-PFd"/>
@@ -526,6 +535,7 @@
                         <viewLayoutGuide key="safeArea" id="c7F-Nd-oZv"/>
                     </view>
                     <navigationItem key="navigationItem" title="Posts" id="RhH-Rw-xXx"/>
+                    <size key="freeformSize" width="414" height="1200"/>
                     <connections>
                         <outlet property="postDescription" destination="HKN-g3-3VI" id="BZo-3F-ulR"/>
                         <outlet property="postImage" destination="uYo-bc-LkI" id="pUQ-lL-2cb"/>
@@ -537,7 +547,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5vO-88-gEt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="131.8840579710145" y="2688.5869565217395"/>
+            <point key="canvasLocation" x="132" y="2878"/>
         </scene>
         <!--Message View Controller-->
         <scene sceneID="FEY-GW-LEW">
