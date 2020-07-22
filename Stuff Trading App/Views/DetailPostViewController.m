@@ -50,9 +50,9 @@ static NSString *const pin = @"pin";
     
     //adding pin of post
     MKPointAnnotation *annotation = [MKPointAnnotation new];
-    annotation.coordinate = CLLocationCoordinate2DMake(self.post.coordinate.latitude, self.post.coordinate.longitude);
-    annotation.title = self.post.locationName;
-    annotation.subtitle = self.post.locationSubtitle;
+    annotation.coordinate = CLLocationCoordinate2DMake(self.post.location.coordinate.latitude, self.post.location.coordinate.longitude);
+    annotation.title = self.post.location.locationName;
+    annotation.subtitle = self.post.location.locationSubtitle;
     [self.mapView addAnnotation:annotation];
     MKCoordinateSpan span = MKCoordinateSpanMake(0.05, 0.05);
     MKCoordinateRegion region = MKCoordinateRegionMake(annotation.coordinate, span);
@@ -88,8 +88,8 @@ static NSString *const pin = @"pin";
 #pragma mark - Directions
 
 - (void)getDirections {
-    MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:CLLocationCoordinate2DMake(self.post.coordinate.latitude,
-                                                                                                self.post.coordinate.longitude)];
+    MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:CLLocationCoordinate2DMake(self.post.location.coordinate.latitude,
+                                                                                                self.post.location.coordinate.longitude)];
     
     MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
     [mapItem openInMapsWithLaunchOptions:@{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving}];

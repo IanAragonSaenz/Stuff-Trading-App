@@ -17,9 +17,8 @@
 @dynamic title;
 @dynamic desc;
 @dynamic likeCount;
-@dynamic coordinate;
-@dynamic locationName;
-@dynamic locationSubtitle;
+@dynamic location;
+@dynamic section;
 
 + (nonnull NSString *)parseClassName {
     return @"Post";
@@ -27,18 +26,15 @@
 
 #pragma mark - Create Post
 
-+ (void)postTradeImage:(UIImage *_Nullable)image withTitle:(NSString *_Nullable)title withDescription:(NSString *_Nullable)description withLocation:(MKPlacemark *)placemark withCompletion:(PFBooleanResultBlock _Nullable)completion {
++ (void)postTradeImage:(UIImage *_Nullable)image withTitle:(NSString *_Nullable)title withDescription:(NSString *_Nullable)description withLocation:(MKPlacemark *)placemark withSection:(NSString *)section withCompletion:(PFBooleanResultBlock _Nullable)completion {
     Post *post = [Post new];
     post.author = [User currentUser];
     post.image = [self getPFFileFromImage:image];
     post.title = title;
     post.desc = description;
     post.likeCount = @(0);
-    post.coordinate = [PFGeoPoint geoPointWithLocation:placemark.location];
-    post.locationName = placemark.name;
-    post.locationSubtitle = [NSString stringWithFormat:@"%@ %@",
-                             (placemark.locality == nil ? @"" : placemark.locality),
-                             (placemark.administrativeArea == nil ? @"" : placemark.administrativeArea)];
+    post.section = section;
+    post.location = [Location makeLocation:placemark];
     [post saveInBackgroundWithBlock: completion];
 }
    

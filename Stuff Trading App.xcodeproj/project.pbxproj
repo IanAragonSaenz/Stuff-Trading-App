@@ -18,6 +18,7 @@
 		D132DB4324C60BAA002A9501 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D132DB4224C60BAA002A9501 /* MapKit.framework */; };
 		D132DB4624C60E62002A9501 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D132DB4524C60E62002A9501 /* MapViewController.m */; };
 		D132DB4D24C62F93002A9501 /* LocationSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D132DB4C24C62F93002A9501 /* LocationSearchTableViewController.m */; };
+		D15A1EE724C8DD2400935AC7 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = D15A1EE624C8DD2400935AC7 /* Location.m */; };
 		D1CD139324BB9A5500913AE7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD139224BB9A5500913AE7 /* AppDelegate.m */; };
 		D1CD139624BB9A5500913AE7 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD139524BB9A5500913AE7 /* SceneDelegate.m */; };
 		D1CD139924BB9A5500913AE7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD139824BB9A5500913AE7 /* ViewController.m */; };
@@ -87,6 +88,8 @@
 		D132DB4524C60E62002A9501 /* MapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		D132DB4B24C62F93002A9501 /* LocationSearchTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationSearchTableViewController.h; sourceTree = "<group>"; };
 		D132DB4C24C62F93002A9501 /* LocationSearchTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationSearchTableViewController.m; sourceTree = "<group>"; };
+		D15A1EE524C8DD2400935AC7 /* Location.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
+		D15A1EE624C8DD2400935AC7 /* Location.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		D1CD138E24BB9A5500913AE7 /* Stuff Trading App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stuff Trading App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1CD139124BB9A5500913AE7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D1CD139224BB9A5500913AE7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -299,6 +302,8 @@
 				D132DB2924BF7544002A9501 /* Message.m */,
 				D132DB2C24C0A87A002A9501 /* Chat.h */,
 				D132DB2D24C0A87A002A9501 /* Chat.m */,
+				D15A1EE524C8DD2400935AC7 /* Location.h */,
+				D15A1EE624C8DD2400935AC7 /* Location.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -576,6 +581,7 @@
 				D1CD13E424BE3D1C00913AE7 /* UserViewController.m in Sources */,
 				D1CD13D524BCEE8800913AE7 /* Post.m in Sources */,
 				D132DB4124C21FC2002A9501 /* UIAlertController+Utils.m in Sources */,
+				D15A1EE724C8DD2400935AC7 /* Location.m in Sources */,
 				D132DB4624C60E62002A9501 /* MapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
