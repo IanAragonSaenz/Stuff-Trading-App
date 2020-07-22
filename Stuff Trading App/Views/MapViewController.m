@@ -85,6 +85,8 @@ MKPlacemark *selectedPin;
     [self.mapView setRegion:region animated:YES];
 }
 
+#pragma mark - MKMapView Delegate
+
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
     if([annotation isKindOfClass:[MKUserLocation class]]){
         return nil;

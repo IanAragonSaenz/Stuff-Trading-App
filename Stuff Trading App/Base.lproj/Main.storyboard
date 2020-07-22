@@ -537,6 +537,7 @@
                     <navigationItem key="navigationItem" title="Posts" id="RhH-Rw-xXx"/>
                     <size key="freeformSize" width="414" height="1200"/>
                     <connections>
+                        <outlet property="mapView" destination="eMb-bi-EZn" id="wm0-WQ-sDc"/>
                         <outlet property="postDescription" destination="HKN-g3-3VI" id="BZo-3F-ulR"/>
                         <outlet property="postImage" destination="uYo-bc-LkI" id="pUQ-lL-2cb"/>
                         <outlet property="titleLabel" destination="iYw-RY-oc6" id="igB-J1-k4g"/>

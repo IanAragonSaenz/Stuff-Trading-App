@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DetailPostViewController : UIViewController
+@interface DetailPostViewController : UIViewController <MKMapViewDelegate>
 
 @property (strong, nonatomic) Post *post;
 
