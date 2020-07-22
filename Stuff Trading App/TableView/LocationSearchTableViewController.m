@@ -10,7 +10,7 @@
 
 @interface LocationSearchTableViewController ()
 
-@property NSArray<MKMapItem *> *matchingItems;
+@property (strong, nonatomic) NSArray<MKMapItem *> *matchingItems;
 
 @end
 

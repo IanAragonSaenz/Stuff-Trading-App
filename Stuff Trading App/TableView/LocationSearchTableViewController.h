@@ -14,8 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LocationSearchTableViewController : UITableViewController <UISearchResultsUpdating>
 
-@property MKMapView *mapView;
-@property id<HandleMapSearch> delegate;
+@property  (strong, nonatomic) MKMapView *mapView;
+@property (strong, nonatomic) id<HandleMapSearch> delegate;
 
 @end
 
