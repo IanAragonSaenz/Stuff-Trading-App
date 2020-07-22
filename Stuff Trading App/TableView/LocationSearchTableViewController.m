@@ -63,8 +63,11 @@
 # pragma mark - Parse Address
 
 - (NSString *)parseAddress:(MKPlacemark *)selectedItem {
+    //checks for the first space between subthroughtfare and trhoughtfare, if they are both null then a space is not needed
     NSString *firstSpace = (selectedItem.subThoroughfare != nil && selectedItem.thoroughfare != nil) ? @" ": @"";
+    //checks if a coma is needed, if one of them is missing then a comma would not be needed ", nuevo leon" wouldn't work
     NSString *firstComma = (selectedItem.subThoroughfare != nil || selectedItem.thoroughfare != nil) && (selectedItem.subAdministrativeArea != nil || selectedItem.administrativeArea != nil) ? @", " : @"";
+    //its a comma between the state and its administrative area.
     NSString *secondSpace = (selectedItem.subAdministrativeArea != nil && selectedItem.administrativeArea != nil) ? @" " : @"";
     NSString *address = [NSString stringWithFormat:@"%@%@%@%@%@%@%@",
                              (selectedItem.subThoroughfare == nil ? @"" : selectedItem.subThoroughfare),
