@@ -38,10 +38,24 @@
     
     self.searchBar = [UISearchBar new];
     self.searchBar.delegate = self;
-    [self.searchBar sizeToFit];
     self.searchBar.placeholder = @"Search here...";
-    self.tableView.tableHeaderView = self.searchBar;
     
+    UIView *buttonContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100)];
+    buttonContainer.backgroundColor = [UIColor clearColor];
+    UIButton *filterButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    [filterButton setBackgroundImage:[UIImage imageNamed:@"icon-dropdown"] forState:UIControlStateNormal];
+    //[filterButton addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+    [filterButton setShowsTouchWhenHighlighted:YES];
+    
+    [buttonContainer addSubview:filterButton];
+    [buttonContainer addSubview:self.searchBar];
+    [self.searchBar sizeToFit];
+    [filterButton sizeToFit];
+    [filterButton setFrame:CGRectMake(5, self.searchBar.frame.size.height/5, 32, 32)];
+    [self.searchBar setFrame:CGRectMake(filterButton.frame.size.width + 3, 0, self.searchBar.frame.size.width -                                     (filterButton.frame.size.width + 3), self.searchBar.frame.size.height)];
+    [buttonContainer setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.searchBar.frame.size.height)];
+    self.tableView.tableHeaderView = buttonContainer;
     
     self.refresh = [[UIRefreshControl alloc] init];
     [self.refresh addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
