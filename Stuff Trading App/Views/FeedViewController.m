@@ -26,6 +26,7 @@
 @property (assign, nonatomic) BOOL isLoadingMoreData;
 @property (strong, nonatomic) NSArray *sections;
 @property (strong, nonatomic) NSMutableArray *selectedSections;
+@property (nonatomic) int countSelectedSections;
 @property (strong, nonatomic) UISearchBar *searchBar;
 
 @end
@@ -40,6 +41,7 @@
     self.sectionsTableView.delegate = self;
     self.sectionsTableView.dataSource = self;
     self.posts = [NSArray array];
+    self.countSelectedSections = 0;
     
     [self.sectionsTableView setHidden:YES];
     
@@ -102,7 +104,7 @@
     }
 }
 
-- (void)fetchPosts{
+- (void)fetchPosts {
     [self.activityIndicator startAnimating];
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     query.limit = 10;
@@ -112,7 +114,9 @@
     [query orderByDescending:@"createdAt"];
     [query includeKey:@"author"];
     [query includeKey:@"location"];
-    [query whereKey:@"section" containedIn:self.selectedSections];
+    if(self.countSelectedSections > 0) {
+        [query whereKey:@"section" containedIn:self.selectedSections];
+    }
     
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
         if(!error) {
@@ -130,9 +134,9 @@
             [UIAlertController sendError:error.localizedDescription onView:self];
         }
         [self.activityIndicator stopAnimating];
+        self.isLoadingMoreData = false;
+        [self.refresh endRefreshing];
     }];
-    self.isLoadingMoreData = false;
-    [self.refresh endRefreshing];
 }
 
 #pragma mark - Table View Data Source
@@ -161,9 +165,13 @@
     } else {
         if([self.selectedSections[indexPath.row] isEqual:@"empty"]) {
             self.selectedSections[indexPath.row] = self.sections[indexPath.row];
+            self.countSelectedSections++;
         } else {
             self.selectedSections[indexPath.row]  = @"empty";
+            self.countSelectedSections--;
         }
+        [self.refresh beginRefreshing];
+        [self fetchPosts];
         NSLog(@"filters: %@", self.selectedSections);
     }
 }
