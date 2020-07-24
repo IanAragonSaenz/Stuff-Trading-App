@@ -20,7 +20,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *userDescription;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIButton *messageButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
 @property (weak, nonatomic) IBOutlet UIImageView *takePhotoImage;
 @property (strong, nonatomic) NSArray *posts;
 
@@ -50,9 +49,15 @@
     if([self.user.username isEqual:[User currentUser].username]){
         self.messageButton.userInteractionEnabled = NO;
         self.messageButton.hidden = YES;
+        
+        //sets taking picture in circle and adds tap gesture to it
+        self.takePhotoImage.layer.cornerRadius = self.takePhotoImage.frame.size.width / 2;
+        UITapGestureRecognizer *tapPic = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(takePhoto)];
+        [self.takePhotoImage addGestureRecognizer:tapPic];
+        [self.takePhotoImage setUserInteractionEnabled:YES];
     } else {
-        [self.settingsButton setEnabled:NO];
-        [self.settingsButton setTintColor:[UIColor clearColor]];
+        [self.takePhotoImage setHidden:YES];
+        [self.takePhotoImage setUserInteractionEnabled:NO];
     }
     
     self.title = self.user.username;
@@ -63,12 +68,6 @@
             self.userImage.image = [UIImage imageWithData:data];
     }];
     self.userImage.layer.cornerRadius = self.userImage.frame.size.width / 2;
-    self.takePhotoImage.layer.cornerRadius = self.takePhotoImage.frame.size.width / 2;
-    
-    //adds tap gesture ti take photo image
-    UITapGestureRecognizer *tapPic = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(takePhoto)];
-    [self.takePhotoImage addGestureRecognizer:tapPic];
-    [self.takePhotoImage setUserInteractionEnabled:YES];
     
     [self fetchposts];
 }
