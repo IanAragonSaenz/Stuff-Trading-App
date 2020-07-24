@@ -7,8 +7,9 @@
 //
 
 #import "SettingsViewController.h"
-#import "User.h"
 #import "UIAlertController+Utils.h"
+#import "SceneDelegate.h"
+#import "UserViewController.h"
 
 @interface SettingsViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -94,6 +95,14 @@
 
 - (IBAction)setPicture:(id)sender {
     [User setProfilePic:self.userPic.image];
+}
+
+- (IBAction)onDone:(id)sender {
+    SceneDelegate *sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UITabBarController *tabBar = [storyBoard instantiateViewControllerWithIdentifier:@"tabBar"];
+    tabBar.selectedIndex = 1;
+    sceneDelegate.window.rootViewController = tabBar;
 }
 
 /*

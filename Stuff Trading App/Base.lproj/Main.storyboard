@@ -747,14 +747,20 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tak-RR-sVc"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Settings" id="Lhu-9i-Qr2"/>
+                    <navigationItem key="navigationItem" title="Settings" id="Lhu-9i-Qr2">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="tAb-N6-SF8">
+                            <connections>
+                                <action selector="onDone:" destination="nDF-wS-sBS" id="Q9i-PO-G62"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="userPic" destination="XOa-ij-7R7" id="kYy-yU-o5T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Jd-nU-bnB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2228.985507246377" y="2710.597826086957"/>
+            <point key="canvasLocation" x="2258" y="3623"/>
         </scene>
         <!--Home-->
         <scene sceneID="CCh-cQ-bOB">
@@ -943,6 +949,22 @@
             </objects>
             <point key="canvasLocation" x="3164" y="1079"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="xV6-f9-cnZ">
+            <objects>
+                <navigationController modalPresentationStyle="fullScreen" id="ONy-f1-t2l" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ebA-af-BzR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="nDF-wS-sBS" kind="relationship" relationship="rootViewController" id="oDy-MM-tUK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xGN-3n-d0u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2259" y="2689"/>
+        </scene>
         <!--Messages-->
         <scene sceneID="SlV-R5-4hB">
             <objects>
@@ -1025,7 +1047,7 @@
         <!--User-->
         <scene sceneID="k3q-T2-kbB">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="GXx-kA-pC6" userLabel="User" customClass="UserViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="userViewController" modalPresentationStyle="fullScreen" id="GXx-kA-pC6" userLabel="User" customClass="UserViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xcH-yP-fFy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1147,7 +1169,7 @@
                     <navigationItem key="navigationItem" id="Crg-wg-eo0">
                         <barButtonItem key="rightBarButtonItem" title="Settings" image="gear" catalog="system" id="0tA-23-xAa">
                             <connections>
-                                <segue destination="nDF-wS-sBS" kind="show" identifier="settingsSegue" id="Sd3-rF-zW5"/>
+                                <segue destination="ONy-f1-t2l" kind="presentation" id="8vy-YB-pdq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1169,7 +1191,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="Xun-Uz-WdW"/>
         <segue reference="u6y-DR-7R5"/>
-        <segue reference="9uy-DO-imk"/>
+        <segue reference="KJ6-HT-lny"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="camera" catalog="system" width="128" height="96"/>
