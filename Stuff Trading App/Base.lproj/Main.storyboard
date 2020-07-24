@@ -714,54 +714,6 @@
             </objects>
             <point key="canvasLocation" x="798.55072463768124" y="3622.826086956522"/>
         </scene>
-        <!--Settings-->
-        <scene sceneID="EaO-1P-jkM">
-            <objects>
-                <viewController modalPresentationStyle="fullScreen" id="nDF-wS-sBS" customClass="SettingsViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Kpn-Vc-XTW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XOa-ij-7R7">
-                                <rect key="frame" x="20" y="75" width="128" height="128"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="PAU-Xo-l4e"/>
-                                    <constraint firstAttribute="width" constant="128" id="xze-h0-mzG"/>
-                                </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gmF-2v-Vra">
-                                <rect key="frame" x="169" y="173" width="76" height="30"/>
-                                <state key="normal" title="Set Picture"/>
-                                <connections>
-                                    <action selector="setPicture:" destination="nDF-wS-sBS" eventType="touchUpInside" id="ZM6-Bc-S1w"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="XOa-ij-7R7" firstAttribute="top" secondItem="Kpn-Vc-XTW" secondAttribute="top" constant="75" id="BfK-di-pjT"/>
-                            <constraint firstItem="gmF-2v-Vra" firstAttribute="top" secondItem="Kpn-Vc-XTW" secondAttribute="topMargin" constant="129" id="E05-dF-ZCO"/>
-                            <constraint firstItem="gmF-2v-Vra" firstAttribute="leading" secondItem="XOa-ij-7R7" secondAttribute="trailing" constant="21" id="RKS-Ki-RCg"/>
-                            <constraint firstItem="XOa-ij-7R7" firstAttribute="leading" secondItem="Kpn-Vc-XTW" secondAttribute="leading" constant="20" id="tXo-Xp-6oU"/>
-                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="gmF-2v-Vra" secondAttribute="trailing" constant="10" id="xb9-3D-RCU"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="tak-RR-sVc"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Settings" id="Lhu-9i-Qr2">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="tAb-N6-SF8">
-                            <connections>
-                                <action selector="onDone:" destination="nDF-wS-sBS" id="Q9i-PO-G62"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="userPic" destination="XOa-ij-7R7" id="kYy-yU-o5T"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2Jd-nU-bnB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2258" y="3623"/>
-        </scene>
         <!--Home-->
         <scene sceneID="CCh-cQ-bOB">
             <objects>
@@ -949,22 +901,6 @@
             </objects>
             <point key="canvasLocation" x="3164" y="1079"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="xV6-f9-cnZ">
-            <objects>
-                <navigationController modalPresentationStyle="fullScreen" id="ONy-f1-t2l" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ebA-af-BzR">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="nDF-wS-sBS" kind="relationship" relationship="rootViewController" id="oDy-MM-tUK"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xGN-3n-d0u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2259" y="2689"/>
-        </scene>
         <!--Messages-->
         <scene sceneID="SlV-R5-4hB">
             <objects>
@@ -1113,6 +1049,15 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Fng-Po-8Qi">
+                                                <rect key="frame" x="96" y="114.00000000000001" width="32" height="30.666666666666657"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="32" id="Z0q-0b-oZX"/>
+                                                    <constraint firstAttribute="height" constant="32" id="apT-iM-6Y9"/>
+                                                </constraints>
+                                            </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vPo-us-yzP">
                                                 <rect key="frame" x="314" y="115" width="62" height="30"/>
                                                 <constraints>
@@ -1128,6 +1073,7 @@
                                         <constraints>
                                             <constraint firstItem="uCS-xe-4en" firstAttribute="top" secondItem="nn4-KI-q9b" secondAttribute="bottom" constant="8" id="0j6-8e-FCE"/>
                                             <constraint firstItem="wq5-1a-vVO" firstAttribute="leading" secondItem="sdh-5J-rJc" secondAttribute="leading" constant="8" id="49p-ss-djh"/>
+                                            <constraint firstItem="3OO-Ym-wy2" firstAttribute="trailing" secondItem="Fng-Po-8Qi" secondAttribute="trailing" id="857-tS-uLc"/>
                                             <constraint firstItem="uCS-xe-4en" firstAttribute="leading" secondItem="sdh-5J-rJc" secondAttribute="leading" constant="8" id="BEO-xI-aqt"/>
                                             <constraint firstItem="3OO-Ym-wy2" firstAttribute="leading" secondItem="sdh-5J-rJc" secondAttribute="leading" constant="8" id="HEE-qx-5he"/>
                                             <constraint firstItem="Wh0-6U-wbD" firstAttribute="leading" secondItem="sdh-5J-rJc" secondAttribute="leading" id="Qze-ga-PTw"/>
@@ -1139,6 +1085,7 @@
                                             <constraint firstAttribute="trailing" secondItem="Wh0-6U-wbD" secondAttribute="trailing" id="fmB-b2-psE"/>
                                             <constraint firstItem="Wh0-6U-wbD" firstAttribute="top" secondItem="wq5-1a-vVO" secondAttribute="bottom" constant="12" id="jMA-Sf-xnf"/>
                                             <constraint firstItem="wq5-1a-vVO" firstAttribute="top" secondItem="uCS-xe-4en" secondAttribute="bottom" constant="8" id="uHl-ZG-cbn"/>
+                                            <constraint firstItem="3OO-Ym-wy2" firstAttribute="bottom" secondItem="Fng-Po-8Qi" secondAttribute="bottom" id="uTr-g6-dzD"/>
                                             <constraint firstAttribute="trailing" secondItem="uCS-xe-4en" secondAttribute="trailing" constant="8" id="w1e-02-2ah"/>
                                             <constraint firstItem="nn4-KI-q9b" firstAttribute="top" secondItem="3OO-Ym-wy2" secondAttribute="bottom" constant="8" id="wZA-e4-SaU"/>
                                         </constraints>
@@ -1166,17 +1113,11 @@
                         <viewLayoutGuide key="safeArea" id="FGA-Jn-4BV"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" id="Ryw-Sh-o0M"/>
-                    <navigationItem key="navigationItem" id="Crg-wg-eo0">
-                        <barButtonItem key="rightBarButtonItem" title="Settings" image="gear" catalog="system" id="0tA-23-xAa">
-                            <connections>
-                                <segue destination="ONy-f1-t2l" kind="presentation" id="8vy-YB-pdq"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="Crg-wg-eo0"/>
                     <connections>
                         <outlet property="collectionView" destination="Wh0-6U-wbD" id="j9r-UN-K8B"/>
                         <outlet property="messageButton" destination="vPo-us-yzP" id="ojM-0e-qKJ"/>
-                        <outlet property="settingsButton" destination="0tA-23-xAa" id="kFX-HZ-har"/>
+                        <outlet property="takePhotoImage" destination="Fng-Po-8Qi" id="IQS-Y6-8Hl"/>
                         <outlet property="userDescription" destination="uCS-xe-4en" id="8fL-mp-Z3M"/>
                         <outlet property="userImage" destination="3OO-Ym-wy2" id="n0J-Py-3fV"/>
                         <outlet property="usernameLabel" destination="nn4-KI-q9b" id="r8L-Dr-7Aa"/>
@@ -1185,7 +1126,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ey1-du-1fW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2099" y="1855"/>
+            <point key="canvasLocation" x="2098.5507246376815" y="1854.6195652173915"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
@@ -1195,7 +1136,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="camera" catalog="system" width="128" height="96"/>
-        <image name="gear" catalog="system" width="128" height="119"/>
+        <image name="camera.circle.fill" catalog="system" width="128" height="121"/>
         <image name="house" catalog="system" width="128" height="110"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="message" catalog="system" width="128" height="113"/>
