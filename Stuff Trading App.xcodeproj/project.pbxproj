@@ -20,6 +20,8 @@
 		D132DB4D24C62F93002A9501 /* LocationSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D132DB4C24C62F93002A9501 /* LocationSearchTableViewController.m */; };
 		D15A1EE724C8DD2400935AC7 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = D15A1EE624C8DD2400935AC7 /* Location.m */; };
 		D15A1EEA24C8E15F00935AC7 /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = D15A1EE924C8E15F00935AC7 /* Section.m */; };
+		D15A1EED24CA206000935AC7 /* SectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D15A1EEC24CA206000935AC7 /* SectionCell.m */; };
+		D15A1EF024CB32A200935AC7 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D15A1EEF24CB32A200935AC7 /* SettingsViewController.m */; };
 		D1CD139324BB9A5500913AE7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD139224BB9A5500913AE7 /* AppDelegate.m */; };
 		D1CD139624BB9A5500913AE7 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD139524BB9A5500913AE7 /* SceneDelegate.m */; };
 		D1CD139924BB9A5500913AE7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD139824BB9A5500913AE7 /* ViewController.m */; };
@@ -93,6 +95,10 @@
 		D15A1EE624C8DD2400935AC7 /* Location.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		D15A1EE824C8E15F00935AC7 /* Section.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Section.h; sourceTree = "<group>"; };
 		D15A1EE924C8E15F00935AC7 /* Section.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Section.m; sourceTree = "<group>"; };
+		D15A1EEB24CA206000935AC7 /* SectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SectionCell.h; sourceTree = "<group>"; };
+		D15A1EEC24CA206000935AC7 /* SectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SectionCell.m; sourceTree = "<group>"; };
+		D15A1EEE24CB32A200935AC7 /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		D15A1EEF24CB32A200935AC7 /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		D1CD138E24BB9A5500913AE7 /* Stuff Trading App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stuff Trading App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1CD139124BB9A5500913AE7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D1CD139224BB9A5500913AE7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -275,6 +281,8 @@
 				D132DB3624C0E951002A9501 /* ChatViewController.m */,
 				D132DB4424C60E62002A9501 /* MapViewController.h */,
 				D132DB4524C60E62002A9501 /* MapViewController.m */,
+				D15A1EEE24CB32A200935AC7 /* SettingsViewController.h */,
+				D15A1EEF24CB32A200935AC7 /* SettingsViewController.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -290,6 +298,8 @@
 				D132DB3324C0C2A5002A9501 /* MessageCell.m */,
 				D132DB3824C0EB52002A9501 /* ChatCell.h */,
 				D132DB3924C0EB52002A9501 /* ChatCell.m */,
+				D15A1EEB24CA206000935AC7 /* SectionCell.h */,
+				D15A1EEC24CA206000935AC7 /* SectionCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -567,6 +577,7 @@
 				D1CD13DB24BD0C4300913AE7 /* User.m in Sources */,
 				D1CD139924BB9A5500913AE7 /* ViewController.m in Sources */,
 				D132DB3724C0E951002A9501 /* ChatViewController.m in Sources */,
+				D15A1EF024CB32A200935AC7 /* SettingsViewController.m in Sources */,
 				D1CD13D824BCFB8F00913AE7 /* ComposePostViewController.m in Sources */,
 				D132DB2E24C0A87A002A9501 /* Chat.m in Sources */,
 				D1CD139324BB9A5500913AE7 /* AppDelegate.m in Sources */,
@@ -577,6 +588,7 @@
 				D1CD13E124BE1C3D00913AE7 /* ProfilePostCollectionCell.m in Sources */,
 				D1CD139624BB9A5500913AE7 /* SceneDelegate.m in Sources */,
 				D1CD13D124BCEA1C00913AE7 /* PostCell.m in Sources */,
+				D15A1EED24CA206000935AC7 /* SectionCell.m in Sources */,
 				D1CD13CE24BCE9B700913AE7 /* FeedViewController.m in Sources */,
 				D1CD13E724BE56DE00913AE7 /* DetailPostViewController.m in Sources */,
 				D1D6CEB024BF5494006F2AF5 /* RegisterViewController.m in Sources */,
