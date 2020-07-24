@@ -1113,6 +1113,15 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Fng-Po-8Qi">
+                                                <rect key="frame" x="96" y="114.00000000000001" width="32" height="30.666666666666657"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="32" id="Z0q-0b-oZX"/>
+                                                    <constraint firstAttribute="height" constant="32" id="apT-iM-6Y9"/>
+                                                </constraints>
+                                            </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vPo-us-yzP">
                                                 <rect key="frame" x="314" y="115" width="62" height="30"/>
                                                 <constraints>
@@ -1128,6 +1137,7 @@
                                         <constraints>
                                             <constraint firstItem="uCS-xe-4en" firstAttribute="top" secondItem="nn4-KI-q9b" secondAttribute="bottom" constant="8" id="0j6-8e-FCE"/>
                                             <constraint firstItem="wq5-1a-vVO" firstAttribute="leading" secondItem="sdh-5J-rJc" secondAttribute="leading" constant="8" id="49p-ss-djh"/>
+                                            <constraint firstItem="3OO-Ym-wy2" firstAttribute="trailing" secondItem="Fng-Po-8Qi" secondAttribute="trailing" id="857-tS-uLc"/>
                                             <constraint firstItem="uCS-xe-4en" firstAttribute="leading" secondItem="sdh-5J-rJc" secondAttribute="leading" constant="8" id="BEO-xI-aqt"/>
                                             <constraint firstItem="3OO-Ym-wy2" firstAttribute="leading" secondItem="sdh-5J-rJc" secondAttribute="leading" constant="8" id="HEE-qx-5he"/>
                                             <constraint firstItem="Wh0-6U-wbD" firstAttribute="leading" secondItem="sdh-5J-rJc" secondAttribute="leading" id="Qze-ga-PTw"/>
@@ -1139,6 +1149,7 @@
                                             <constraint firstAttribute="trailing" secondItem="Wh0-6U-wbD" secondAttribute="trailing" id="fmB-b2-psE"/>
                                             <constraint firstItem="Wh0-6U-wbD" firstAttribute="top" secondItem="wq5-1a-vVO" secondAttribute="bottom" constant="12" id="jMA-Sf-xnf"/>
                                             <constraint firstItem="wq5-1a-vVO" firstAttribute="top" secondItem="uCS-xe-4en" secondAttribute="bottom" constant="8" id="uHl-ZG-cbn"/>
+                                            <constraint firstItem="3OO-Ym-wy2" firstAttribute="bottom" secondItem="Fng-Po-8Qi" secondAttribute="bottom" id="uTr-g6-dzD"/>
                                             <constraint firstAttribute="trailing" secondItem="uCS-xe-4en" secondAttribute="trailing" constant="8" id="w1e-02-2ah"/>
                                             <constraint firstItem="nn4-KI-q9b" firstAttribute="top" secondItem="3OO-Ym-wy2" secondAttribute="bottom" constant="8" id="wZA-e4-SaU"/>
                                         </constraints>
@@ -1177,6 +1188,7 @@
                         <outlet property="collectionView" destination="Wh0-6U-wbD" id="j9r-UN-K8B"/>
                         <outlet property="messageButton" destination="vPo-us-yzP" id="ojM-0e-qKJ"/>
                         <outlet property="settingsButton" destination="0tA-23-xAa" id="kFX-HZ-har"/>
+                        <outlet property="takePhotoImage" destination="Fng-Po-8Qi" id="IQS-Y6-8Hl"/>
                         <outlet property="userDescription" destination="uCS-xe-4en" id="8fL-mp-Z3M"/>
                         <outlet property="userImage" destination="3OO-Ym-wy2" id="n0J-Py-3fV"/>
                         <outlet property="usernameLabel" destination="nn4-KI-q9b" id="r8L-Dr-7Aa"/>
@@ -1185,7 +1197,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ey1-du-1fW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2099" y="1855"/>
+            <point key="canvasLocation" x="2098.5507246376815" y="1854.6195652173915"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
@@ -1195,6 +1207,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="camera" catalog="system" width="128" height="96"/>
+        <image name="camera.circle.fill" catalog="system" width="128" height="121"/>
         <image name="gear" catalog="system" width="128" height="119"/>
         <image name="house" catalog="system" width="128" height="110"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
