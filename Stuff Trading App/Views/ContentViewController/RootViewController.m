@@ -33,6 +33,8 @@
                                        animated:NO
                                      completion:nil];
     
+    self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 30);
+    
     // Add the page view controller to this root view controller.
     [self addChildViewController:self.pageViewController];
     [self.view addSubview:self.pageViewController.view];
@@ -111,6 +113,11 @@
     contentViewController.navItem = self.navigationItem;
     
     return contentViewController;
+}
+ 
+- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
+{
+    return 0;
 }
 
 @end
