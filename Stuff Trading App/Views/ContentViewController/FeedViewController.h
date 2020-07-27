@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BasePageViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FeedViewController : UIViewController
+@interface FeedViewController : BasePageViewController
 
 @end
 

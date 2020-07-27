@@ -90,6 +90,16 @@
     [self fetchPosts];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    self.navItem.title = @"Feed";
+    
+    UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logout)];
+    self.navItem.leftBarButtonItem = logoutButton;
+    
+    UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithTitle:@"Share" style:UIBarButtonItemStylePlain target:self action:@selector(share)];
+    self.navItem.rightBarButtonItem = shareButton;
+}
+
 #pragma mark - Infinite Scrolling
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -202,7 +212,7 @@
     
 #pragma mark - Logout
 
-- (IBAction)logout:(id)sender {
+- (void)logout {
     SceneDelegate *sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *loginView = [storyBoard instantiateViewControllerWithIdentifier:@"loginView"];
@@ -211,6 +221,10 @@
     [User logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
         //needs to be open so that current user sets to nil
     }];
+}
+
+- (void)share {
+    [self performSegueWithIdentifier:@"composePostSegue" sender:nil];
 }
 
 
@@ -225,6 +239,5 @@
         detailPostView.post = sender;
     }
 }
-
 
 @end
