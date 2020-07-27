@@ -10,8 +10,4 @@
 
 @interface RootViewController : UIViewController <UIPageViewControllerDataSource>
 
-#pragma mark - Public Methods
-- (void)goToPreviousContentViewController;
-- (void)goToNextContentViewController;
-
 @end

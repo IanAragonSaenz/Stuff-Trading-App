@@ -41,38 +41,14 @@
     [self.pageViewController didMoveToParentViewController:self];
 }
 
-#pragma mark - Public Methods
-
-- (void)goToPreviousContentViewController {
-    UIViewController *currentViewController = [self.pageViewController.viewControllers objectAtIndex:0];
-    NSString *vcRestorationID = currentViewController.restorationIdentifier;
-    NSUInteger index = [self.contentPageRestorationIDs indexOfObject:vcRestorationID];
-    
-    UIViewController *previousViewController = [self viewControllerAtIndex:index - 1];
-    
-    [self.pageViewController setViewControllers:@[previousViewController]
-                                      direction:UIPageViewControllerNavigationDirectionReverse
-                                       animated:YES
-                                     completion:nil];
-}
-
-- (void)goToNextContentViewController {
-    UIViewController *currentViewController = [self.pageViewController.viewControllers objectAtIndex:0];
-    NSString *vcRestorationID = currentViewController.restorationIdentifier;
-    NSUInteger index = [self.contentPageRestorationIDs indexOfObject:vcRestorationID];
-    
-    UIViewController *nextViewController = [self viewControllerAtIndex:index + 1];
-    
-    [self.pageViewController setViewControllers:@[nextViewController]
-                                      direction:UIPageViewControllerNavigationDirectionForward
-                                       animated:YES
-                                     completion:nil];
-}
-
 #pragma mark - UIPageViewController DataSource
 
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController {
     return self.contentPageRestorationIDs.count;
+}
+
+- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController {
+    return 0;
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
@@ -113,11 +89,6 @@
     contentViewController.navItem = self.navigationItem;
     
     return contentViewController;
-}
- 
-- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
-{
-    return 0;
 }
 
 @end
