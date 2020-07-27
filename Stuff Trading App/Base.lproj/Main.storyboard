@@ -228,7 +228,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="uG1-jA-rTf" kind="relationship" relationship="rootViewController" id="17y-ba-7HA"/>
+                        <segue destination="sHM-u5-fso" kind="relationship" relationship="rootViewController" id="WO9-bS-dzj"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ySq-xm-Gsc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -717,7 +717,7 @@
         <!--Home-->
         <scene sceneID="CCh-cQ-bOB">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="Xtq-Iq-aon" customClass="FeedViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="feedViewController" modalPresentationStyle="fullScreen" id="Xtq-Iq-aon" customClass="FeedViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WFm-0C-bxR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -844,15 +844,10 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="house" catalog="system" id="3bY-LK-4IW"/>
                     <navigationItem key="navigationItem" title="Home" id="NFK-yA-5Uj">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="Vaz-j9-YIo">
-                            <connections>
-                                <action selector="logout:" destination="Xtq-Iq-aon" id="qcR-hF-G3S"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="Vaz-j9-YIo"/>
                         <barButtonItem key="rightBarButtonItem" title="Share" id="6wG-02-SEc">
                             <connections>
-                                <action selector="composePost:" destination="Xtq-Iq-aon" id="v4B-Jx-XoA"/>
-                                <segue destination="lnB-H8-OXN" kind="presentation" id="CWO-8G-ei3"/>
+                                <segue destination="lnB-H8-OXN" kind="presentation" identifier="composePostSegue" id="CWO-8G-ei3"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -867,15 +862,46 @@
             </objects>
             <point key="canvasLocation" x="-491" y="2689"/>
         </scene>
+        <!--Feed Map View Controller-->
+        <scene sceneID="8DJ-hB-9om">
+            <objects>
+                <viewController storyboardIdentifier="feedMapViewController" id="6PH-yV-HXj" customClass="FeedMapViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Wb7-Iq-h4Y">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="ms1-70-8ve"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n0v-vW-6YO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="420" y="2689"/>
+        </scene>
+        <!--Root View Controller-->
+        <scene sceneID="11Q-MN-9cO">
+            <objects>
+                <viewController id="sHM-u5-fso" customClass="RootViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DSi-od-ZO5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="KH1-Wg-KcR"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="JYs-kQ-BXp"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l2W-M2-HdC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="132" y="1795"/>
+        </scene>
         <!--Page View Controller-->
         <scene sceneID="8NO-5R-CPK">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="uG1-jA-rTf" sceneMemberID="viewController">
+                <pageViewController storyboardIdentifier="pageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="uG1-jA-rTf" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="L96-8d-b37"/>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xso-So-FQE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="1855"/>
+            <point key="canvasLocation" x="1129" y="1608"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yvt-gs-9WI">
