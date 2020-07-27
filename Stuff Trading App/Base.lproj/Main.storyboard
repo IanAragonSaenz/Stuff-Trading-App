@@ -717,7 +717,7 @@
         <!--Home-->
         <scene sceneID="CCh-cQ-bOB">
             <objects>
-                <viewController storyboardIdentifier="feedViewController" modalPresentationStyle="fullScreen" id="Xtq-Iq-aon" customClass="FeedViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="feedViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Xtq-Iq-aon" customClass="FeedViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WFm-0C-bxR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -865,7 +865,7 @@
         <!--Feed Map View Controller-->
         <scene sceneID="8DJ-hB-9om">
             <objects>
-                <viewController storyboardIdentifier="feedMapViewController" id="6PH-yV-HXj" customClass="FeedMapViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="feedMapViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6PH-yV-HXj" customClass="FeedMapViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wb7-Iq-h4Y">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
