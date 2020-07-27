@@ -869,13 +869,27 @@
                     <view key="view" contentMode="scaleToFill" id="Wb7-Iq-h4Y">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="aM7-h1-5OB">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="aM7-h1-5OB" firstAttribute="top" secondItem="Wb7-Iq-h4Y" secondAttribute="top" id="13I-hW-7M7"/>
+                            <constraint firstAttribute="bottom" secondItem="aM7-h1-5OB" secondAttribute="bottom" id="5BY-Jb-2lI"/>
+                            <constraint firstItem="aM7-h1-5OB" firstAttribute="leading" secondItem="Wb7-Iq-h4Y" secondAttribute="leading" id="RdN-dj-CBB"/>
+                            <constraint firstAttribute="trailing" secondItem="aM7-h1-5OB" secondAttribute="trailing" id="mee-BB-6an"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ms1-70-8ve"/>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="aM7-h1-5OB" id="BVJ-bx-kih"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n0v-vW-6YO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="420" y="2689"/>
+            <point key="canvasLocation" x="418.84057971014494" y="2688.5869565217395"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="11Q-MN-9cO">

@@ -7,8 +7,11 @@
 //
 
 #import "FeedMapViewController.h"
+@import MapKit;
 
 @interface FeedMapViewController ()
+
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 @end
 
@@ -17,6 +20,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    self.navItem.title = @"Feed Map";
 }
 
 /*
