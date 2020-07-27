@@ -888,6 +888,7 @@
                     </view>
                     <connections>
                         <outlet property="mapView" destination="aM7-h1-5OB" id="HSQ-HQ-eqL"/>
+                        <segue destination="HNb-q5-TGn" kind="show" identifier="detailSegue" id="tnB-9u-zRI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n0v-vW-6YO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1185,6 +1186,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="Xun-Uz-WdW"/>
         <segue reference="hnd-S3-CGc"/>
+        <segue reference="tnB-9u-zRI"/>
         <segue reference="KJ6-HT-lny"/>
     </inferredMetricsTieBreakers>
     <resources>

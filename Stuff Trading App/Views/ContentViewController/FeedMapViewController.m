@@ -9,6 +9,7 @@
 #import "FeedMapViewController.h"
 #import <Parse/Parse.h>
 #import "Post.h"
+#import "DetailPostViewController.h"
 
 static NSString *const pin = @"pin";
 
@@ -17,6 +18,8 @@ static NSString *const pin = @"pin";
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) NSArray *posts;
+@property (strong, nonatomic) NSArray *annotations;
+@property (strong, nonatomic) MKAnnotationView *selectedPin;
 
 @end
 
@@ -25,8 +28,9 @@ static NSString *const pin = @"pin";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.mapView.delegate = self;
+    self.annotations = [NSArray array];
     
+    self.mapView.delegate = self;
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -55,17 +59,20 @@ static NSString *const pin = @"pin";
         } else {
             self.posts = posts;
             for(Post *post in posts) {
-                [self dropPinIn:post.location];
+                [self dropPinIn:post];
             }
         }
     }];
 }
 
-- (void)dropPinIn:(Location *)location {
+#pragma mark - Set Annotations
+
+- (void)dropPinIn:(Post *)post {
     MKPointAnnotation *annotation = [MKPointAnnotation new];
-    annotation.coordinate = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
-    annotation.title = location.locationName;
-    annotation.subtitle = location.locationSubtitle;
+    annotation.coordinate = CLLocationCoordinate2DMake(post.location.coordinate.latitude, post.location.coordinate.longitude);
+    annotation.title = post.title;
+    annotation.subtitle = post.location.locationName;
+    self.annotations = [self.annotations arrayByAddingObject:annotation];
     [self.mapView addAnnotation:annotation];
 }
 
@@ -105,17 +112,33 @@ static NSString *const pin = @"pin";
         pinView.annotation = annotation;
     }
     
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 48, 48)];
+    [button setBackgroundImage:[UIImage imageNamed:@"icon-car"]
+                      forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(getPost) forControlEvents:UIControlEventTouchUpInside];
+    pinView.leftCalloutAccessoryView = button;
+    
     return pinView;
 }
 
-/*
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+    self.selectedPin = view;
+}
+
+#pragma mark - Get Selected Post
+
+- (void)getPost {
+    int post = (int)[self.annotations indexOfObject:self.selectedPin.annotation];
+    [self performSegueWithIdentifier:@"detailSegue" sender:self.posts[post]];
+}
+
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    DetailPostViewController *detailView = [segue destinationViewController];
+    detailView.post = sender;
 }
-*/
+
 
 @end
