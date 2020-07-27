@@ -91,6 +91,8 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    self.navItem.title = @"Feed";
+    
     UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logout)];
     self.navItem.leftBarButtonItem = logoutButton;
     
