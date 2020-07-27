@@ -17,7 +17,6 @@ static NSString *const pin = @"pin";
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) NSArray *posts;
-@property (strong, nonatomic) NSArray *locations;
 
 @end
 
@@ -48,7 +47,7 @@ static NSString *const pin = @"pin";
     [query includeKey:@"section"];
     [query includeKey:@"author"];
     PFQuery *location = [PFQuery queryWithClassName:@"Location"];
-    [location whereKey:@"coordinate" nearGeoPoint:[PFGeoPoint geoPointWithLocation:self.locationManager.location] withinKilometers:10000.0];
+    [location whereKey:@"coordinate" nearGeoPoint:[PFGeoPoint geoPointWithLocation:self.locationManager.location] withinKilometers:100.0];
     [query whereKey:@"location" matchesQuery:location];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
         if(error) {
