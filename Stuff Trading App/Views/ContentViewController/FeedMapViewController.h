@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "BasePageViewController.h"
+@import MapKit;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FeedMapViewController : BasePageViewController
+@interface FeedMapViewController : BasePageViewController <MKMapViewDelegate, CLLocationManagerDelegate>
 
 @end
 

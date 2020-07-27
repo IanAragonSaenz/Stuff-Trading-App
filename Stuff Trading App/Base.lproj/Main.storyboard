@@ -870,8 +870,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="aM7-h1-5OB">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aM7-h1-5OB">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <connections>
+                                    <outlet property="delegate" destination="6PH-yV-HXj" id="HQ2-Tz-AEf"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -884,7 +887,7 @@
                         <viewLayoutGuide key="safeArea" id="ms1-70-8ve"/>
                     </view>
                     <connections>
-                        <outlet property="mapView" destination="aM7-h1-5OB" id="BVJ-bx-kih"/>
+                        <outlet property="mapView" destination="aM7-h1-5OB" id="HSQ-HQ-eqL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n0v-vW-6YO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
