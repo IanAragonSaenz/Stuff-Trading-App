@@ -42,6 +42,7 @@ It's an app where people can put up what items they would like to trade or give 
 * User should display the relative timestamp for each message "8m", "7h"
 * User should display the relative timestamp for each post "8m", "7h"
 * Your app incorporates an external library to add visual polish.
+* The user profiles show their posts in a collection view.
 
 
 **Optional Nice-to-have Stories**
@@ -63,6 +64,7 @@ It's an app where people can put up what items they would like to trade or give 
   * You can sign up with a new user profile 
 * Profile (our profile)
     * The user can see his own profile.
+    * The user profiles show their posts in a collection view.
 * Feed
     * The user can upload a post of something that they want to trade to the feed.
     * The posts load in with animation.
@@ -73,6 +75,7 @@ It's an app where people can put up what items they would like to trade or give 
     * The user go to other user profile by clicking the profile pic in a post.
 * User (other user profile)
     * The user can see other users profiles.
+    * The user profiles show their posts in a collection view.
 * ComposePost
     * The user can upload a post of something that they want to trade to the feed.
     * The user can post an image.
@@ -170,8 +173,8 @@ It's an app where people can put up what items they would like to trade or give 
 | ------------- | -------- | ------------|
 | objectId      | String   | unique id for the message (default field) |
 | message         | String       | user's message |
-| author   | Pointer to User   | user's name |
-| chat   | Pointer to Chat   | chat's objectid |
+| sender   | Pointer to User   | user object |
+| chat   | Pointer to Chat   | chat object |
 | createdAt     | DateTime | date when post is created (default field) |
 | updatedAt     | DateTime | date when post is last updated (default field) |
 
