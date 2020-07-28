@@ -59,7 +59,6 @@
     [self.searchBar sizeToFit];
     self.tableView.tableHeaderView = self.searchBar;
     
-    [self.sectionsTableView setFrame:CGRectMake(0, 120, 120, 250)];
     self.sectionsTableView.translatesAutoresizingMaskIntoConstraints = false;
     [self.sectionsTableView.topAnchor constraintEqualToAnchor:self.searchBar.bottomAnchor constant:0].active = YES;
     [self.sectionsTableView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:0].active = YES;
