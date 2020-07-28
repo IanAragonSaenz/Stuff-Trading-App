@@ -71,6 +71,13 @@
     self.tableView.tableHeaderView = buttonContainer;
     [self.sectionsTableView setFrame:CGRectMake(0, 120, 120, 250)];
     
+    self.sectionsTableView.translatesAutoresizingMaskIntoConstraints = false;
+    [self.sectionsTableView.topAnchor constraintEqualToAnchor:self.searchBar.bottomAnchor constant:0].active = YES;
+    [self.sectionsTableView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:0].active = YES;
+    [self.sectionsTableView.heightAnchor constraintEqualToConstant:250].active = YES;
+    [self.sectionsTableView.widthAnchor constraintEqualToConstant:120].active = YES;
+    [self.view layoutIfNeeded];
+    
     //fetching sections
     [Section fetchSections:^(NSArray * _Nonnull sections, NSError * _Nonnull error) {
         if(error) {
