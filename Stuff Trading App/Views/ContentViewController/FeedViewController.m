@@ -51,33 +51,18 @@
     
     [self.sectionsTableView setHidden:YES];
     
-    self.searchBar = [UISearchBar new];
+    self.searchBar = [[UISearchBar alloc] init];
     self.searchBar.delegate = self;
     self.searchBar.placeholder = @"Search here...";
-    
-    //creating view container and button
-    UIView *buttonContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100)];
-    buttonContainer.backgroundColor = [UIColor clearColor];
-    UIButton *filterButton = [UIButton new];
-    [filterButton setBackgroundImage:[UIImage imageNamed:@"icon-dropdown"] forState:UIControlStateNormal];
-    [filterButton addTarget:self action:@selector(changeTableVisibility) forControlEvents:UIControlEventTouchUpInside];
-    [filterButton setShowsTouchWhenHighlighted:YES];
-    
-    //adding search bar and button to container view
-    [buttonContainer addSubview:filterButton];
-    [buttonContainer addSubview:self.searchBar];
-    //setting sizes
+    [self.searchBar setShowsBookmarkButton:YES];
+    [self.searchBar setImage:[UIImage imageNamed:@"icon-dropdown"] forSearchBarIcon:UISearchBarIconBookmark state:UIControlStateNormal];
     [self.searchBar sizeToFit];
-    [filterButton sizeToFit];
-    [filterButton setFrame:CGRectMake(5, self.searchBar.frame.size.height/6, 32, 32)];
-    [self.searchBar setFrame:CGRectMake(filterButton.frame.size.width + 5, 0, self.searchBar.frame.size.width -                                     (filterButton.frame.size.width + 5), self.searchBar.frame.size.height)];
-    [buttonContainer setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.searchBar.frame.size.height)];
-    self.tableView.tableHeaderView = buttonContainer;
-    [self.sectionsTableView setFrame:CGRectMake(0, 120, 120, 250)];
+    self.tableView.tableHeaderView = self.searchBar;
     
+    [self.sectionsTableView setFrame:CGRectMake(0, 120, 120, 250)];
     self.sectionsTableView.translatesAutoresizingMaskIntoConstraints = false;
     [self.sectionsTableView.topAnchor constraintEqualToAnchor:self.searchBar.bottomAnchor constant:0].active = YES;
-    [self.sectionsTableView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:0].active = YES;
+    [self.sectionsTableView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:0].active = YES;
     [self.sectionsTableView.heightAnchor constraintEqualToConstant:250].active = YES;
     [self.sectionsTableView.widthAnchor constraintEqualToConstant:120].active = YES;
     [self.view layoutIfNeeded];
@@ -201,7 +186,7 @@
 
 #pragma mark - Toggle Section Table Hidden
 
-- (void)changeTableVisibility {
+- (void)searchBarBookmarkButtonClicked:(UISearchBar *)searchBar {
     if([self.sectionsTableView isHidden]) {
         [self.sectionsTableView setHidden:NO];
     } else {
