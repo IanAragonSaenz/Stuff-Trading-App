@@ -10,8 +10,10 @@
 #import <Parse/Parse.h>
 #import "User.h"
 #import "UIAlertController+Utils.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
-@interface LoginViewController ()
+@interface LoginViewController () <FBSDKLoginButtonDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameText;
 @property (weak, nonatomic) IBOutlet UITextField *passwordText;
@@ -23,6 +25,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
+    loginButton.delegate = self;
+    loginButton.center = self.view.center;
+    [self.view addSubview:loginButton];
 }
 
 #pragma mark - Sign Up / Login
@@ -55,6 +62,17 @@
         return YES;
     }
     return NO;
+}
+
+#pragma mark - Facebook LoginButton Delegate
+
+- (void)  loginButton:(FBSDKLoginButton *)loginButton
+didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
+                error:(NSError *)error{
+   [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+}
+- (void) loginButtonDidLogOut:(FBSDKLoginButton *)loginButton{
+  
 }
 
 /*

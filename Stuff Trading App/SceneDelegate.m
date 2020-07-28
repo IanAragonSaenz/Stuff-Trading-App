@@ -21,11 +21,13 @@
     // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
     // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
     // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-    if(PFUser.currentUser){
+    if(PFUser.currentUser || [FBSDKAccessToken currentAccessToken]){
         UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UIViewController *tabBar = [storyBoard instantiateViewControllerWithIdentifier:@"tabBar"];
         self.window.rootViewController = tabBar;
     }
+    
+    
 }
 
 - (void)scene:(UIScene *)scene openURLContexts:(NSSet<UIOpenURLContext *> *)URLContexts {
