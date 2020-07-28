@@ -23,8 +23,13 @@
 - (void)setCell:(Post *)post {
     self.post = post;
     [post.image getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
-        if(!error)
+        if(!error) {
+            self.postImage.alpha = 0.0;
             self.postImage.image = [UIImage imageWithData:data];
+            [UIView animateWithDuration:0.4 animations:^{
+                self.postImage.alpha = 1.0;
+            }];
+        }
     }];
 }
 

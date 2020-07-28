@@ -8,7 +8,8 @@
 
 #import "FeedMapViewController.h"
 #import <Parse/Parse.h>
-#import "Post.h"
+#import "PostAnnotation.h"
+#import "PostPinAnnotationView.h"
 #import "DetailPostViewController.h"
 
 static NSString *const pin = @"pin";
@@ -19,7 +20,7 @@ static NSString *const pin = @"pin";
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) NSArray *posts;
 @property (strong, nonatomic) NSArray *annotations;
-@property (strong, nonatomic) MKAnnotationView *selectedPin;
+@property (strong, nonatomic) PostPinAnnotationView *selectedPin;
 
 @end
 
@@ -68,11 +69,7 @@ static NSString *const pin = @"pin";
 #pragma mark - Set Annotations
 
 - (void)dropPinIn:(Post *)post {
-    MKPointAnnotation *annotation = [MKPointAnnotation new];
-    annotation.coordinate = CLLocationCoordinate2DMake(post.location.coordinate.latitude, post.location.coordinate.longitude);
-    annotation.title = post.title;
-    annotation.subtitle = post.location.locationName;
-    self.annotations = [self.annotations arrayByAddingObject:annotation];
+    PostAnnotation *annotation = [PostAnnotation setAnnotation:post];
     [self.mapView addAnnotation:annotation];
 }
 
@@ -97,7 +94,7 @@ static NSString *const pin = @"pin";
 
 #pragma mark - MKMapView Delegate
 
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(PostAnnotation *)annotation {
     if([annotation isKindOfClass:[MKUserLocation class]]){
         return nil;
     }
@@ -113,23 +110,28 @@ static NSString *const pin = @"pin";
     }
     
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 48, 48)];
-    [button setBackgroundImage:[UIImage imageNamed:@"icon-car"]
-                      forState:UIControlStateNormal];
+    [annotation.post.image getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
+        if(error) {
+            NSLog(@"error loading image data: %@", error.localizedDescription);
+        } else {
+            [button setBackgroundImage:[UIImage imageWithData:data]
+                              forState:UIControlStateNormal];
+        }
+    }];
     [button addTarget:self action:@selector(getPost) forControlEvents:UIControlEventTouchUpInside];
     pinView.leftCalloutAccessoryView = button;
     
     return pinView;
 }
 
-- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(PostPinAnnotationView *)view {
     self.selectedPin = view;
 }
 
 #pragma mark - Get Selected Post
 
 - (void)getPost {
-    int post = (int)[self.annotations indexOfObject:self.selectedPin.annotation];
-    [self performSegueWithIdentifier:@"detailSegue" sender:self.posts[post]];
+    [self performSegueWithIdentifier:@"detailSegue" sender:self.selectedPin.annotation.post];
 }
 
 

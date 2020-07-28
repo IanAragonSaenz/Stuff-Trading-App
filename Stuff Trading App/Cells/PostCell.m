@@ -42,7 +42,11 @@
     self.descriptionText.text = post.desc;
     [post.image getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
         if(!error) {
+            self.userImage.alpha = 0.0;
             self.userImage.image = [UIImage imageWithData:data];
+            [UIView animateWithDuration:0.4 animations:^{
+                self.userImage.alpha = 1.0;
+            }];
         }
     }];
     self.timeLabel.text = post.createdAt.timeAgoSinceNow;
