@@ -14,6 +14,8 @@
 #import "DetailPostViewController.h"
 #import "UIAlertController+Utils.h"
 #import "SectionCell.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 @interface FeedViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchBarDelegate>
 
@@ -218,6 +220,10 @@
     UIViewController *loginView = [storyBoard instantiateViewControllerWithIdentifier:@"loginView"];
     sceneDelegate.window.rootViewController = loginView;
     
+    if([FBSDKAccessToken currentAccessToken]) {
+        FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
+        [loginManager logOut];
+    }
     [User logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
         //needs to be open so that current user sets to nil
     }];
