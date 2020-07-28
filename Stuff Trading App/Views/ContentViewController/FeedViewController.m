@@ -273,8 +273,7 @@
     return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
 
-- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state
-{
+- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:17.0f]};
 
     return [[NSAttributedString alloc] initWithString:@"Refresh" attributes:attributes];
@@ -282,8 +281,7 @@
 
 #pragma mark - Empty Table Delegate
 
-- (void)emptyDataSet:(UIScrollView *)scrollView didTapButton:(UIButton *)button
-{
+- (void)emptyDataSet:(UIScrollView *)scrollView didTapButton:(UIButton *)button {
     [self.refresh beginRefreshing];
     [self fetchPosts];
 }
