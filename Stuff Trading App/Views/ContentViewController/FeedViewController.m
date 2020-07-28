@@ -14,6 +14,8 @@
 #import "DetailPostViewController.h"
 #import "UIAlertController+Utils.h"
 #import "SectionCell.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 @interface FeedViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchBarDelegate>
 
@@ -68,6 +70,13 @@
     [buttonContainer setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.searchBar.frame.size.height)];
     self.tableView.tableHeaderView = buttonContainer;
     [self.sectionsTableView setFrame:CGRectMake(0, 120, 120, 250)];
+    
+    self.sectionsTableView.translatesAutoresizingMaskIntoConstraints = false;
+    [self.sectionsTableView.topAnchor constraintEqualToAnchor:self.searchBar.bottomAnchor constant:0].active = YES;
+    [self.sectionsTableView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:0].active = YES;
+    [self.sectionsTableView.heightAnchor constraintEqualToConstant:250].active = YES;
+    [self.sectionsTableView.widthAnchor constraintEqualToConstant:120].active = YES;
+    [self.view layoutIfNeeded];
     
     //fetching sections
     [Section fetchSections:^(NSArray * _Nonnull sections, NSError * _Nonnull error) {
@@ -218,6 +227,10 @@
     UIViewController *loginView = [storyBoard instantiateViewControllerWithIdentifier:@"loginView"];
     sceneDelegate.window.rootViewController = loginView;
     
+    if([FBSDKAccessToken currentAccessToken]) {
+        FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
+        [loginManager logOut];
+    }
     [User logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
         //needs to be open so that current user sets to nil
     }];
