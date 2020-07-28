@@ -151,7 +151,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rfY-Gc-J1x">
-                                <rect key="frame" x="78" y="350" width="54" height="30"/>
+                                <rect key="frame" x="78" y="340" width="54" height="30"/>
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
                                     <action selector="signUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zf6-mc-Rb6"/>
@@ -164,7 +164,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LJ7-MO-33w">
-                                <rect key="frame" x="292" y="350" width="38" height="30"/>
+                                <rect key="frame" x="292" y="340" width="38" height="30"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CHl-hC-E6z"/>
@@ -174,8 +174,8 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="tqH-jY-gJG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="78" id="0rn-24-auX"/>
-                            <constraint firstItem="LJ7-MO-33w" firstAttribute="top" secondItem="tqH-jY-gJG" secondAttribute="bottom" constant="30" id="1Hp-B0-kPP"/>
-                            <constraint firstItem="rfY-Gc-J1x" firstAttribute="top" secondItem="tqH-jY-gJG" secondAttribute="bottom" constant="30" id="4ux-Kq-W2Z"/>
+                            <constraint firstItem="LJ7-MO-33w" firstAttribute="top" secondItem="tqH-jY-gJG" secondAttribute="bottom" constant="20" id="1Hp-B0-kPP"/>
+                            <constraint firstItem="rfY-Gc-J1x" firstAttribute="top" secondItem="tqH-jY-gJG" secondAttribute="bottom" constant="20" id="4ux-Kq-W2Z"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tqH-jY-gJG" secondAttribute="trailing" constant="84" id="8jm-db-hSP"/>
                             <constraint firstItem="JPL-0z-nMi" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-232" id="RPT-XF-Q0L"/>
                             <constraint firstItem="JPL-0z-nMi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dKP-q8-zSz"/>

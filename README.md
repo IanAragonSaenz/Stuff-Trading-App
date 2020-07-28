@@ -101,7 +101,7 @@ It's an app where people can put up what items they would like to trade or give 
 * Profile
 * Feed
 * Messages
-* Optional: close trades map
+* Feed map
 
 **Flow Navigation** (Screen to Screen)
 
@@ -114,7 +114,7 @@ It's an app where people can put up what items they would like to trade or give 
 * Messages
     * DirectMessage
 
-* Feed
+* Feed/FeedMap
    * User
    * PostDetails
    * ComposePost
@@ -290,3 +290,10 @@ It's an app where people can put up what items they would like to trade or give 
     - (Read/GET) Send message to another user
         
 - [OPTIONAL: List endpoints if using existing API such as Yelp]
+
+
+## Credits
+
+List an 3rd party libraries, icons, graphics, or other assets you used in your app.
+
+- [Iconmonstr](https://iconmonstr.com/) - Free Icons

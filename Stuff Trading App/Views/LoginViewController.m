@@ -30,6 +30,13 @@
     loginButton.delegate = self;
     loginButton.center = self.view.center;
     [self.view addSubview:loginButton];
+    
+    loginButton.translatesAutoresizingMaskIntoConstraints = false;
+    [loginButton.topAnchor constraintEqualToAnchor:self.passwordText.bottomAnchor constant:70].active = YES;
+    [loginButton.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
+    [loginButton.bottomAnchor constraintLessThanOrEqualToAnchor:self.view.bottomAnchor constant:-40].active = YES;
+    [self.view layoutIfNeeded];
+    
 }
 
 #pragma mark - Sign Up / Login
