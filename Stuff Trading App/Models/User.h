@@ -7,6 +7,7 @@
 //
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
+#import <PFFacebookUtils.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)signUpUser:(UIImage *)image username:(NSString *)username password:(NSString *)password description:(NSString *)description withCompletion:(PFBooleanResultBlock _Nullable)completion;
 + (void)setProfilePic:(UIImage *)image;
++ (void)linkUser;
++ (void)setFacebookInfo:(PFBooleanResultBlock)completion;
 
 @end
 

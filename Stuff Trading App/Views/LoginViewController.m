@@ -63,16 +63,13 @@
 - (IBAction)facebookLogin:(id)sender {
     [PFFacebookUtils logInInBackgroundWithReadPermissions:@[@"email", @"public_profile"] block:^(PFUser *user, NSError *error) {
       if (!user) {
-        NSLog(@"Uh oh. The user cancelled the Facebook login.");
+          NSLog(@"Uh oh. The user cancelled the Facebook login.");
       } else if (user.isNew) {
-        NSLog(@"User signed up and logged in through Facebook!");
-          User *user = [User user];
-          [user signUpInBackgroundWithBlock:nil];
-          [PFFacebookUtils linkUserInBackground:user withReadPermissions:nil block:^(BOOL succeeded, NSError *error) {
-            if (succeeded) {
-                NSLog(@"Woohoo, user is linked with Facebook!");
-                [self performSegueWithIdentifier:@"loginSegue" sender:nil];
-            }
+          NSLog(@"User signed up and logged in through Facebook!");
+          [User setFacebookInfo:^(BOOL succeeded, NSError * _Nullable error) {
+              if(succeeded) {
+                  [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+              }
           }];
       } else {
           NSLog(@"User logged in through Facebook!");
