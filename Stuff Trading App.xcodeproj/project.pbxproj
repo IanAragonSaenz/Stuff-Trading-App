@@ -21,7 +21,6 @@
 		D15A1EE724C8DD2400935AC7 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = D15A1EE624C8DD2400935AC7 /* Location.m */; };
 		D15A1EEA24C8E15F00935AC7 /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = D15A1EE924C8E15F00935AC7 /* Section.m */; };
 		D15A1EED24CA206000935AC7 /* SectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D15A1EEC24CA206000935AC7 /* SectionCell.m */; };
-		D15A1EF024CB32A200935AC7 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D15A1EEF24CB32A200935AC7 /* SettingsViewController.m */; };
 		D15A1EF724CB9E2700935AC7 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D15A1EF624CB9E2700935AC7 /* RootViewController.m */; };
 		D15A1EFA24CB9E4100935AC7 /* BasePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D15A1EF924CB9E4100935AC7 /* BasePageViewController.m */; };
 		D15A1EFD24CF2D7900935AC7 /* FeedMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D15A1EFC24CF2D7900935AC7 /* FeedMapViewController.m */; };
@@ -102,8 +101,6 @@
 		D15A1EE924C8E15F00935AC7 /* Section.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Section.m; sourceTree = "<group>"; };
 		D15A1EEB24CA206000935AC7 /* SectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SectionCell.h; sourceTree = "<group>"; };
 		D15A1EEC24CA206000935AC7 /* SectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SectionCell.m; sourceTree = "<group>"; };
-		D15A1EEE24CB32A200935AC7 /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
-		D15A1EEF24CB32A200935AC7 /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		D15A1EF524CB9E2700935AC7 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		D15A1EF624CB9E2700935AC7 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		D15A1EF824CB9E4100935AC7 /* BasePageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BasePageViewController.h; sourceTree = "<group>"; };
@@ -322,8 +319,6 @@
 				D132DB3624C0E951002A9501 /* ChatViewController.m */,
 				D132DB4424C60E62002A9501 /* MapViewController.h */,
 				D132DB4524C60E62002A9501 /* MapViewController.m */,
-				D15A1EEE24CB32A200935AC7 /* SettingsViewController.h */,
-				D15A1EEF24CB32A200935AC7 /* SettingsViewController.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -618,7 +613,6 @@
 				D1CD13DB24BD0C4300913AE7 /* User.m in Sources */,
 				D1CD139924BB9A5500913AE7 /* ViewController.m in Sources */,
 				D132DB3724C0E951002A9501 /* ChatViewController.m in Sources */,
-				D15A1EF024CB32A200935AC7 /* SettingsViewController.m in Sources */,
 				D1CD13D824BCFB8F00913AE7 /* ComposePostViewController.m in Sources */,
 				D132DB2E24C0A87A002A9501 /* Chat.m in Sources */,
 				D1CD139324BB9A5500913AE7 /* AppDelegate.m in Sources */,
