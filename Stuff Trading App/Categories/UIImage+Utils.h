@@ -13,6 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIImage (Utils)
 
 + (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size;
++ (UIImage *)iconDropdown;
++ (UIImage *)iconBox;
++ (UIImage *)iconCar;
++ (UIImage *)iconChat;
++ (UIImage *)iconMessage;
 
 @end
 

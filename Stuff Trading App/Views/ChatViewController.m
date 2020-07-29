@@ -12,6 +12,7 @@
 #import "User.h"
 #import "MessageViewController.h"
 #import "UIScrollView+EmptyDataSet.h"
+#import "UIImage+Utils.h"
 
 @interface ChatViewController () <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
@@ -75,7 +76,7 @@
 #pragma mark - Empty Table Data Source
 
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
-    return [UIImage imageNamed:@"icon-chat"];
+    return [UIImage iconChat];
 }
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {

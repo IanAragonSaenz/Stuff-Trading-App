@@ -10,6 +10,7 @@
 #import "MessageCell.h"
 #import "Message.h"
 #import "UIScrollView+EmptyDataSet.h"
+#import "UIImage+Utils.h"
 
 @interface MessageViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
@@ -92,7 +93,7 @@
 #pragma mark - Empty Table Data Source
 
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
-    return [UIImage imageNamed:@"icon-message"];
+    return [UIImage iconMessage];
 }
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {

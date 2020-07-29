@@ -25,4 +25,26 @@
     return newImage;
 }
 
+#pragma mark - Image Icons
+
++ (UIImage *)iconDropdown {
+    return [UIImage imageNamed:@"icon-dropdown"];
+}
+
++ (UIImage *)iconCar {
+    return [UIImage imageNamed:@"icon-car"];
+}
+
++ (UIImage *)iconChat {
+    return [UIImage imageNamed:@"icon-chat"];
+}
+
++ (UIImage *)iconBox {
+    return [UIImage imageNamed:@"icon-box"];
+}
+
++ (UIImage *)iconMessage {
+    return [UIImage imageNamed:@"icon-message"];
+}
+
 @end
