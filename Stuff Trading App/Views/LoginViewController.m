@@ -10,10 +10,9 @@
 #import <Parse/Parse.h>
 #import "User.h"
 #import "UIAlertController+Utils.h"
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <PFFacebookUtils.h>
 
-@interface LoginViewController () <FBSDKLoginButtonDelegate>
+@interface LoginViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameText;
 @property (weak, nonatomic) IBOutlet UITextField *passwordText;
@@ -25,18 +24,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
-    loginButton.delegate = self;
-    loginButton.center = self.view.center;
-    [self.view addSubview:loginButton];
-    
-    loginButton.translatesAutoresizingMaskIntoConstraints = false;
-    [loginButton.topAnchor constraintEqualToAnchor:self.passwordText.bottomAnchor constant:70].active = YES;
-    [loginButton.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
-    [loginButton.bottomAnchor constraintLessThanOrEqualToAnchor:self.view.bottomAnchor constant:-40].active = YES;
-    [self.view layoutIfNeeded];
-    
 }
 
 #pragma mark - Sign Up / Login
@@ -71,25 +58,37 @@
     return NO;
 }
 
-#pragma mark - Facebook LoginButton Delegate
+#pragma mark - Facebook Login
 
-- (void)  loginButton:(FBSDKLoginButton *)loginButton
-didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
-                error:(NSError *)error{
-   [self performSegueWithIdentifier:@"loginSegue" sender:nil];
-}
-- (void) loginButtonDidLogOut:(FBSDKLoginButton *)loginButton{
-  
+- (IBAction)facebookLogin:(id)sender {
+    [PFFacebookUtils logInInBackgroundWithReadPermissions:@[@"email", @"public_profile"] block:^(PFUser *user, NSError *error) {
+      if (!user) {
+        NSLog(@"Uh oh. The user cancelled the Facebook login.");
+      } else if (user.isNew) {
+        NSLog(@"User signed up and logged in through Facebook!");
+          User *user = [User user];
+          [user signUpInBackgroundWithBlock:nil];
+          [PFFacebookUtils linkUserInBackground:user withReadPermissions:nil block:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                NSLog(@"Woohoo, user is linked with Facebook!");
+                [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+            }
+          }];
+      } else {
+          NSLog(@"User logged in through Facebook!");
+          [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+      }
+    }];
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

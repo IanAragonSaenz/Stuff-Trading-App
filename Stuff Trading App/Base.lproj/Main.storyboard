@@ -170,6 +170,16 @@
                                     <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CHl-hC-E6z"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u0g-CE-b3c">
+                                <rect key="frame" x="153" y="379" width="108" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="h34-Uo-Fum"/>
+                                </constraints>
+                                <state key="normal" title="Facebook Login"/>
+                                <connections>
+                                    <action selector="facebookLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cjw-sp-c2L"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -179,12 +189,15 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tqH-jY-gJG" secondAttribute="trailing" constant="84" id="8jm-db-hSP"/>
                             <constraint firstItem="JPL-0z-nMi" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-232" id="RPT-XF-Q0L"/>
                             <constraint firstItem="JPL-0z-nMi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dKP-q8-zSz"/>
+                            <constraint firstItem="u0g-CE-b3c" firstAttribute="top" secondItem="tqH-jY-gJG" secondAttribute="bottom" constant="59" id="dRV-My-VUH"/>
                             <constraint firstItem="Vnu-bt-4JV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="78" id="rYs-NV-CSI"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LJ7-MO-33w" secondAttribute="trailing" constant="84" id="tjK-ET-nIh"/>
                             <constraint firstItem="rfY-Gc-J1x" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="78" id="tpa-fb-yQb"/>
                             <constraint firstItem="Vnu-bt-4JV" firstAttribute="top" secondItem="JPL-0z-nMi" secondAttribute="bottom" constant="65" id="xMr-9Y-OqP"/>
                             <constraint firstItem="tqH-jY-gJG" firstAttribute="top" secondItem="Vnu-bt-4JV" secondAttribute="bottom" constant="33" id="xY3-f3-OZB"/>
+                            <constraint firstItem="u0g-CE-b3c" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yUH-9B-0Sj"/>
                             <constraint firstAttribute="trailing" secondItem="Vnu-bt-4JV" secondAttribute="trailing" constant="84" id="zUn-c8-2er"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="u0g-CE-b3c" secondAttribute="bottom" constant="20" id="zn0-6I-ZOI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
