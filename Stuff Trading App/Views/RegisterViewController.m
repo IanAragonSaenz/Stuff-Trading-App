@@ -39,32 +39,16 @@
     UIImagePickerController *imagePC = [UIImagePickerController new];
     imagePC.delegate = self;
     imagePC.allowsEditing = YES;
-    
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Choose Media" message:@"Choose camera vs photo library" preferredStyle:(UIAlertControllerStyleActionSheet)];
-    UIAlertAction *camera = [UIAlertAction actionWithTitle:@"Camera" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+    [UIAlertController takePictureAlert:self withCompletion:^(int finished) {
+        if(finished == 1) {
             imagePC.sourceType = UIImagePickerControllerSourceTypeCamera;
-            [self presentViewController:imagePC animated:YES completion:nil];
-        } else {
-            [UIAlertController sendError:@"Camera source not found" onView:self];
-        }
-    }];
-    [alert addAction:camera];
-    
-    UIAlertAction *photoLibrary = [UIAlertAction actionWithTitle:@"Photo Library" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+        } else if(finished == 2) {
             imagePC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            [self presentViewController:imagePC animated:YES completion:nil];
         } else {
-            [UIAlertController sendError:@"Photo library source not found" onView:self];
+            return;
         }
+        [self presentViewController:imagePC animated:YES completion:nil];
     }];
-    [alert addAction:photoLibrary];
-    
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-    [alert addAction:cancel];
-    
-    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
