@@ -55,6 +55,58 @@
     }];
 }
 
+#pragma mark - Facebook
+
++ (void)linkUser {
+    [PFFacebookUtils linkUserInBackground:[User currentUser] withReadPermissions:nil block:^(BOOL succeeded, NSError *error) {
+          if (succeeded) {
+              NSLog(@"Woohoo, user is linked with Facebook!");
+          }
+    }];
+}
+
++ (void)setFacebookInfo:(PFBooleanResultBlock)completion {
+    //creates parameters for info request
+    NSMutableDictionary* parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:@"id,name,email,picture" forKey:@"fields"];
+
+    [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:parameters] startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+         if (!error) {
+             NSLog(@"fetched user:%@  and Email : %@", result,result[@"email"]);
+             //gets profile image
+             NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=large", result[@"id"]]];
+             NSData  *data = [NSData dataWithContentsOfURL:url];
+             UIImage *image = [UIImage imageWithData:data];
+             image = [self resizeImage:image withSize:CGSizeMake(325, 325)];
+             NSString *username = [NSString stringWithFormat:@"%@_%@", result[@"name"], result[@"id"]];
+             
+             User *user = [User currentUser];
+             user.username = username;
+             user.image = [self getPFFileFromImage:image];
+             user.userDescription = @"New Facebook user";
+             [user saveInBackground];
+             
+             [User linkUser];
+             completion(YES, nil);
+         } else {
+             completion(NO, error);
+         }
+     }];
+}
+
++ (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
+    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+    
+    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
+    resizeImageView.image = image;
+    
+    UIGraphicsBeginImageContext(size);
+    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
 #pragma mark - Get PFFile from Image
 
 + (PFFileObject *)getPFFileFromImage:(UIImage *_Nullable)image {

@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 @import FBSDKCoreKit;
+#import <PFFacebookUtils.h>
 
 
 @interface AppDelegate ()
@@ -25,7 +26,7 @@
     }];
     [Parse initializeWithConfiguration:config];
     
-    [FBSDKApplicationDelegate.sharedInstance application:application didFinishLaunchingWithOptions:launchOptions];
+    [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
     
     UIPageControl *pageControl = [UIPageControl appearance];
     pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
@@ -37,13 +38,14 @@
 
 #pragma mark - Facebook Handlers
 
-- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+- (BOOL)application:(UIApplication *)app openURL:(nonnull NSURL *)url options:(nonnull NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
     
-    [FBSDKApplicationDelegate.sharedInstance application:app openURL:url sourceApplication:options[UIApplicationLaunchOptionsSourceApplicationKey] annotation:UIApplicationLaunchOptionsAnnotationKey];
-    
-    return YES;
+    return [[FBSDKApplicationDelegate sharedInstance] application:app openURL:url options:options];
 }
 
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+  [FBSDKAppEvents activateApp];
+}
 
 #pragma mark - UISceneSession lifecycle
 
