@@ -17,6 +17,10 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "UIScrollView+EmptyDataSet.h"
+#import "UIImage+Utils.h"
+
+static const CGFloat kSectionTableViewWidthAnchor = 120.0;
+static const CGFloat kSectionTableViewheightAnchor = 250.0;
 
 @interface FeedViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
@@ -55,15 +59,15 @@
     self.searchBar.delegate = self;
     self.searchBar.placeholder = @"Search here...";
     [self.searchBar setShowsBookmarkButton:YES];
-    [self.searchBar setImage:[UIImage imageNamed:@"icon-dropdown"] forSearchBarIcon:UISearchBarIconBookmark state:UIControlStateNormal];
+    [self.searchBar setImage:[UIImage iconDropdown] forSearchBarIcon:UISearchBarIconBookmark state:UIControlStateNormal];
     [self.searchBar sizeToFit];
     self.tableView.tableHeaderView = self.searchBar;
     
     self.sectionsTableView.translatesAutoresizingMaskIntoConstraints = false;
     [self.sectionsTableView.topAnchor constraintEqualToAnchor:self.searchBar.bottomAnchor constant:0].active = YES;
     [self.sectionsTableView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:0].active = YES;
-    [self.sectionsTableView.heightAnchor constraintEqualToConstant:250].active = YES;
-    [self.sectionsTableView.widthAnchor constraintEqualToConstant:120].active = YES;
+    [self.sectionsTableView.heightAnchor constraintEqualToConstant:kSectionTableViewheightAnchor].active = YES;
+    [self.sectionsTableView.widthAnchor constraintEqualToConstant:kSectionTableViewWidthAnchor].active = YES;
     [self.view layoutIfNeeded];
     
     //fetching sections
@@ -231,7 +235,7 @@
 #pragma mark - Empty Table Data Source
 
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
-    return [UIImage imageNamed:@"icon-box"];
+    return [UIImage iconBox];
 }
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {

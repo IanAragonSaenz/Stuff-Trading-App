@@ -9,6 +9,7 @@
 #import "DetailPostViewController.h"
 #import "UserViewController.h"
 @import MapKit;
+#import "UIImage+Utils.h"
 
 static NSString *const pin = @"pin";
 
@@ -77,7 +78,7 @@ static NSString *const pin = @"pin";
     }
     
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 48, 48)];
-    [button setBackgroundImage:[UIImage imageNamed:@"icon-car"]
+    [button setBackgroundImage:[UIImage iconCar]
                       forState:UIControlStateNormal];
     [button addTarget:self action:@selector(getDirections) forControlEvents:UIControlEventTouchUpInside];
     pinView.leftCalloutAccessoryView = button;
