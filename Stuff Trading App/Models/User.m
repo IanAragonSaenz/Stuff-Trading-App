@@ -7,6 +7,7 @@
 //
 
 #import "User.h"
+#import "UIImage+Utils.h"
 
 @implementation User
 
@@ -77,7 +78,7 @@
              NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=large", result[@"id"]]];
              NSData  *data = [NSData dataWithContentsOfURL:url];
              UIImage *image = [UIImage imageWithData:data];
-             image = [self resizeImage:image withSize:CGSizeMake(325, 325)];
+             image = [UIImage resizeImage:image withSize:CGSizeMake(325, 325)];
              NSString *username = [NSString stringWithFormat:@"%@_%@", result[@"name"], result[@"id"]];
              
              User *user = [User currentUser];
@@ -92,19 +93,6 @@
              completion(NO, error);
          }
      }];
-}
-
-+ (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
-    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
-    
-    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
-    resizeImageView.image = image;
-    
-    UIGraphicsBeginImageContext(size);
-    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
 }
 
 #pragma mark - Get PFFile from Image

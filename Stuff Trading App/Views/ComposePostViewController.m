@@ -11,6 +11,7 @@
 #import "Post.h"
 #import <Parse/Parse.h>
 #import "UIAlertController+Utils.h"
+#import "UIImage+Utils.h"
 
 @interface ComposePostViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate>
 
@@ -78,23 +79,8 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
-    self.postImage.image = [self resizeImage:originalImage withSize:CGSizeMake(325, 325)];
+    self.postImage.image = [UIImage resizeImage:originalImage withSize:CGSizeMake(325, 325)];
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-#pragma mark - Sizing Image
-
-- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
-    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
-    
-    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
-    resizeImageView.image = image;
-    
-    UIGraphicsBeginImageContext(size);
-    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
 }
 
 #pragma mark - Buttons
