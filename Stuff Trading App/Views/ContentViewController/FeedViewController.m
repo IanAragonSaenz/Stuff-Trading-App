@@ -19,7 +19,7 @@
 #import "UIScrollView+EmptyDataSet.h"
 #import "UIImage+Utils.h"
 
-static const CGFloat kSectionTableViewWidthAnchor = 120.0;
+static const CGFloat kSectionTableViewWidthAnchor = 200.0;
 static const CGFloat kSectionTableViewheightAnchor = 250.0;
 
 @interface FeedViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
@@ -35,6 +35,7 @@ static const CGFloat kSectionTableViewheightAnchor = 250.0;
 @property (strong, nonatomic) NSMutableArray *selectedSections;
 @property (nonatomic) int countSelectedSections;
 @property (strong, nonatomic) UISearchBar *searchBar;
+@property (nonatomic) BOOL sectionRefresh;
 
 @end
 
@@ -53,6 +54,7 @@ static const CGFloat kSectionTableViewheightAnchor = 250.0;
     self.countSelectedSections = 0;
     self.tableView.tableFooterView = [UIView new];
     
+    self.sectionRefresh = NO;
     [self.sectionsTableView setHidden:YES];
     
     self.searchBar = [[UISearchBar alloc] init];
@@ -120,7 +122,7 @@ static const CGFloat kSectionTableViewheightAnchor = 250.0;
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     query.limit = 10;
     BOOL isRefreshing = [self.refresh isRefreshing];
-    if(!isRefreshing)
+    if(!isRefreshing && !self.sectionRefresh)
         query.skip = self.posts.count;
     [query orderByDescending:@"createdAt"];
     [query includeKey:@"author"];
@@ -131,7 +133,7 @@ static const CGFloat kSectionTableViewheightAnchor = 250.0;
     
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
         if(!error) {
-            if(isRefreshing){
+            if(isRefreshing || self.sectionRefresh){
                 self.posts = posts;
             } else {
                 self.posts = [self.posts arrayByAddingObjectsFromArray:posts];
@@ -144,6 +146,7 @@ static const CGFloat kSectionTableViewheightAnchor = 250.0;
         } else {
             [UIAlertController sendError:error.localizedDescription onView:self];
         }
+        self.sectionRefresh = NO;
         [self.activityIndicator stopAnimating];
         self.isLoadingMoreData = false;
         [self.refresh endRefreshing];
@@ -181,7 +184,7 @@ static const CGFloat kSectionTableViewheightAnchor = 250.0;
             self.selectedSections[indexPath.row]  = @"empty";
             self.countSelectedSections--;
         }
-        [self.refresh beginRefreshing];
+        self.sectionRefresh = YES;
         [self fetchPosts];
         NSLog(@"filters: %@", self.selectedSections);
     }
