@@ -144,7 +144,8 @@ static const CGFloat kSectionTableViewheightAnchor = 250.0;
                 [self searchBar:self.searchBar textDidChange:self.searchBar.text];
             }
         } else {
-            [UIAlertController sendError:error.localizedDescription onView:self];
+            UIAlertController *alert = [UIAlertController sendError:error.localizedDescription];
+            [self presentViewController:alert animated:YES completion:nil];
         }
         self.sectionRefresh = NO;
         [self.activityIndicator stopAnimating];

@@ -17,10 +17,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSString *messageID;
 @property (strong, nonatomic) NSString *userId;
 @property (strong, nonatomic) NSString *message;
+@property (strong, nonatomic) PFFileObject *image;
 @property (strong, nonatomic) User *sender;
 @property (strong, nonatomic) Chat *chat;
 
-+ (void)createMessage:(NSString *)message inChat:(Chat *)chat;
++ (void)createMessage:(NSString *)message withImage:(UIImage *_Nullable)image inChat:(Chat *)chat;
 
 @end
 

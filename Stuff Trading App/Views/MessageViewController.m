@@ -10,14 +10,17 @@
 #import "MessageCell.h"
 #import "Message.h"
 #import "UIScrollView+EmptyDataSet.h"
+#import "UIAlertController+Utils.h"
 #import "UIImage+Utils.h"
 
-@interface MessageViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+@interface MessageViewController () <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *messages;
-@property (weak, nonatomic) IBOutlet UITextField *messageText;
+@property (weak, nonatomic) IBOutlet UITextView *messageText;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
+@property (strong, nonatomic) UIImage *messageImage;
 
 @end
 
@@ -31,7 +34,9 @@
     self.tableView.emptyDataSetSource = self;
     self.tableView.emptyDataSetDelegate = self;
     self.tableView.tableFooterView = [UIView new];
+    
     self.messageText.delegate = self;
+    self.messageImage = nil;
     
     [self.navigationController.toolbar setHidden:YES];
     [self.tabBarController.tabBar setHidden:YES];
@@ -60,6 +65,10 @@
         } else if(messages){
             self.messages = messages;
             [self.tableView reloadData];
+            NSUInteger rows = [self tableView:self.tableView numberOfRowsInSection:0];
+            NSUInteger items = (rows > 0)? rows-1: 0;
+            NSIndexPath *index = [NSIndexPath indexPathForItem:items inSection:0];
+            [self.tableView scrollToRowAtIndexPath:index atScrollPosition:UITableViewScrollPositionBottom animated:YES];
         }
         [self.activityIndicator stopAnimating];
     }];
@@ -68,7 +77,13 @@
 #pragma mark - Table View Data Source
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    MessageCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"MessageCell"];
+    Message *message = self.messages[indexPath.row];
+    MessageCell *cell;
+    if(message.image) {
+        cell = [self.tableView dequeueReusableCellWithIdentifier:@"messagePhotoCell"];
+    } else {
+        cell = [self.tableView dequeueReusableCellWithIdentifier:@"MessageCell"];
+    }
     [cell setCell:self.messages[indexPath.row]];
     return cell;
 }
@@ -80,14 +95,10 @@
 #pragma mark - Create Message
 
 - (IBAction)sendMessage:(id)sender {
-    [Message createMessage:self.messageText.text inChat:self.chat];
-}
-
-#pragma mark - Keyboard
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [textField resignFirstResponder];
-    return YES;
+    if(![self.messageText.text isEqualToString:@""]) {
+        [Message createMessage:self.messageText.text withImage:self.messageImage inChat:self.chat];
+        self.messageText.text = @"";
+    }
 }
 
 #pragma mark - Empty Table Data Source
@@ -117,6 +128,54 @@
                                  NSParagraphStyleAttributeName: paragraph};
                                  
     return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+#pragma mark - Adding Photo
+
+- (IBAction)takePhoto:(id)sender {
+    UIImagePickerController *imagePC = [UIImagePickerController new];
+    imagePC.delegate = self;
+    imagePC.allowsEditing = YES;
+    UIAlertController *alert = [UIAlertController takePictureAlert:^(int finished, NSString *_Nullable error) {
+        if(finished == 1) {
+            imagePC.sourceType = UIImagePickerControllerSourceTypeCamera;
+        } else if(finished == 2) {
+            imagePC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        } else if(finished == 0) {
+            UIAlertController *errorAlert = [UIAlertController sendError:error];
+            [self presentViewController:errorAlert animated:YES completion:nil];
+            return;
+        }
+        [self presentViewController:imagePC animated:YES completion:nil];
+    }];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
+    UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
+    self.messageImage = [UIImage resizeImage:originalImage withSize:CGSizeMake(325 , 325)];
+    originalImage = [UIImage resizeImage:originalImage withSize:CGSizeMake(50, 50)];
+    NSTextAttachment *textAttachment = [[NSTextAttachment alloc] init];
+    textAttachment.image = originalImage;
+    
+    NSAttributedString *attrString = [NSAttributedString attributedStringWithAttachment:textAttachment];
+    
+    [self.messageText.textStorage insertAttributedString:attrString atIndex:self.messageText.selectedRange.location];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)textViewDidChange:(UITextView *)textView {
+    CGRect frame = textView.frame;
+    frame.size.height = textView.contentSize.height;
+    textView.frame = frame;
+    
+    
+
+    /*
+    frame = self.backgroundImage.frame;
+    frame.size.height = textView.contentSize.height + 15;
+    self.backgroundImage.frame = frame;
+     */
 }
 
 /*

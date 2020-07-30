@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *username;
 @property (weak, nonatomic) IBOutlet UILabel *message;
 @property (weak, nonatomic) IBOutlet UILabel *timeAgo;
+@property (weak, nonatomic) IBOutlet UIImageView *messageImage;
 
 @end
 
@@ -36,6 +37,17 @@
     self.username.text = message.sender.username;
     self.message.text = message.message;
     self.timeAgo.text = message.createdAt.timeAgoSinceNow;
+    if(message.image != nil) {
+        [message.image getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
+            if(!error) {
+                self.messageImage.alpha = 0.0;
+                self.messageImage.image = [UIImage imageWithData:data];
+                [UIView animateWithDuration:0.4 animations:^{
+                    self.messageImage.alpha = 1.0;
+                }];
+            }
+        }];
+    }
 }
 
 @end

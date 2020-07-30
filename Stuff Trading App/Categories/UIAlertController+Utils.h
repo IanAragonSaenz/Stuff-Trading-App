@@ -10,12 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^alertCompletion)(int);
+typedef void(^alertCompletion)(int, NSString *_Nullable);
 
 @interface UIAlertController (Utils)
 
-+ (void)sendError:(NSString *)error onView:(UIViewController *)view;
-+ (void)takePictureAlert:(UIViewController *)view withCompletion:(alertCompletion)completion;
++ (UIAlertController *)sendError:(NSString *)error;
++ (UIAlertController *)takePictureAlert:(alertCompletion)completion;
 
 @end
 

@@ -65,16 +65,19 @@
     UIImagePickerController *imagePC = [UIImagePickerController new];
     imagePC.delegate = self;
     imagePC.allowsEditing = YES;
-    [UIAlertController takePictureAlert:self withCompletion:^(int finished) {
+    UIAlertController *alert = [UIAlertController takePictureAlert:^(int finished, NSString *_Nullable error) {
         if(finished == 1) {
             imagePC.sourceType = UIImagePickerControllerSourceTypeCamera;
         } else if(finished == 2) {
             imagePC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        } else {
+        } else if(finished == 0) {
+            UIAlertController *errorAlert = [UIAlertController sendError:error];
+            [self presentViewController:errorAlert animated:YES completion:nil];
             return;
         }
         [self presentViewController:imagePC animated:YES completion:nil];
     }];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
@@ -90,7 +93,8 @@
         if(succeeded){
             NSLog(@"Post succeded");
         } else {
-            [UIAlertController sendError:error.localizedDescription onView:self];
+            UIAlertController *alert = [UIAlertController sendError:error.localizedDescription];
+            [self presentViewController:alert animated:YES completion:nil];
         }
     }];
     [self cancel:nil];
