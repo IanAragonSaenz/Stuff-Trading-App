@@ -78,6 +78,8 @@
 - (void)fetchposts {
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query includeKey:@"author"];
+    [query includeKey:@"location"];
+    [query includeKey:@"section"];
     [query whereKey:@"author" equalTo:self.user];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
         if(!error) {
