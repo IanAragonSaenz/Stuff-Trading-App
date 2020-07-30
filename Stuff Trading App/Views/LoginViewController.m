@@ -34,7 +34,8 @@
     
     [User logInWithUsernameInBackground:self.usernameText.text password:self.passwordText.text block:^(PFUser * _Nullable user, NSError * _Nullable error) {
         if(error) {
-            [UIAlertController sendError:error.localizedDescription onView:self];
+            UIAlertController *alert = [UIAlertController sendError:error.localizedDescription];
+            [self presentViewController:alert animated:YES completion:nil];
         } else {
             [self performSegueWithIdentifier:@"loginSegue" sender:nil];
         }
@@ -49,10 +50,12 @@
 
 - (BOOL)isEmpty:(NSString *)username password:(NSString *)password {
     if([username isEqualToString:@""]) {
-        [UIAlertController sendError:@"Username is empty" onView:self];
+        UIAlertController *alert = [UIAlertController sendError:@"Username is empty"];
+        [self presentViewController:alert animated:YES completion:nil];
         return YES;
     } else if([password isEqualToString:@""]) {
-        [UIAlertController sendError:@"Password is empty" onView:self];
+        UIAlertController *alert = [UIAlertController sendError:@"Password is empty"];
+        [self presentViewController:alert animated:YES completion:nil];
         return YES;
     }
     return NO;

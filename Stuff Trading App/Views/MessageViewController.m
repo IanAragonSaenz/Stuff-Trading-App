@@ -10,9 +10,10 @@
 #import "MessageCell.h"
 #import "Message.h"
 #import "UIScrollView+EmptyDataSet.h"
+#import "UIAlertController+Utils.h"
 #import "UIImage+Utils.h"
 
-@interface MessageViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+@interface MessageViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *messages;
@@ -72,7 +73,13 @@
 #pragma mark - Table View Data Source
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    MessageCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"MessageCell"];
+    Message *message = self.messages[indexPath.row];
+    MessageCell *cell;
+    if(message.image) {
+        cell = [self.tableView dequeueReusableCellWithIdentifier:@"messagePhotoCell"];
+    } else {
+        cell = [self.tableView dequeueReusableCellWithIdentifier:@"MessageCell"];
+    }
     [cell setCell:self.messages[indexPath.row]];
     return cell;
 }
@@ -84,8 +91,8 @@
 #pragma mark - Create Message
 
 - (IBAction)sendMessage:(id)sender {
-    if([self.messageText.text isEqualToString:@""]) {
-        [Message createMessage:self.messageText.text inChat:self.chat];
+    if(![self.messageText.text isEqualToString:@""]) {
+        [Message createMessage:self.messageText.text withImage:nil inChat:self.chat];
         self.messageText.text = @"";
     }
 }
@@ -124,6 +131,33 @@
                                  NSParagraphStyleAttributeName: paragraph};
                                  
     return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+#pragma mark - Adding Photo
+
+- (IBAction)takePhoto:(id)sender {
+    UIImagePickerController *imagePC = [UIImagePickerController new];
+    imagePC.delegate = self;
+    imagePC.allowsEditing = YES;
+    UIAlertController *alert = [UIAlertController takePictureAlert:^(int finished, NSString *_Nullable error) {
+        if(finished == 1) {
+            imagePC.sourceType = UIImagePickerControllerSourceTypeCamera;
+        } else if(finished == 2) {
+            imagePC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        } else if(finished == 0) {
+            UIAlertController *errorAlert = [UIAlertController sendError:error];
+            [self presentViewController:errorAlert animated:YES completion:nil];
+            return;
+        }
+        [self presentViewController:imagePC animated:YES completion:nil];
+    }];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
+    UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
+    //self.messageImage.image = [UIImage resizeImage:originalImage withSize:CGSizeMake(325, 325)];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*
