@@ -28,6 +28,7 @@
     newMessage.sender = [User currentUser];
     newMessage.message = message;
     newMessage.chat = chat;
+    [newMessage saveInBackground];
     if(image) {
         newMessage.image = [self getPFFileFromImage:image];
     }

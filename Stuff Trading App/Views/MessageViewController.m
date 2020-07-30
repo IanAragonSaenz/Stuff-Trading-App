@@ -13,12 +13,14 @@
 #import "UIAlertController+Utils.h"
 #import "UIImage+Utils.h"
 
-@interface MessageViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface MessageViewController () <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *messages;
-@property (weak, nonatomic) IBOutlet UITextField *messageText;
+@property (weak, nonatomic) IBOutlet UITextView *messageText;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
+@property (strong, nonatomic) UIImage *messageImage;
 
 @end
 
@@ -32,7 +34,9 @@
     self.tableView.emptyDataSetSource = self;
     self.tableView.emptyDataSetDelegate = self;
     self.tableView.tableFooterView = [UIView new];
+    
     self.messageText.delegate = self;
+    self.messageImage = nil;
     
     [self.navigationController.toolbar setHidden:YES];
     [self.tabBarController.tabBar setHidden:YES];
@@ -92,16 +96,9 @@
 
 - (IBAction)sendMessage:(id)sender {
     if(![self.messageText.text isEqualToString:@""]) {
-        [Message createMessage:self.messageText.text withImage:nil inChat:self.chat];
+        [Message createMessage:self.messageText.text withImage:self.messageImage inChat:self.chat];
         self.messageText.text = @"";
     }
-}
-
-#pragma mark - Keyboard
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [textField resignFirstResponder];
-    return YES;
 }
 
 #pragma mark - Empty Table Data Source
@@ -156,8 +153,29 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
-    //self.messageImage.image = [UIImage resizeImage:originalImage withSize:CGSizeMake(325, 325)];
+    self.messageImage = [UIImage resizeImage:originalImage withSize:CGSizeMake(325 , 325)];
+    originalImage = [UIImage resizeImage:originalImage withSize:CGSizeMake(50, 50)];
+    NSTextAttachment *textAttachment = [[NSTextAttachment alloc] init];
+    textAttachment.image = originalImage;
+    
+    NSAttributedString *attrString = [NSAttributedString attributedStringWithAttachment:textAttachment];
+    
+    [self.messageText.textStorage insertAttributedString:attrString atIndex:self.messageText.selectedRange.location];
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)textViewDidChange:(UITextView *)textView {
+    CGRect frame = textView.frame;
+    frame.size.height = textView.contentSize.height;
+    textView.frame = frame;
+    
+    
+
+    /*
+    frame = self.backgroundImage.frame;
+    frame.size.height = textView.contentSize.height + 15;
+    self.backgroundImage.frame = frame;
+     */
 }
 
 /*
