@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIImage *)iconCar;
 + (UIImage *)iconChat;
 + (UIImage *)iconMessage;
++ (UIImage *)iconCheckmark;
 
 @end
 

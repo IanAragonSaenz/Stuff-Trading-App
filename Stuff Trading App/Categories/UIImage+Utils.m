@@ -47,4 +47,8 @@
     return [UIImage imageNamed:@"icon-message"];
 }
 
++ (UIImage *)iconCheckmark {
+    return [UIImage imageNamed:@"icon-checkmark"];
+}
+
 @end
