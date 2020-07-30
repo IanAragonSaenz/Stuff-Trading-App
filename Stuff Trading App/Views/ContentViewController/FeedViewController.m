@@ -19,8 +19,8 @@
 #import "UIScrollView+EmptyDataSet.h"
 #import "UIImage+Utils.h"
 
-static const CGFloat kSectionTableViewWidthAnchor = 200.0;
-static const CGFloat kSectionTableViewheightAnchor = 250.0;
+static const CGFloat kSectionTableViewWidthAnchor = 170.0;
+static const CGFloat kSectionTableViewheightAnchor = 220.0;
 
 @interface FeedViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
