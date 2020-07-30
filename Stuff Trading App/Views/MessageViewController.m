@@ -60,6 +60,10 @@
         } else if(messages){
             self.messages = messages;
             [self.tableView reloadData];
+            NSUInteger rows = [self tableView:self.tableView numberOfRowsInSection:0];
+            NSUInteger items = (rows > 0)? rows-1: 0;
+            NSIndexPath *index = [NSIndexPath indexPathForItem:items inSection:0];
+            [self.tableView scrollToRowAtIndexPath:index atScrollPosition:UITableViewScrollPositionBottom animated:YES];
         }
         [self.activityIndicator stopAnimating];
     }];
@@ -80,7 +84,10 @@
 #pragma mark - Create Message
 
 - (IBAction)sendMessage:(id)sender {
-    [Message createMessage:self.messageText.text inChat:self.chat];
+    if([self.messageText.text isEqualToString:@""]) {
+        [Message createMessage:self.messageText.text inChat:self.chat];
+        self.messageText.text = @"";
+    }
 }
 
 #pragma mark - Keyboard
