@@ -51,4 +51,8 @@
     return [UIImage imageNamed:@"icon-checkmark"];
 }
 
++ (UIImage *)iconDown {
+    return [UIImage imageNamed:@"icon-down"];
+}
+
 @end
