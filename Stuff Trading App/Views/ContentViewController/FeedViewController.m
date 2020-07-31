@@ -23,7 +23,7 @@ static const CGFloat kSectionTableViewWidthAnchor = 170.0;
 static const CGFloat kSectionTableViewheightAnchor = 220.0;
 static const CGFloat kSortButtonHeight = 20;
 
-@interface FeedViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+@interface FeedViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITableView *sectionsTableView;
@@ -37,6 +37,8 @@ static const CGFloat kSortButtonHeight = 20;
 @property (nonatomic) int countSelectedSections;
 @property (strong, nonatomic) UISearchBar *searchBar;
 @property (nonatomic) BOOL sectionRefresh;
+@property (nonatomic) BOOL useClosePosts;
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end
 
@@ -53,11 +55,16 @@ static const CGFloat kSortButtonHeight = 20;
     self.sectionsTableView.delegate = self;
     self.sectionsTableView.dataSource = self;
     
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    
     self.posts = [NSArray array];
     self.countSelectedSections = 0;
     self.tableView.tableFooterView = [UIView new];
     self.sectionRefresh = NO;
     [self.sectionsTableView setHidden:YES];
+    self.useClosePosts = NO;
     
     [self setHeaderView];
     [self setSectionTableViewConstraints];
@@ -159,7 +166,11 @@ static const CGFloat kSortButtonHeight = 20;
     if(self.countSelectedSections > 0) {
         [query whereKey:@"section" containedIn:self.selectedSections];
     }
-    
+    if(self.useClosePosts) {
+        PFQuery *locationQuery = [PFQuery queryWithClassName:@"Location"];
+        [locationQuery whereKey:@"coordinate" nearGeoPoint:[PFGeoPoint geoPointWithLocation:self.locationManager.location] withinKilometers:100.0];
+        [query whereKey:@"location" matchesQuery:locationQuery];
+    }
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
         if(!error) {
             if(isRefreshing || self.sectionRefresh){
@@ -169,9 +180,7 @@ static const CGFloat kSortButtonHeight = 20;
             }
             self.filteredPosts = self.posts;
             [self.tableView reloadData];
-            if(self.searchBar.text != 0) {
-                [self searchBar:self.searchBar textDidChange:self.searchBar.text];
-            }
+            [self searchBar:self.searchBar textDidChange:self.searchBar.text];
         } else {
             UIAlertController *alert = [UIAlertController sendError:error.localizedDescription];
             [self presentViewController:alert animated:YES completion:nil];
@@ -310,7 +319,33 @@ static const CGFloat kSortButtonHeight = 20;
 #pragma mark - Change Sorting
 
 - (void)changeSort:(UIButton *)button {
-    
+    if(self.useClosePosts) {
+        self.useClosePosts = NO;
+        [button setTitle:@"All Posts" forState:UIControlStateNormal];
+    } else {
+        [self.locationManager requestWhenInUseAuthorization];
+        [self.locationManager requestLocation];
+        self.useClosePosts = YES;
+        [button setTitle:@"Close Posts" forState:UIControlStateNormal];
+    }
+    self.sectionRefresh = YES;
+    [self fetchPosts];
+}
+
+#pragma mark - Location Manager Delegate
+
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+    if(status == kCLAuthorizationStatusAuthorizedWhenInUse) {
+        [self.locationManager requestLocation];
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    //need to be here for the delegate to work
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    NSLog(@"error with location manager: %@", error.localizedDescription);
 }
 
 #pragma mark - Navigation
