@@ -51,4 +51,8 @@
     return [UIImage imageNamed:@"icon-checkmark"];
 }
 
++ (UIImage *)iconDown {
+    return [UIImage systemImageNamed:@"chevron.down"];
+}
+
 @end

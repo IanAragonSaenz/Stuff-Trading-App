@@ -19,10 +19,11 @@
 #import "UIScrollView+EmptyDataSet.h"
 #import "UIImage+Utils.h"
 
-static const CGFloat kSectionTableViewWidthAnchor = 200.0;
-static const CGFloat kSectionTableViewheightAnchor = 250.0;
+static const CGFloat kSectionTableViewWidthAnchor = 170.0;
+static const CGFloat kSectionTableViewheightAnchor = 220.0;
+static const CGFloat kSortButtonHeight = 20;
 
-@interface FeedViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+@interface FeedViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITableView *sectionsTableView;
@@ -36,6 +37,8 @@ static const CGFloat kSectionTableViewheightAnchor = 250.0;
 @property (nonatomic) int countSelectedSections;
 @property (strong, nonatomic) UISearchBar *searchBar;
 @property (nonatomic) BOOL sectionRefresh;
+@property (nonatomic) BOOL useClosePosts;
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end
 
@@ -48,29 +51,23 @@ static const CGFloat kSectionTableViewheightAnchor = 250.0;
     self.tableView.dataSource = self;
     self.tableView.emptyDataSetSource = self;
     self.tableView.emptyDataSetDelegate = self;
+    
     self.sectionsTableView.delegate = self;
     self.sectionsTableView.dataSource = self;
+    
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    
     self.posts = [NSArray array];
     self.countSelectedSections = 0;
     self.tableView.tableFooterView = [UIView new];
-    
     self.sectionRefresh = NO;
     [self.sectionsTableView setHidden:YES];
+    self.useClosePosts = NO;
     
-    self.searchBar = [[UISearchBar alloc] init];
-    self.searchBar.delegate = self;
-    self.searchBar.placeholder = @"Search here...";
-    [self.searchBar setShowsBookmarkButton:YES];
-    [self.searchBar setImage:[UIImage iconDropdown] forSearchBarIcon:UISearchBarIconBookmark state:UIControlStateNormal];
-    [self.searchBar sizeToFit];
-    self.tableView.tableHeaderView = self.searchBar;
-    
-    self.sectionsTableView.translatesAutoresizingMaskIntoConstraints = false;
-    [self.sectionsTableView.topAnchor constraintEqualToAnchor:self.searchBar.bottomAnchor constant:0].active = YES;
-    [self.sectionsTableView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:0].active = YES;
-    [self.sectionsTableView.heightAnchor constraintEqualToConstant:kSectionTableViewheightAnchor].active = YES;
-    [self.sectionsTableView.widthAnchor constraintEqualToConstant:kSectionTableViewWidthAnchor].active = YES;
-    [self.view layoutIfNeeded];
+    [self setHeaderView];
+    [self setSectionTableViewConstraints];
     
     //fetching sections
     [Section fetchSections:^(NSArray * _Nonnull sections, NSError * _Nonnull error) {
@@ -103,6 +100,45 @@ static const CGFloat kSectionTableViewheightAnchor = 250.0;
     self.navItem.rightBarButtonItem = shareButton;
 }
 
+#pragma mark - View Helpers
+
+- (void)setHeaderView {
+    self.searchBar = [[UISearchBar alloc] init];
+    self.searchBar.delegate = self;
+    self.searchBar.placeholder = @"Search here...";
+    [self.searchBar setShowsBookmarkButton:YES];
+    [self.searchBar setImage:[UIImage iconDropdown] forSearchBarIcon:UISearchBarIconBookmark state:UIControlStateNormal];
+    [self.searchBar sizeToFit];
+    UIView *headerView = [[UIView alloc] init];
+    [headerView addSubview:self.searchBar];
+    
+    UIButton *sortButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kSortButtonHeight)];
+    [sortButton setTitle:@"All Posts" forState:UIControlStateNormal];
+    [sortButton setImage:[[UIImage iconDown] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+    sortButton.tintColor = [UIColor blackColor];
+    [sortButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [sortButton.titleLabel setFont:[UIFont systemFontOfSize:16.0]];
+    [sortButton addTarget:self action:@selector(changeSort:) forControlEvents:UIControlEventTouchUpInside];
+    [headerView addSubview:sortButton];
+    
+    sortButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [sortButton.topAnchor constraintEqualToAnchor:self.searchBar.bottomAnchor].active = YES;
+    [sortButton.leadingAnchor constraintEqualToAnchor:headerView.leadingAnchor constant:5].active = YES;
+    [self.view layoutIfNeeded];
+    
+    [headerView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.searchBar.frame.size.height + sortButton.frame.size.height)];
+    self.tableView.tableHeaderView = headerView;
+}
+
+- (void)setSectionTableViewConstraints {
+    self.sectionsTableView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.sectionsTableView.topAnchor constraintEqualToAnchor:self.searchBar.bottomAnchor constant:0].active = YES;
+    [self.sectionsTableView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:0].active = YES;
+    [self.sectionsTableView.heightAnchor constraintEqualToConstant:kSectionTableViewheightAnchor].active = YES;
+    [self.sectionsTableView.widthAnchor constraintEqualToConstant:kSectionTableViewWidthAnchor].active = YES;
+    [self.view layoutIfNeeded];
+}
+
 #pragma mark - Infinite Scrolling
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -130,7 +166,11 @@ static const CGFloat kSectionTableViewheightAnchor = 250.0;
     if(self.countSelectedSections > 0) {
         [query whereKey:@"section" containedIn:self.selectedSections];
     }
-    
+    if(self.useClosePosts) {
+        PFQuery *locationQuery = [PFQuery queryWithClassName:@"Location"];
+        [locationQuery whereKey:@"coordinate" nearGeoPoint:[PFGeoPoint geoPointWithLocation:self.locationManager.location] withinKilometers:100.0];
+        [query whereKey:@"location" matchesQuery:locationQuery];
+    }
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
         if(!error) {
             if(isRefreshing || self.sectionRefresh){
@@ -140,9 +180,7 @@ static const CGFloat kSectionTableViewheightAnchor = 250.0;
             }
             self.filteredPosts = self.posts;
             [self.tableView reloadData];
-            if(self.searchBar.text != 0) {
-                [self searchBar:self.searchBar textDidChange:self.searchBar.text];
-            }
+            [self searchBar:self.searchBar textDidChange:self.searchBar.text];
         } else {
             UIAlertController *alert = [UIAlertController sendError:error.localizedDescription];
             [self presentViewController:alert animated:YES completion:nil];
@@ -276,6 +314,38 @@ static const CGFloat kSectionTableViewheightAnchor = 250.0;
 - (void)emptyDataSet:(UIScrollView *)scrollView didTapButton:(UIButton *)button {
     [self.refresh beginRefreshing];
     [self fetchPosts];
+}
+
+#pragma mark - Change Sorting
+
+- (void)changeSort:(UIButton *)button {
+    if(self.useClosePosts) {
+        self.useClosePosts = NO;
+        [button setTitle:@"All Posts" forState:UIControlStateNormal];
+    } else {
+        [self.locationManager requestWhenInUseAuthorization];
+        [self.locationManager requestLocation];
+        self.useClosePosts = YES;
+        [button setTitle:@"Close Posts" forState:UIControlStateNormal];
+    }
+    self.sectionRefresh = YES;
+    [self fetchPosts];
+}
+
+#pragma mark - Location Manager Delegate
+
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+    if(status == kCLAuthorizationStatusAuthorizedWhenInUse) {
+        [self.locationManager requestLocation];
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    //need to be here for the delegate to work
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    NSLog(@"error with location manager: %@", error.localizedDescription);
 }
 
 #pragma mark - Navigation

@@ -39,7 +39,7 @@
     layout.minimumInteritemSpacing = 2;
     layout.minimumLineSpacing = 2;
     CGFloat posters = 2.0;
-    CGFloat itemWidth = (self.collectionView.frame.size.width - layout.minimumInteritemSpacing * (layout.minimumLineSpacing)) / posters;
+    CGFloat itemWidth = (self.view.frame.size.width - layout.minimumInteritemSpacing * (layout.minimumLineSpacing)) / posters;
     CGFloat itemHeight = itemWidth;
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
     
@@ -78,6 +78,8 @@
 - (void)fetchposts {
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query includeKey:@"author"];
+    [query includeKey:@"location"];
+    [query includeKey:@"section"];
     [query whereKey:@"author" equalTo:self.user];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
         if(!error) {
