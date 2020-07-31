@@ -69,6 +69,8 @@ static const CGFloat kSortButtonHeight = 20;
     
     UIButton *sortButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kSortButtonHeight)];
     [sortButton setTitle:@"All Posts" forState:UIControlStateNormal];
+    [sortButton setImage:[[UIImage iconDown] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+    sortButton.tintColor = [UIColor blackColor];
     [sortButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [sortButton.titleLabel setFont:[UIFont systemFontOfSize:16.0]];
     [sortButton addTarget:self action:@selector(changeSort:) forControlEvents:UIControlEventTouchUpInside];

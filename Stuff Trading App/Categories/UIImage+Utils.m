@@ -52,7 +52,7 @@
 }
 
 + (UIImage *)iconDown {
-    return [UIImage imageNamed:@"icon-down"];
+    return [UIImage systemImageNamed:@"chevron.down"];
 }
 
 @end
