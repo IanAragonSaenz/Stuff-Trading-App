@@ -49,45 +49,18 @@ static const CGFloat kSortButtonHeight = 20;
     self.tableView.dataSource = self;
     self.tableView.emptyDataSetSource = self;
     self.tableView.emptyDataSetDelegate = self;
+    
     self.sectionsTableView.delegate = self;
     self.sectionsTableView.dataSource = self;
+    
     self.posts = [NSArray array];
     self.countSelectedSections = 0;
     self.tableView.tableFooterView = [UIView new];
-    
     self.sectionRefresh = NO;
     [self.sectionsTableView setHidden:YES];
     
-    self.searchBar = [[UISearchBar alloc] init];
-    self.searchBar.delegate = self;
-    self.searchBar.placeholder = @"Search here...";
-    [self.searchBar setShowsBookmarkButton:YES];
-    [self.searchBar setImage:[UIImage iconDropdown] forSearchBarIcon:UISearchBarIconBookmark state:UIControlStateNormal];
-    [self.searchBar sizeToFit];
-    UIView *headerView = [[UIView alloc] init];
-    [headerView addSubview:self.searchBar];
-    
-    UIButton *sortButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kSortButtonHeight)];
-    [sortButton setTitle:@"All Posts" forState:UIControlStateNormal];
-    [sortButton setImage:[[UIImage iconDown] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
-    sortButton.tintColor = [UIColor blackColor];
-    [sortButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [sortButton.titleLabel setFont:[UIFont systemFontOfSize:16.0]];
-    [sortButton addTarget:self action:@selector(changeSort:) forControlEvents:UIControlEventTouchUpInside];
-    [headerView addSubview:sortButton];
-    
-    sortButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [sortButton.topAnchor constraintEqualToAnchor:self.searchBar.bottomAnchor].active = YES;
-    [sortButton.leadingAnchor constraintEqualToAnchor:headerView.leadingAnchor constant:5].active = YES;
-    
-    [headerView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.searchBar.frame.size.height + sortButton.frame.size.height)];
-    self.tableView.tableHeaderView = headerView;
-    
-    self.sectionsTableView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.sectionsTableView.topAnchor constraintEqualToAnchor:self.searchBar.bottomAnchor constant:0].active = YES;
-    [self.sectionsTableView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:0].active = YES;
-    [self.sectionsTableView.heightAnchor constraintEqualToConstant:kSectionTableViewheightAnchor].active = YES;
-    [self.sectionsTableView.widthAnchor constraintEqualToConstant:kSectionTableViewWidthAnchor].active = YES;
+    [self setHeaderView];
+    [self setSectionTableViewConstraints];
     
     //fetching sections
     [Section fetchSections:^(NSArray * _Nonnull sections, NSError * _Nonnull error) {
@@ -118,6 +91,45 @@ static const CGFloat kSortButtonHeight = 20;
     
     UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithTitle:@"Share" style:UIBarButtonItemStylePlain target:self action:@selector(share)];
     self.navItem.rightBarButtonItem = shareButton;
+}
+
+#pragma mark - View Helpers
+
+- (void)setHeaderView {
+    self.searchBar = [[UISearchBar alloc] init];
+    self.searchBar.delegate = self;
+    self.searchBar.placeholder = @"Search here...";
+    [self.searchBar setShowsBookmarkButton:YES];
+    [self.searchBar setImage:[UIImage iconDropdown] forSearchBarIcon:UISearchBarIconBookmark state:UIControlStateNormal];
+    [self.searchBar sizeToFit];
+    UIView *headerView = [[UIView alloc] init];
+    [headerView addSubview:self.searchBar];
+    
+    UIButton *sortButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kSortButtonHeight)];
+    [sortButton setTitle:@"All Posts" forState:UIControlStateNormal];
+    [sortButton setImage:[[UIImage iconDown] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+    sortButton.tintColor = [UIColor blackColor];
+    [sortButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [sortButton.titleLabel setFont:[UIFont systemFontOfSize:16.0]];
+    [sortButton addTarget:self action:@selector(changeSort:) forControlEvents:UIControlEventTouchUpInside];
+    [headerView addSubview:sortButton];
+    
+    sortButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [sortButton.topAnchor constraintEqualToAnchor:self.searchBar.bottomAnchor].active = YES;
+    [sortButton.leadingAnchor constraintEqualToAnchor:headerView.leadingAnchor constant:5].active = YES;
+    [self.view layoutIfNeeded];
+    
+    [headerView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.searchBar.frame.size.height + sortButton.frame.size.height)];
+    self.tableView.tableHeaderView = headerView;
+}
+
+- (void)setSectionTableViewConstraints {
+    self.sectionsTableView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.sectionsTableView.topAnchor constraintEqualToAnchor:self.searchBar.bottomAnchor constant:0].active = YES;
+    [self.sectionsTableView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:0].active = YES;
+    [self.sectionsTableView.heightAnchor constraintEqualToConstant:kSectionTableViewheightAnchor].active = YES;
+    [self.sectionsTableView.widthAnchor constraintEqualToConstant:kSectionTableViewWidthAnchor].active = YES;
+    [self.view layoutIfNeeded];
 }
 
 #pragma mark - Infinite Scrolling
