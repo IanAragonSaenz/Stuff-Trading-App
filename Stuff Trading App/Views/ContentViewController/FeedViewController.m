@@ -21,6 +21,7 @@
 
 static const CGFloat kSectionTableViewWidthAnchor = 170.0;
 static const CGFloat kSectionTableViewheightAnchor = 220.0;
+static const CGFloat kSortButtonHeight = 20;
 
 @interface FeedViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
@@ -63,14 +64,28 @@ static const CGFloat kSectionTableViewheightAnchor = 220.0;
     [self.searchBar setShowsBookmarkButton:YES];
     [self.searchBar setImage:[UIImage iconDropdown] forSearchBarIcon:UISearchBarIconBookmark state:UIControlStateNormal];
     [self.searchBar sizeToFit];
-    self.tableView.tableHeaderView = self.searchBar;
+    UIView *headerView = [[UIView alloc] init];
+    [headerView addSubview:self.searchBar];
     
-    self.sectionsTableView.translatesAutoresizingMaskIntoConstraints = false;
+    UIButton *sortButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kSortButtonHeight)];
+    [sortButton setTitle:@"All Posts" forState:UIControlStateNormal];
+    [sortButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [sortButton.titleLabel setFont:[UIFont systemFontOfSize:16.0]];
+    [sortButton addTarget:self action:@selector(changeSort:) forControlEvents:UIControlEventTouchUpInside];
+    [headerView addSubview:sortButton];
+    
+    sortButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [sortButton.topAnchor constraintEqualToAnchor:self.searchBar.bottomAnchor].active = YES;
+    [sortButton.leadingAnchor constraintEqualToAnchor:headerView.leadingAnchor constant:5].active = YES;
+    
+    [headerView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.searchBar.frame.size.height + sortButton.frame.size.height)];
+    self.tableView.tableHeaderView = headerView;
+    
+    self.sectionsTableView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.sectionsTableView.topAnchor constraintEqualToAnchor:self.searchBar.bottomAnchor constant:0].active = YES;
     [self.sectionsTableView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:0].active = YES;
     [self.sectionsTableView.heightAnchor constraintEqualToConstant:kSectionTableViewheightAnchor].active = YES;
     [self.sectionsTableView.widthAnchor constraintEqualToConstant:kSectionTableViewWidthAnchor].active = YES;
-    [self.view layoutIfNeeded];
     
     //fetching sections
     [Section fetchSections:^(NSArray * _Nonnull sections, NSError * _Nonnull error) {
@@ -276,6 +291,12 @@ static const CGFloat kSectionTableViewheightAnchor = 220.0;
 - (void)emptyDataSet:(UIScrollView *)scrollView didTapButton:(UIButton *)button {
     [self.refresh beginRefreshing];
     [self fetchPosts];
+}
+
+#pragma mark - Change Sorting
+
+- (void)changeSort:(UIButton *)button {
+    
 }
 
 #pragma mark - Navigation
