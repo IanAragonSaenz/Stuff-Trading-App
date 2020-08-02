@@ -67,8 +67,10 @@
             [self.tableView reloadData];
             NSUInteger rows = [self tableView:self.tableView numberOfRowsInSection:0];
             NSUInteger items = (rows > 0)? rows-1: 0;
-            NSIndexPath *index = [NSIndexPath indexPathForItem:items inSection:0];
-            [self.tableView scrollToRowAtIndexPath:index atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+            if(items) {
+                NSIndexPath *index = [NSIndexPath indexPathForItem:items inSection:0];
+                [self.tableView scrollToRowAtIndexPath:index atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+            }
         }
         [self.activityIndicator stopAnimating];
     }];

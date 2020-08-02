@@ -114,19 +114,24 @@
 #pragma mark - Message
 
 - (IBAction)messageUser:(id)sender {
-    [Chat createChatWithUser:self.user];
-    User *userA = [User currentUser];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(userA = %@ AND userB = %@) OR (userA = %@ AND userB = %@)", userA, self.user, self.user, userA];
-    PFQuery *query = [PFQuery queryWithClassName:@"Chat" predicate:predicate];
-    [query includeKey:@"userA"];
-    [query includeKey:@"userB"];
-    query.limit = 1;
-    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable chats, NSError * _Nullable error) {
-        if(error) {
-            NSLog(@"Error loading chat: %@", error.localizedDescription);
-        } else if(chats.count > 0) {
-            Chat *chat = chats[0];
-            [self performSegueWithIdentifier:@"messageSegue" sender:chat];
+    [Chat createChatWithUser:self.user withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        if(succeeded) {
+            User *userA = [User currentUser];
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(userA = %@ AND userB = %@) OR (userA = %@ AND userB = %@)", userA, self.user, self.user, userA];
+            PFQuery *query = [PFQuery queryWithClassName:@"Chat" predicate:predicate];
+            [query includeKey:@"userA"];
+            [query includeKey:@"userB"];
+            query.limit = 1;
+            [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable chats, NSError * _Nullable error) {
+                if(error) {
+                    NSLog(@"Error loading chat: %@", error.localizedDescription);
+                } else if(chats.count > 0) {
+                    Chat *chat = chats[0];
+                    [self performSegueWithIdentifier:@"messageSegue" sender:chat];
+                }
+            }];
+        } else {
+            NSLog(@"Error when finding chat: %@", error.localizedDescription);
         }
     }];
 }
