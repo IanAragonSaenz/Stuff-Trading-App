@@ -43,7 +43,7 @@
     self.title = self.chat.userA.username;
     [self.activityIndicator startAnimating];
     
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(fetchMessages) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(fetchMessages) userInfo:nil repeats:YES];
     [self fetchMessages];
 }
 
@@ -155,9 +155,9 @@
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     self.messageImage = [UIImage resizeImage:originalImage withSize:CGSizeMake(325 , 325)];
     originalImage = [UIImage resizeImage:originalImage withSize:CGSizeMake(50, 50)];
+    
     NSTextAttachment *textAttachment = [[NSTextAttachment alloc] init];
     textAttachment.image = originalImage;
-    
     NSAttributedString *attrString = [NSAttributedString attributedStringWithAttachment:textAttachment];
     
     [self.messageText.textStorage insertAttributedString:attrString atIndex:self.messageText.selectedRange.location];
@@ -168,9 +168,6 @@
     CGRect frame = textView.frame;
     frame.size.height = textView.contentSize.height;
     textView.frame = frame;
-    
-    
-
     /*
     frame = self.backgroundImage.frame;
     frame.size.height = textView.contentSize.height + 15;

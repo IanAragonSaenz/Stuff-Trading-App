@@ -47,6 +47,24 @@
                 }];
             }
         }];
+        UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchAction:)];
+        [self.messageImage addGestureRecognizer:pinch];
+        [self.messageImage setUserInteractionEnabled:YES];
+    }
+}
+
+- (void)pinchAction:(UIPinchGestureRecognizer *)pinch {
+    if(pinch.state == UIGestureRecognizerStateBegan || pinch.state == UIGestureRecognizerStateChanged) {
+        CGFloat currentScale = self.messageImage.frame.size.width / self.messageImage.bounds.size.width;
+        CGFloat scale = currentScale * pinch.scale;
+        if(scale < 1) {
+            scale = 1;
+        } else if(scale > 6) {
+            scale = 6;
+        }
+        CGAffineTransform transform = CGAffineTransformMakeScale(scale, currentScale);
+        self.messageImage.transform= transform;
+        pinch.scale = 1;
     }
 }
 
