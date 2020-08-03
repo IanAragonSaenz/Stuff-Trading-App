@@ -7,7 +7,6 @@
 //
 
 #import "MessageViewController.h"
-#import "MessageCell.h"
 #import "Message.h"
 #import "UIScrollView+EmptyDataSet.h"
 #import "UIAlertController+Utils.h"
@@ -175,6 +174,12 @@
     frame.size.height = textView.contentSize.height + 15;
     self.backgroundImage.frame = frame;
      */
+}
+
+#pragma mark - HandleImageZoomIn Delegate
+
+- (void)zoomIn:(UIImage *)image {
+    
 }
 
 /*

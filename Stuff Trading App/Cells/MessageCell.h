@@ -11,8 +11,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol HandleImageZoomIn <NSObject>
+
+- (void)zoomIn:(UIImage *)image;
+
+@end
+
 @interface MessageCell : UITableViewCell
 
+@property (strong, nonatomic) id<HandleImageZoomIn> handleImageZoomInDelegate;
 - (void)setCell:(Message *)message;
 
 @end
