@@ -20,7 +20,7 @@
     //[view presentViewController:alert animated:YES completion:nil];
 }
 
-+ (UIAlertController *)takePictureAlert:(alertCompletion)completion {
++ (UIAlertController *)takePictureAlert:(AlertCompletion)completion {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Choose Media" message:@"Choose camera vs photo library" preferredStyle:(UIAlertControllerStyleActionSheet)];
     UIAlertAction *camera = [UIAlertAction actionWithTitle:@"Camera" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {

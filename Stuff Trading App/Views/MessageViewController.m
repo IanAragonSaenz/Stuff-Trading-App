@@ -140,14 +140,15 @@
     UIAlertController *alert = [UIAlertController takePictureAlert:^(int finished, NSString *_Nullable error) {
         if(finished == 1) {
             imagePC.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [self presentViewController:imagePC animated:YES completion:nil];
         } else if(finished == 2) {
             imagePC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [self presentViewController:imagePC animated:YES completion:nil];
         } else if(finished == 0) {
             UIAlertController *errorAlert = [UIAlertController sendError:error];
             [self presentViewController:errorAlert animated:YES completion:nil];
             return;
         }
-        [self presentViewController:imagePC animated:YES completion:nil];
     }];
     [self presentViewController:alert animated:YES completion:nil];
 }
