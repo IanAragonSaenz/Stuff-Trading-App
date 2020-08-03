@@ -37,13 +37,13 @@
     self.messageText.delegate = self;
     self.messageImage = nil;
     
-    [self.navigationController.toolbar setHidden:YES];
-    [self.tabBarController.tabBar setHidden:YES];
-    if([self.chat.userA isEqual:[User currentUser]]) {
+    if([self.chat.userA.username isEqual:[User currentUser].username]) {
         self.title = self.chat.userB.username;
     } else {
         self.title = self.chat.userA.username;
     }
+    [self.navigationController.toolbar setHidden:YES];
+    [self.tabBarController.tabBar setHidden:YES];
     [self.activityIndicator startAnimating];
     
     [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(fetchMessages) userInfo:nil repeats:YES];
