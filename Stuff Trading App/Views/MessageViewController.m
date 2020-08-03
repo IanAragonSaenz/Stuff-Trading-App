@@ -82,6 +82,7 @@
     MessageCell *cell;
     if(message.image) {
         cell = [self.tableView dequeueReusableCellWithIdentifier:@"messagePhotoCell"];
+        cell.handleImageZoomInDelegate = self;
     } else {
         cell = [self.tableView dequeueReusableCellWithIdentifier:@"MessageCell"];
     }
@@ -175,7 +176,65 @@
 #pragma mark - HandleImageZoomIn Delegate
 
 - (void)zoomIn:(UIImage *)image {
+    if([self.view viewWithTag:100]) {
+        UIImageView *pastZoomImage = [self.view viewWithTag:100];
+        [pastZoomImage removeFromSuperview];
+    }
+    UIImageView *zoomImage = [[UIImageView alloc] initWithImage:image];
+    zoomImage.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.width);
+    zoomImage.backgroundColor = [UIColor blackColor];
+    zoomImage.tag = 100;
     
+    UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchAction:)];
+    [zoomImage addGestureRecognizer:pinch];
+    
+    UITapGestureRecognizer *cancelZoom = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(deleteImageView)];
+    [zoomImage addGestureRecognizer:cancelZoom];
+    [zoomImage setUserInteractionEnabled:YES];
+    
+    [self.view addSubview:zoomImage];
+    zoomImage.translatesAutoresizingMaskIntoConstraints = false;
+    [zoomImage.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
+    [zoomImage.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor].active = YES;
+    [zoomImage.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor].active = YES;
+    [zoomImage.heightAnchor constraintEqualToAnchor:self.view.widthAnchor].active = YES;
+    [self.view layoutIfNeeded];
+}
+
+- (void)pinchAction:(UIPinchGestureRecognizer *)pinch {
+    UIImageView *zoomImage = [self.view viewWithTag:100];
+    if(pinch.state == UIGestureRecognizerStateBegan || pinch.state == UIGestureRecognizerStateChanged) {
+        UIView *view = pinch.view;
+        CGPoint center = [pinch locationInView:view];
+        center.x -= CGRectGetMidX(view.bounds);
+        center.y -= CGRectGetMidY(view.bounds);
+        
+        CGAffineTransform transform = view.transform;
+        transform = CGAffineTransformTranslate(transform, center.x, center.y);
+        transform = CGAffineTransformScale(transform, pinch.scale, pinch.scale);
+        transform = CGAffineTransformTranslate(transform, -center.x, -center.y);
+        
+        CGFloat currentScale = zoomImage.frame.size.width / zoomImage.bounds.size.width;
+        CGFloat scale = currentScale * pinch.scale;
+        
+        if(scale < 1) {
+            scale = 1;
+            transform = CGAffineTransformMakeScale(scale, scale);
+            zoomImage.transform = transform;
+        } else {
+            view.transform = transform;
+        }
+        pinch.scale = 1;
+    } else if(pinch.state == UIGestureRecognizerStateEnded) {
+        [UIView animateWithDuration:0.3 animations:^{
+            zoomImage.transform = CGAffineTransformIdentity;
+        }];
+    }
+}
+
+- (void)deleteImageView {
+    UIImageView *zoomImage = [self.view viewWithTag:100];
+    [zoomImage removeFromSuperview];
 }
 
 /*

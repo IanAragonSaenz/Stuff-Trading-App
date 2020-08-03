@@ -47,40 +47,14 @@
                 }];
             }
         }];
-        UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchAction:)];
-        [self.messageImage addGestureRecognizer:pinch];
+        UITapGestureRecognizer *startZoom = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(callZoomInDelegate)];
+        [self.messageImage addGestureRecognizer:startZoom];
         [self.messageImage setUserInteractionEnabled:YES];
     }
 }
 
-- (void)pinchAction:(UIPinchGestureRecognizer *)pinch {
-    if(pinch.state == UIGestureRecognizerStateBegan || pinch.state == UIGestureRecognizerStateChanged) {
-        UIView *view = pinch.view;
-        CGPoint center = [pinch locationInView:view];
-        center.x -= CGRectGetMidX(view.bounds);
-        center.y -= CGRectGetMidY(view.bounds);
-        
-        CGAffineTransform transform = view.transform;
-        transform = CGAffineTransformTranslate(transform, center.x, center.y);
-        transform = CGAffineTransformScale(transform, pinch.scale, pinch.scale);
-        transform = CGAffineTransformTranslate(transform, -center.x, -center.y);
-        
-        CGFloat currentScale = self.messageImage.frame.size.width / self.messageImage.bounds.size.width;
-        CGFloat scale = currentScale * pinch.scale;
-        
-        if(scale < 1) {
-            scale = 1;
-            transform = CGAffineTransformMakeScale(scale, scale);
-            self.messageImage.transform = transform;
-        } else {
-            view.transform = transform;
-        }
-        pinch.scale = 1;
-    } else if(pinch.state == UIGestureRecognizerStateEnded) {
-        [UIView animateWithDuration:0.3 animations:^{
-            self.messageImage.transform = CGAffineTransformIdentity;
-        }];
-    }
+- (void)callZoomInDelegate {
+    [self.handleImageZoomInDelegate zoomIn:self.messageImage.image];
 }
 
 @end
