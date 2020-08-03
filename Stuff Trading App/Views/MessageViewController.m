@@ -37,9 +37,13 @@
     self.messageText.delegate = self;
     self.messageImage = nil;
     
+    if([self.chat.userA.username isEqual:[User currentUser].username]) {
+        self.title = self.chat.userB.username;
+    } else {
+        self.title = self.chat.userA.username;
+    }
     [self.navigationController.toolbar setHidden:YES];
     [self.tabBarController.tabBar setHidden:YES];
-    self.title = self.chat.userA.username;
     [self.activityIndicator startAnimating];
     
     [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(fetchMessages) userInfo:nil repeats:YES];
@@ -177,8 +181,7 @@
 
 - (void)zoomIn:(UIImage *)image {
     if([self.view viewWithTag:100]) {
-        UIImageView *pastZoomImage = [self.view viewWithTag:100];
-        [pastZoomImage removeFromSuperview];
+        [self deleteImageView];
     }
     UIImageView *zoomImage = [[UIImageView alloc] initWithImage:image];
     zoomImage.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.width);

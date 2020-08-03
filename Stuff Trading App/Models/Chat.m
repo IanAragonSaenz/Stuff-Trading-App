@@ -35,8 +35,8 @@
                 chat.userA = userA;
                 chat.userB = user;
                 [chat saveInBackground];
-                completion(YES, nil);
             }
+            completion(YES, nil);
         }
     }];
 }

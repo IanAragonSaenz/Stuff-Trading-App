@@ -30,15 +30,15 @@ static const CGFloat kSortButtonHeight = 20;
 @property (weak, nonatomic) IBOutlet UITableView *sectionsTableView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) NSArray *posts;
-@property (strong, nonatomic) NSArray *filteredPosts;
 @property (strong, nonatomic) UIRefreshControl *refresh;
 @property (assign, nonatomic) BOOL isLoadingMoreData;
 @property (strong, nonatomic) NSArray *sections;
 @property (strong, nonatomic) NSMutableArray *selectedSections;
-@property (nonatomic) int countSelectedSections;
+@property (assign, nonatomic) int countSelectedSections;
 @property (strong, nonatomic) UISearchBar *searchBar;
-@property (nonatomic) BOOL sectionRefresh;
-@property (nonatomic) BOOL useClosePosts;
+@property (assign, nonatomic) BOOL sectionRefresh;
+@property (assign, nonatomic) BOOL useClosePosts;
+@property (assign, nonatomic) BOOL textSearching;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end
@@ -66,6 +66,7 @@ static const CGFloat kSortButtonHeight = 20;
     self.sectionRefresh = NO;
     [self.sectionsTableView setHidden:YES];
     self.useClosePosts = NO;
+    self.textSearching = NO;
     
     [self setHeaderView];
     [self setSectionTableViewConstraints];
@@ -172,6 +173,9 @@ static const CGFloat kSortButtonHeight = 20;
         [locationQuery whereKey:kCoordinateKey nearGeoPoint:[PFGeoPoint geoPointWithLocation:self.locationManager.location] withinKilometers:100.0];
         [query whereKey:kLocationKey matchesQuery:locationQuery];
     }
+    if (self.textSearching) {
+        [query whereKey:kTitleKey matchesRegex:self.searchBar.text modifiers:@"i"];
+    }
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
         if(!error) {
             if([self shouldSetPosts]){
@@ -179,9 +183,7 @@ static const CGFloat kSortButtonHeight = 20;
             } else {
                 self.posts = [self.posts arrayByAddingObjectsFromArray:posts];
             }
-            self.filteredPosts = self.posts;
             [self.tableView reloadData];
-            [self searchBar:self.searchBar textDidChange:self.searchBar.text];
         } else {
             UIAlertController *alert = [UIAlertController sendError:error.localizedDescription];
             [self presentViewController:alert animated:YES completion:nil];
@@ -194,8 +196,9 @@ static const CGFloat kSortButtonHeight = 20;
 }
 
 - (BOOL)shouldSetPosts {
-    if([self.refresh isRefreshing] || self.sectionRefresh) {
+    if([self.refresh isRefreshing] || self.sectionRefresh || self.textSearching) {
         //if the user is refreshing or the user changed filters then replace the posts completely
+        //or if the user is currently filtering throught titles
         return YES;
     } else {
         //if the user is just scrolling for more posts then add posts to array and use skip
@@ -208,7 +211,7 @@ static const CGFloat kSortButtonHeight = 20;
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     if([tableView isEqual:self.tableView]) {
         PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
-        [cell setPost:self.filteredPosts[indexPath.row]];
+        [cell setPost:self.posts[indexPath.row]];
         return cell;
     } else {
         SectionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SectionCell"];
@@ -218,14 +221,15 @@ static const CGFloat kSortButtonHeight = 20;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return ([tableView isEqual:self.tableView])? self.filteredPosts.count: self.sections.count;
+    return ([tableView isEqual:self.tableView])? self.posts.count: self.sections.count;
 }
 
 #pragma mark - Table View Delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if([tableView isEqual:self.tableView]) {
-        [self performSegueWithIdentifier:@"detailSegue" sender:self.filteredPosts[indexPath.row]];
+        [self performSegueWithIdentifier:@"detailSegue" sender:self.posts
+         [indexPath.row]];
     } else {
         if([self.selectedSections[indexPath.row] isEqual:@"empty"]) {
             self.selectedSections[indexPath.row] = self.sections[indexPath.row];
@@ -253,15 +257,12 @@ static const CGFloat kSortButtonHeight = 20;
 #pragma mark - Search Bar Delegate
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    if (searchText.length != 0) {
-        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(NSDictionary *evaluatedObject, NSDictionary *bindings) {
-            return [evaluatedObject[kTitleKey] containsString:searchText];
-        }];
-        self.filteredPosts = [self.posts filteredArrayUsingPredicate:predicate];
+    if(searchText.length != 0) {
+        self.textSearching = YES;
     } else {
-        self.filteredPosts = self.posts;
+        self.textSearching = NO;
     }
-    [self.tableView reloadData];
+    [self fetchPosts];
 }
     
 #pragma mark - Logout
