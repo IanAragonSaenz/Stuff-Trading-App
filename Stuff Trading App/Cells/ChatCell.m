@@ -31,7 +31,7 @@
 #pragma mark - Set Cell
 
 - (void)setCell:(Chat *)chat {
-    if(chat.userA.username == [User currentUser].username) {
+    if([chat.userA.username isEqual:[User currentUser]]) {
         self.username.text = chat.userB.username;
     } else {
         self.username.text = chat.userA.username;
