@@ -8,8 +8,7 @@
 
 #import "MapViewController.h"
 #import "LocationSearchTableViewController.h"
-
-static NSString *const pin = @"pin";
+#import "Constants.h"
 
 @interface MapViewController ()
 
@@ -92,9 +91,9 @@ static NSString *const pin = @"pin";
         return nil;
     }
     
-    MKPinAnnotationView *pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pin];
+    MKPinAnnotationView *pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:kPin];
     if(pinView == nil) {
-        pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pin];
+        pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:kPin];
         pinView.enabled = YES;
         pinView.canShowCallout = YES;
         pinView.tintColor = [UIColor orangeColor];

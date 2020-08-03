@@ -15,5 +15,6 @@ extern NSString *const kLocationKey;
 extern NSString *const kCoordinateKey;
 extern NSString *const kCreatedAtKey;
 extern NSString *const kTitleKey;
+extern NSString *const kPin;
 
 #endif /* Constants_h */

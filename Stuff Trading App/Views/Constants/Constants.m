@@ -14,3 +14,4 @@ NSString *const kLocationKey = @"location";
 NSString *const kCoordinateKey = @"coordinate";
 NSString *const kCreatedAtKey = @"createdAt";
 NSString *const kTitleKey = @"title";
+NSString *const kPin = @"pin";
