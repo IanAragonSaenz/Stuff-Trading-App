@@ -157,9 +157,9 @@ static const CGFloat kSortButtonHeight = 20;
     [self.activityIndicator startAnimating];
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     query.limit = 10;
-    BOOL isRefreshing = [self.refresh isRefreshing];
-    if(!isRefreshing && !self.sectionRefresh)
+    if(![self shouldSetPosts]) {
         query.skip = self.posts.count;
+    }
     [query orderByDescending:@"createdAt"];
     [query includeKey:@"author"];
     [query includeKey:@"location"];
@@ -173,7 +173,7 @@ static const CGFloat kSortButtonHeight = 20;
     }
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
         if(!error) {
-            if(isRefreshing || self.sectionRefresh){
+            if([self shouldSetPosts]){
                 self.posts = posts;
             } else {
                 self.posts = [self.posts arrayByAddingObjectsFromArray:posts];
@@ -190,6 +190,16 @@ static const CGFloat kSortButtonHeight = 20;
         self.isLoadingMoreData = false;
         [self.refresh endRefreshing];
     }];
+}
+
+- (BOOL)shouldSetPosts {
+    if([self.refresh isRefreshing] || self.sectionRefresh) {
+        //if the user is refreshing or the user changed filters then replace the posts completely
+        return YES;
+    } else {
+        //if the user is just scrolling for more posts then add posts to array and use skip
+        return NO;
+    }
 }
 
 #pragma mark - Table View Data Source
