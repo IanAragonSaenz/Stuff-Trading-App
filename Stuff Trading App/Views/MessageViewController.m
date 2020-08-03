@@ -170,11 +170,6 @@
     CGRect frame = textView.frame;
     frame.size.height = textView.contentSize.height;
     textView.frame = frame;
-    /*
-    frame = self.backgroundImage.frame;
-    frame.size.height = textView.contentSize.height + 15;
-    self.backgroundImage.frame = frame;
-     */
 }
 
 #pragma mark - HandleImageZoomIn Delegate
