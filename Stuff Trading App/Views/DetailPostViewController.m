@@ -10,8 +10,10 @@
 #import "UserViewController.h"
 @import MapKit;
 #import "UIImage+Utils.h"
+#import "Constants.h"
 
-static NSString *const pin = @"pin";
+static const CGFloat carSize = 36.0;
+
 
 @interface DetailPostViewController ()
 
@@ -67,9 +69,9 @@ static NSString *const pin = @"pin";
         return nil;
     }
     
-    MKPinAnnotationView *pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pin];
+    MKPinAnnotationView *pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:kPin];
     if(pinView == nil) {
-        pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pin];
+        pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:kPin];
         pinView.enabled = YES;
         pinView.canShowCallout = YES;
         pinView.tintColor = [UIColor orangeColor];
@@ -77,7 +79,7 @@ static NSString *const pin = @"pin";
         pinView.annotation = annotation;
     }
     
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 48, 48)];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, carSize, carSize)];
     [button setBackgroundImage:[UIImage iconCar]
                       forState:UIControlStateNormal];
     [button addTarget:self action:@selector(getDirections) forControlEvents:UIControlEventTouchUpInside];

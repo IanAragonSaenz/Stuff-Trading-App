@@ -47,7 +47,14 @@
                 }];
             }
         }];
+        UITapGestureRecognizer *startZoom = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(callZoomInDelegate)];
+        [self.messageImage addGestureRecognizer:startZoom];
+        [self.messageImage setUserInteractionEnabled:YES];
     }
+}
+
+- (void)callZoomInDelegate {
+    [self.handleImageZoomInDelegate zoomIn:self.messageImage.image];
 }
 
 @end

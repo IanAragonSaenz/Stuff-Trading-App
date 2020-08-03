@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PostPinAnnotationView : MKPinAnnotationView
 
 @property (strong, nonatomic) PostAnnotation *annotation;
-//@property (strong, nonatomic, getter= ) id<MKAnnotation> *annotation;
 
 @end
 

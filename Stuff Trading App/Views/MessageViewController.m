@@ -7,7 +7,6 @@
 //
 
 #import "MessageViewController.h"
-#import "MessageCell.h"
 #import "Message.h"
 #import "UIScrollView+EmptyDataSet.h"
 #import "UIAlertController+Utils.h"
@@ -43,7 +42,7 @@
     self.title = self.chat.userA.username;
     [self.activityIndicator startAnimating];
     
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(fetchMessages) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(fetchMessages) userInfo:nil repeats:YES];
     [self fetchMessages];
 }
 
@@ -67,8 +66,10 @@
             [self.tableView reloadData];
             NSUInteger rows = [self tableView:self.tableView numberOfRowsInSection:0];
             NSUInteger items = (rows > 0)? rows-1: 0;
-            NSIndexPath *index = [NSIndexPath indexPathForItem:items inSection:0];
-            [self.tableView scrollToRowAtIndexPath:index atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+            if(items) {
+                NSIndexPath *index = [NSIndexPath indexPathForItem:items inSection:0];
+                [self.tableView scrollToRowAtIndexPath:index atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+            }
         }
         [self.activityIndicator stopAnimating];
     }];
@@ -81,6 +82,7 @@
     MessageCell *cell;
     if(message.image) {
         cell = [self.tableView dequeueReusableCellWithIdentifier:@"messagePhotoCell"];
+        cell.handleImageZoomInDelegate = self;
     } else {
         cell = [self.tableView dequeueReusableCellWithIdentifier:@"MessageCell"];
     }
@@ -139,14 +141,15 @@
     UIAlertController *alert = [UIAlertController takePictureAlert:^(int finished, NSString *_Nullable error) {
         if(finished == 1) {
             imagePC.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [self presentViewController:imagePC animated:YES completion:nil];
         } else if(finished == 2) {
             imagePC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [self presentViewController:imagePC animated:YES completion:nil];
         } else if(finished == 0) {
             UIAlertController *errorAlert = [UIAlertController sendError:error];
             [self presentViewController:errorAlert animated:YES completion:nil];
             return;
         }
-        [self presentViewController:imagePC animated:YES completion:nil];
     }];
     [self presentViewController:alert animated:YES completion:nil];
 }
@@ -155,9 +158,9 @@
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     self.messageImage = [UIImage resizeImage:originalImage withSize:CGSizeMake(325 , 325)];
     originalImage = [UIImage resizeImage:originalImage withSize:CGSizeMake(50, 50)];
+    
     NSTextAttachment *textAttachment = [[NSTextAttachment alloc] init];
     textAttachment.image = originalImage;
-    
     NSAttributedString *attrString = [NSAttributedString attributedStringWithAttachment:textAttachment];
     
     [self.messageText.textStorage insertAttributedString:attrString atIndex:self.messageText.selectedRange.location];
@@ -168,14 +171,70 @@
     CGRect frame = textView.frame;
     frame.size.height = textView.contentSize.height;
     textView.frame = frame;
-    
-    
+}
 
-    /*
-    frame = self.backgroundImage.frame;
-    frame.size.height = textView.contentSize.height + 15;
-    self.backgroundImage.frame = frame;
-     */
+#pragma mark - HandleImageZoomIn Delegate
+
+- (void)zoomIn:(UIImage *)image {
+    if([self.view viewWithTag:100]) {
+        UIImageView *pastZoomImage = [self.view viewWithTag:100];
+        [pastZoomImage removeFromSuperview];
+    }
+    UIImageView *zoomImage = [[UIImageView alloc] initWithImage:image];
+    zoomImage.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.width);
+    zoomImage.backgroundColor = [UIColor blackColor];
+    zoomImage.tag = 100;
+    
+    UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchAction:)];
+    [zoomImage addGestureRecognizer:pinch];
+    
+    UITapGestureRecognizer *cancelZoom = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(deleteImageView)];
+    [zoomImage addGestureRecognizer:cancelZoom];
+    [zoomImage setUserInteractionEnabled:YES];
+    
+    [self.view addSubview:zoomImage];
+    zoomImage.translatesAutoresizingMaskIntoConstraints = false;
+    [zoomImage.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
+    [zoomImage.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor].active = YES;
+    [zoomImage.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor].active = YES;
+    [zoomImage.heightAnchor constraintEqualToAnchor:self.view.widthAnchor].active = YES;
+    [self.view layoutIfNeeded];
+}
+
+- (void)pinchAction:(UIPinchGestureRecognizer *)pinch {
+    UIImageView *zoomImage = [self.view viewWithTag:100];
+    if(pinch.state == UIGestureRecognizerStateBegan || pinch.state == UIGestureRecognizerStateChanged) {
+        UIView *view = pinch.view;
+        CGPoint center = [pinch locationInView:view];
+        center.x -= CGRectGetMidX(view.bounds);
+        center.y -= CGRectGetMidY(view.bounds);
+        
+        CGAffineTransform transform = view.transform;
+        transform = CGAffineTransformTranslate(transform, center.x, center.y);
+        transform = CGAffineTransformScale(transform, pinch.scale, pinch.scale);
+        transform = CGAffineTransformTranslate(transform, -center.x, -center.y);
+        
+        CGFloat currentScale = zoomImage.frame.size.width / zoomImage.bounds.size.width;
+        CGFloat scale = currentScale * pinch.scale;
+        
+        if(scale < 1) {
+            scale = 1;
+            transform = CGAffineTransformMakeScale(scale, scale);
+            zoomImage.transform = transform;
+        } else {
+            view.transform = transform;
+        }
+        pinch.scale = 1;
+    } else if(pinch.state == UIGestureRecognizerStateEnded) {
+        [UIView animateWithDuration:0.3 animations:^{
+            zoomImage.transform = CGAffineTransformIdentity;
+        }];
+    }
+}
+
+- (void)deleteImageView {
+    UIImageView *zoomImage = [self.view viewWithTag:100];
+    [zoomImage removeFromSuperview];
 }
 
 /*

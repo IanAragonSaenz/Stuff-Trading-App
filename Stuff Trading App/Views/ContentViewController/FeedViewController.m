@@ -18,6 +18,7 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "UIScrollView+EmptyDataSet.h"
 #import "UIImage+Utils.h"
+#import "Constants.h"
 
 static const CGFloat kSectionTableViewWidthAnchor = 170.0;
 static const CGFloat kSectionTableViewheightAnchor = 220.0;
@@ -155,25 +156,25 @@ static const CGFloat kSortButtonHeight = 20;
 
 - (void)fetchPosts {
     [self.activityIndicator startAnimating];
-    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([Post class])];
     query.limit = 10;
-    BOOL isRefreshing = [self.refresh isRefreshing];
-    if(!isRefreshing && !self.sectionRefresh)
+    if(![self shouldSetPosts]) {
         query.skip = self.posts.count;
-    [query orderByDescending:@"createdAt"];
-    [query includeKey:@"author"];
-    [query includeKey:@"location"];
+    }
+    [query orderByDescending:kCreatedAtKey];
+    [query includeKey:kAuthorKey];
+    [query includeKey:kLocationKey];
     if(self.countSelectedSections > 0) {
-        [query whereKey:@"section" containedIn:self.selectedSections];
+        [query whereKey:kSectionKey containedIn:self.selectedSections];
     }
     if(self.useClosePosts) {
-        PFQuery *locationQuery = [PFQuery queryWithClassName:@"Location"];
-        [locationQuery whereKey:@"coordinate" nearGeoPoint:[PFGeoPoint geoPointWithLocation:self.locationManager.location] withinKilometers:100.0];
-        [query whereKey:@"location" matchesQuery:locationQuery];
+        PFQuery *locationQuery = [PFQuery queryWithClassName:NSStringFromClass([Location class])];
+        [locationQuery whereKey:kCoordinateKey nearGeoPoint:[PFGeoPoint geoPointWithLocation:self.locationManager.location] withinKilometers:100.0];
+        [query whereKey:kLocationKey matchesQuery:locationQuery];
     }
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
         if(!error) {
-            if(isRefreshing || self.sectionRefresh){
+            if([self shouldSetPosts]){
                 self.posts = posts;
             } else {
                 self.posts = [self.posts arrayByAddingObjectsFromArray:posts];
@@ -190,6 +191,16 @@ static const CGFloat kSortButtonHeight = 20;
         self.isLoadingMoreData = false;
         [self.refresh endRefreshing];
     }];
+}
+
+- (BOOL)shouldSetPosts {
+    if([self.refresh isRefreshing] || self.sectionRefresh) {
+        //if the user is refreshing or the user changed filters then replace the posts completely
+        return YES;
+    } else {
+        //if the user is just scrolling for more posts then add posts to array and use skip
+        return NO;
+    }
 }
 
 #pragma mark - Table View Data Source
@@ -244,7 +255,7 @@ static const CGFloat kSortButtonHeight = 20;
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if (searchText.length != 0) {
         NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(NSDictionary *evaluatedObject, NSDictionary *bindings) {
-            return [evaluatedObject[@"title"] containsString:searchText];
+            return [evaluatedObject[kTitleKey] containsString:searchText];
         }];
         self.filteredPosts = [self.posts filteredArrayUsingPredicate:predicate];
     } else {
