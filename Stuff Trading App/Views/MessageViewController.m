@@ -12,6 +12,7 @@
 #import "UIAlertController+Utils.h"
 #import "UIImage+Utils.h"
 #import "Constants.h"
+@import ParseLiveQuery;
 
 @interface MessageViewController () <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate>
 
@@ -19,8 +20,10 @@
 @property (strong, nonatomic) NSArray *messages;
 @property (weak, nonatomic) IBOutlet UITextView *messageText;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
-@property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
 @property (strong, nonatomic) UIImage *messageImage;
+@property (strong, nonatomic) PFLiveQueryClient *client;
+@property (strong, nonatomic) PFLiveQuerySubscription *subscription;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageTextHeightConstraint;
 
 @end
 
@@ -34,7 +37,7 @@
     self.tableView.emptyDataSetSource = self;
     self.tableView.emptyDataSetDelegate = self;
     self.tableView.tableFooterView = [UIView new];
-    
+    self.client = [[PFLiveQueryClient alloc] init];
     self.messageText.delegate = self;
     self.messageImage = nil;
     
@@ -47,8 +50,9 @@
     [self.tabBarController.tabBar setHidden:YES];
     [self.activityIndicator startAnimating];
     
-    [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(fetchMessages) userInfo:nil repeats:YES];
+    //[NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(fetchMessages) userInfo:nil repeats:YES];
     [self fetchMessages];
+    [self subscribeToMessages];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -77,6 +81,16 @@
             }
         }
         [self.activityIndicator stopAnimating];
+    }];
+}
+
+- (void)subscribeToMessages {
+    PFQuery *query = [[PFQuery alloc] initWithClassName:NSStringFromClass([Message class])];
+    [query includeKey:kSenderKey];
+    [query whereKey:kChatKey equalTo:self.chat];
+    [query orderByAscending:kCreatedAtKey];
+    self.subscription = [[self.client subscribeToQuery:query] addCreateHandler:^(PFQuery<PFObject *> * _Nonnull query, PFObject * _Nonnull message) {
+        NSLog(@"yeahhhhhhhhhhhh/n/n/n/n/n");
     }];
 }
 
@@ -173,9 +187,7 @@
 }
 
 - (void)textViewDidChange:(UITextView *)textView {
-    CGRect frame = textView.frame;
-    frame.size.height = textView.contentSize.height;
-    textView.frame = frame;
+    self.messageTextHeightConstraint.constant = [self.messageText sizeThatFits:CGSizeMake(self.messageText.frame.size.width, CGFLOAT_MAX)].height;
 }
 
 #pragma mark - HandleImageZoomIn Delegate
