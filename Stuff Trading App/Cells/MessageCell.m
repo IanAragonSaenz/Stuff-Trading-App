@@ -34,7 +34,7 @@
 #pragma mark - Set Cell
 
 - (void)setCell:(Message *)message {
-    self.username.text = message.sender.username;
+    self.username.text = message.sender.name;
     self.message.text = message.message;
     self.timeAgo.text = message.createdAt.timeAgoSinceNow;
     if(message.image != nil) {

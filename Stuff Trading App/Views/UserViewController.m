@@ -61,8 +61,8 @@
         [self.takePhotoImage setUserInteractionEnabled:NO];
     }
     
-    self.title = self.user.username;
-    self.usernameLabel.text = self.user.username;
+    self.title = self.user.name;
+    self.usernameLabel.text = self.user.name;
     self.userDescription.text = self.user.userDescription;
     [self.user.image getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
         if(!error)

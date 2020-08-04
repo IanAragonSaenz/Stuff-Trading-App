@@ -257,12 +257,15 @@ static const CGFloat kSortButtonHeight = 20;
 #pragma mark - Search Bar Delegate
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
     if(searchText.length != 0) {
         self.textSearching = YES;
     } else {
         self.textSearching = NO;
+        //use section refresh just for it to correctly relaod posts and not just add to array
+        self.sectionRefresh = YES;
     }
-    [self fetchPosts];
+    [self performSelector:@selector(fetchPosts) withObject:nil afterDelay:0.5];
 }
     
 #pragma mark - Logout

@@ -34,7 +34,7 @@ static const CGFloat carSize = 36.0;
     self.mapView.delegate = self;
     
     //setting post info
-    self.username.text = self.post.author.username;
+    self.username.text = self.post.author.name;
     self.titleLabel.text = self.post.title;
     self.postDescription.text = self.post.desc;
     [self.post.author.image getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {

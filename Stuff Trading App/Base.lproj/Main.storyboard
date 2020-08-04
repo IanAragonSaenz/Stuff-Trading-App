@@ -50,7 +50,7 @@
                                                 </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.badge.plus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Yhn-gK-sYY">
-                                                <rect key="frame" x="19" y="20.666666666666671" width="120" height="120"/>
+                                                <rect key="frame" x="19" y="17.333333333333329" width="120" height="120"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="120" id="Lh8-6H-5Kc"/>
                                                     <constraint firstAttribute="width" constant="120" id="vOt-HT-vGT"/>
@@ -1291,7 +1291,7 @@
         <segue reference="5AZ-L4-jdQ"/>
         <segue reference="u6y-DR-7R5"/>
         <segue reference="hUk-dZ-6Zk"/>
-        <segue reference="KJ6-HT-lny"/>
+        <segue reference="9uy-DO-imk"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="camera" catalog="system" width="128" height="96"/>

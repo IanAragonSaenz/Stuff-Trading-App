@@ -12,6 +12,7 @@
 @implementation User
 
 @dynamic image;
+@dynamic name;
 @dynamic userDescription;
 
 + (User *)user {
@@ -22,6 +23,7 @@
 
 + (void)signUpUser:(UIImage *)image username:(NSString *)username password:(NSString *)password description:(NSString *)description withCompletion:(PFBooleanResultBlock _Nullable)completion {
     User *user = [User user];
+    user.name = username;
     user.username = username;
     user.password = password;
     user.image = [self getPFFileFromImage:image];
@@ -73,16 +75,15 @@
 
     [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:parameters] startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
          if (!error) {
-             NSLog(@"fetched user:%@  and Email : %@", result,result[@"email"]);
              //gets profile image
              NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=large", result[@"id"]]];
              NSData  *data = [NSData dataWithContentsOfURL:url];
              UIImage *image = [UIImage imageWithData:data];
              image = [UIImage resizeImage:image withSize:CGSizeMake(325, 325)];
-             NSString *username = [NSString stringWithFormat:@"%@_%@", result[@"name"], result[@"id"]];
+             NSString *username = result[@"name"];
              
              User *user = [User currentUser];
-             user.username = username;
+             user.name = username;
              user.image = [self getPFFileFromImage:image];
              user.userDescription = @"New Facebook user";
              [user saveInBackground];

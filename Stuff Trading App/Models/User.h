@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface User : PFUser <PFSubclassing>
 
 @property (strong, nonatomic) PFFileObject *image;
+@property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *userDescription;
 
 + (void)signUpUser:(UIImage *)image username:(NSString *)username password:(NSString *)password description:(NSString *)description withCompletion:(PFBooleanResultBlock _Nullable)completion;
