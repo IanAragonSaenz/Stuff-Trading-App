@@ -203,6 +203,12 @@
     [zoomImage.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor].active = YES;
     [zoomImage.heightAnchor constraintEqualToAnchor:self.view.widthAnchor].active = YES;
     [self.view layoutIfNeeded];
+    
+    UIView *dimView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    dimView.backgroundColor = [UIColor colorWithWhite:.1f alpha:.8f];
+    dimView.tag = 101;
+    [self.view addSubview:dimView];
+    [self.view bringSubviewToFront:zoomImage];
 }
 
 - (void)pinchAction:(UIPinchGestureRecognizer *)pinch {
@@ -239,6 +245,8 @@
 - (void)deleteImageView {
     UIImageView *zoomImage = [self.view viewWithTag:100];
     [zoomImage removeFromSuperview];
+    UIView *dimView = [self.view viewWithTag:101];
+    [dimView removeFromSuperview];
 }
 
 /*
