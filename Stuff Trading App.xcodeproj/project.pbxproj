@@ -28,7 +28,6 @@
 		D15A1F0724CF8E9200935AC7 /* PostPinAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D15A1F0624CF8E9200935AC7 /* PostPinAnnotationView.m */; };
 		D17B2CB724D224430071889D /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = D17B2CB624D224430071889D /* UIImage+Utils.m */; };
 		D17B2CBE24D87D2B0071889D /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = D17B2CBD24D87D2B0071889D /* Constants.m */; };
-		D17B2CC124D8C00F0071889D /* FacebookRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D17B2CC024D8C00F0071889D /* FacebookRegisterViewController.m */; };
 		D1CD139324BB9A5500913AE7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD139224BB9A5500913AE7 /* AppDelegate.m */; };
 		D1CD139624BB9A5500913AE7 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD139524BB9A5500913AE7 /* SceneDelegate.m */; };
 		D1CD139924BB9A5500913AE7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD139824BB9A5500913AE7 /* ViewController.m */; };
@@ -118,8 +117,6 @@
 		D17B2CB624D224430071889D /* UIImage+Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utils.m"; sourceTree = "<group>"; };
 		D17B2CBB24D87BE40071889D /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		D17B2CBD24D87D2B0071889D /* Constants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
-		D17B2CBF24D8C00F0071889D /* FacebookRegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FacebookRegisterViewController.h; sourceTree = "<group>"; };
-		D17B2CC024D8C00F0071889D /* FacebookRegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FacebookRegisterViewController.m; sourceTree = "<group>"; };
 		D1CD138E24BB9A5500913AE7 /* Stuff Trading App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stuff Trading App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1CD139124BB9A5500913AE7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D1CD139224BB9A5500913AE7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -340,8 +337,6 @@
 				D132DB3624C0E951002A9501 /* ChatViewController.m */,
 				D132DB4424C60E62002A9501 /* MapViewController.h */,
 				D132DB4524C60E62002A9501 /* MapViewController.m */,
-				D17B2CBF24D8C00F0071889D /* FacebookRegisterViewController.h */,
-				D17B2CC024D8C00F0071889D /* FacebookRegisterViewController.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -653,7 +648,6 @@
 				D15A1EFA24CB9E4100935AC7 /* BasePageViewController.m in Sources */,
 				D1CD13E724BE56DE00913AE7 /* DetailPostViewController.m in Sources */,
 				D1D6CEB024BF5494006F2AF5 /* RegisterViewController.m in Sources */,
-				D17B2CC124D8C00F0071889D /* FacebookRegisterViewController.m in Sources */,
 				D132DB3424C0C2A5002A9501 /* MessageCell.m in Sources */,
 				D132DB3A24C0EB52002A9501 /* ChatCell.m in Sources */,
 				D15A1F0724CF8E9200935AC7 /* PostPinAnnotationView.m in Sources */,

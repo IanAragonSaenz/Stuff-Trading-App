@@ -24,6 +24,7 @@
 + (void)signUpUser:(UIImage *)image username:(NSString *)username password:(NSString *)password description:(NSString *)description withCompletion:(PFBooleanResultBlock _Nullable)completion {
     User *user = [User user];
     user.name = username;
+    user.username = username;
     user.password = password;
     user.image = [self getPFFileFromImage:image];
     user.userDescription = description;

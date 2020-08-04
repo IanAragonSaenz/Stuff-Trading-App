@@ -38,9 +38,9 @@
     self.messageImage = nil;
     
     if([self.chat.userA.username isEqual:[User currentUser].username]) {
-        self.title = self.chat.userB.username;
+        self.title = self.chat.userB.name;
     } else {
-        self.title = self.chat.userA.username;
+        self.title = self.chat.userA.name;
     }
     [self.navigationController.toolbar setHidden:YES];
     [self.tabBarController.tabBar setHidden:YES];
