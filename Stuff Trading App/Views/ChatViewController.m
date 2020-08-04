@@ -13,6 +13,7 @@
 #import "MessageViewController.h"
 #import "UIScrollView+EmptyDataSet.h"
 #import "UIImage+Utils.h"
+#import "Constants.h"
 
 @interface ChatViewController () <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
@@ -42,8 +43,8 @@
 - (void)fetchChats {
     User *user = [User currentUser];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userA = %@ OR userB = %@", user, user];
-    PFQuery *query = [PFQuery queryWithClassName:@"Chat" predicate:predicate];
-    [query includeKeys:@[@"userA", @"userB"]];
+    PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([Chat class]) predicate:predicate];
+    [query includeKeys:@[kUserAKey, kUserBKey]];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable chats, NSError * _Nullable error) {
         if(error) {
             NSLog(@"error loading chats: %@", error.localizedDescription);

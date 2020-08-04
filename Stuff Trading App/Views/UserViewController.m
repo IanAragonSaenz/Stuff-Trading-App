@@ -13,6 +13,7 @@
 #import "MessageViewController.h"
 #import "UIAlertController+Utils.h"
 #import "UIImage+Utils.h"
+#import "Constants.h"
 
 @interface UserViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
@@ -76,11 +77,11 @@
 #pragma mark - Fetching of Posts
 
 - (void)fetchposts {
-    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    [query includeKey:@"author"];
-    [query includeKey:@"location"];
-    [query includeKey:@"section"];
-    [query whereKey:@"author" equalTo:self.user];
+    PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([Post class])];
+    [query includeKey:kAuthorKey];
+    [query includeKey:kLocationKey];
+    [query includeKey:kSectionKey];
+    [query whereKey:kAuthorKey equalTo:self.user];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
         if(!error) {
             self.posts = posts;
@@ -118,9 +119,9 @@
         if(succeeded) {
             User *userA = [User currentUser];
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(userA = %@ AND userB = %@) OR (userA = %@ AND userB = %@)", userA, self.user, self.user, userA];
-            PFQuery *query = [PFQuery queryWithClassName:@"Chat" predicate:predicate];
-            [query includeKey:@"userA"];
-            [query includeKey:@"userB"];
+            PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([Chat class]) predicate:predicate];
+            [query includeKey:kUserAKey];
+            [query includeKey:kUserBKey];
             query.limit = 1;
             [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable chats, NSError * _Nullable error) {
                 if(error) {

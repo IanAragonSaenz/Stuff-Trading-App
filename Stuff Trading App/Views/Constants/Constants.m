@@ -15,3 +15,7 @@ NSString *const kCoordinateKey = @"coordinate";
 NSString *const kCreatedAtKey = @"createdAt";
 NSString *const kTitleKey = @"title";
 NSString *const kPin = @"pin";
+NSString *const kUserAKey = @"userA";
+NSString *const kUserBKey = @"userB";
+NSString *const kChatKey = @"chat";
+NSString *const kSenderKey = @"sender";

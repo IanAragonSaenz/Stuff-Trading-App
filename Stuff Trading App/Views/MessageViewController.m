@@ -11,6 +11,7 @@
 #import "UIScrollView+EmptyDataSet.h"
 #import "UIAlertController+Utils.h"
 #import "UIImage+Utils.h"
+#import "Constants.h"
 
 @interface MessageViewController () <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate>
 
@@ -58,10 +59,10 @@
 #pragma mark - Fetch Messages
 
 - (void)fetchMessages {
-    PFQuery *query = [PFQuery queryWithClassName:@"Message"];
-    [query includeKey:@"sender"];
-    [query whereKey:@"chat" equalTo:self.chat];
-    [query orderByAscending:@"createdAt"];
+    PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([Message class])];
+    [query includeKey:kSenderKey];
+    [query whereKey:kChatKey equalTo:self.chat];
+    [query orderByAscending:kCreatedAtKey];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable messages, NSError * _Nullable error) {
         if(error){
             NSLog(@"error loading messages: %@", error.localizedDescription);
