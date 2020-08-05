@@ -129,6 +129,8 @@
                 } else if(chats.count > 0) {
                     Chat *chat = chats[0];
                     [self performSegueWithIdentifier:@"messageSegue" sender:chat];
+                } else {
+                    [self messageUser:nil];
                 }
             }];
         } else {

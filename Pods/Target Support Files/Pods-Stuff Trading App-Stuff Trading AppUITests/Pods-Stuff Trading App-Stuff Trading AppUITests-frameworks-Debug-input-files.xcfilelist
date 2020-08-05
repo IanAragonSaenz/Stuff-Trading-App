@@ -1,4 +1,5 @@
 ${PODS_ROOT}/Target Support Files/Pods-Stuff Trading App-Stuff Trading AppUITests/Pods-Stuff Trading App-Stuff Trading AppUITests-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Bolts-Swift/BoltsSwift.framework
 ${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework
 ${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework
 ${BUILT_PRODUCTS_DIR}/DateTools/DateTools.framework
@@ -6,3 +7,5 @@ ${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework
 ${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework
 ${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework
 ${BUILT_PRODUCTS_DIR}/Parse/Parse.framework
+${BUILT_PRODUCTS_DIR}/ParseLiveQuery/ParseLiveQuery.framework
+${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework
