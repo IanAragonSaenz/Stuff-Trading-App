@@ -9,6 +9,9 @@ target 'Stuff Trading App' do
   pod 'Parse'
   pod 'DateTools'
   pod 'IQKeyboardManager'
+  pod 'Parse/FacebookUtils'
+  pod 'DZNEmptyDataSet'
+  pod 'ParseLiveQuery'
 
   target 'Stuff Trading AppTests' do
     inherit! :search_paths

@@ -12,6 +12,8 @@
 #import "Chat.h"
 #import "MessageViewController.h"
 #import "UIAlertController+Utils.h"
+#import "UIImage+Utils.h"
+#import "Constants.h"
 
 @interface UserViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
@@ -38,7 +40,7 @@
     layout.minimumInteritemSpacing = 2;
     layout.minimumLineSpacing = 2;
     CGFloat posters = 2.0;
-    CGFloat itemWidth = (self.collectionView.frame.size.width - layout.minimumInteritemSpacing * (layout.minimumLineSpacing)) / posters;
+    CGFloat itemWidth = (self.view.frame.size.width - layout.minimumInteritemSpacing * (layout.minimumLineSpacing)) / posters;
     CGFloat itemHeight = itemWidth;
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
     
@@ -60,8 +62,8 @@
         [self.takePhotoImage setUserInteractionEnabled:NO];
     }
     
-    self.title = self.user.username;
-    self.usernameLabel.text = self.user.username;
+    self.title = self.user.name;
+    self.usernameLabel.text = self.user.name;
     self.userDescription.text = self.user.userDescription;
     [self.user.image getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
         if(!error)
@@ -75,9 +77,11 @@
 #pragma mark - Fetching of Posts
 
 - (void)fetchposts {
-    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    [query includeKey:@"author"];
-    [query whereKey:@"author" equalTo:self.user];
+    PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([Post class])];
+    [query includeKey:kAuthorKey];
+    [query includeKey:kLocationKey];
+    [query includeKey:kSectionKey];
+    [query whereKey:kAuthorKey equalTo:self.user];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
         if(!error) {
             self.posts = posts;
@@ -111,19 +115,26 @@
 #pragma mark - Message
 
 - (IBAction)messageUser:(id)sender {
-    [Chat createChatWithUser:self.user];
-    User *userA = [User currentUser];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(userA = %@ AND userB = %@) OR (userA = %@ AND userB = %@)", userA, self.user, self.user, userA];
-    PFQuery *query = [PFQuery queryWithClassName:@"Chat" predicate:predicate];
-    [query includeKey:@"userA"];
-    [query includeKey:@"userB"];
-    query.limit = 1;
-    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable chats, NSError * _Nullable error) {
-        if(error) {
-            NSLog(@"Error loading chat: %@", error.localizedDescription);
-        } else if(chats.count > 0) {
-            Chat *chat = chats[0];
-            [self performSegueWithIdentifier:@"messageSegue" sender:chat];
+    [Chat createChatWithUser:self.user withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        if(succeeded) {
+            User *userA = [User currentUser];
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(userA = %@ AND userB = %@) OR (userA = %@ AND userB = %@)", userA, self.user, self.user, userA];
+            PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([Chat class]) predicate:predicate];
+            [query includeKey:kUserAKey];
+            [query includeKey:kUserBKey];
+            query.limit = 1;
+            [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable chats, NSError * _Nullable error) {
+                if(error) {
+                    NSLog(@"Error loading chat: %@", error.localizedDescription);
+                } else if(chats.count > 0) {
+                    Chat *chat = chats[0];
+                    [self performSegueWithIdentifier:@"messageSegue" sender:chat];
+                } else {
+                    [self messageUser:nil];
+                }
+            }];
+        } else {
+            NSLog(@"Error when finding chat: %@", error.localizedDescription);
         }
     }];
 }
@@ -134,54 +145,27 @@
     UIImagePickerController *imagePC = [UIImagePickerController new];
     imagePC.delegate = self;
     imagePC.allowsEditing = YES;
-    
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Choose Media" message:@"Choose camera vs photo library" preferredStyle:(UIAlertControllerStyleActionSheet)];
-    UIAlertAction *camera = [UIAlertAction actionWithTitle:@"Camera" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+    UIAlertController *alert = [UIAlertController takePictureAlert:^(int finished, NSString *_Nullable error) {
+        if(finished == 1) {
             imagePC.sourceType = UIImagePickerControllerSourceTypeCamera;
             [self presentViewController:imagePC animated:YES completion:nil];
-        } else {
-            [UIAlertController sendError:@"Camera source not found" onView:self];
-        }
-    }];
-    [alert addAction:camera];
-    
-    UIAlertAction *photoLibrary = [UIAlertAction actionWithTitle:@"Photo Library" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+        } else if(finished == 2) {
             imagePC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
             [self presentViewController:imagePC animated:YES completion:nil];
-        } else {
-            [UIAlertController sendError:@"Photo library source not found" onView:self];
+        } else if(finished == 0) {
+            UIAlertController *errorAlert = [UIAlertController sendError:error];
+            [self presentViewController:errorAlert animated:YES completion:nil];
+            return;
         }
     }];
-    [alert addAction:photoLibrary];
-    
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-    [alert addAction:cancel];
-    
     [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
-    self.userImage.image = [self resizeImage:originalImage withSize:CGSizeMake(325, 325)];
+    self.userImage.image = [UIImage resizeImage:originalImage withSize:CGSizeMake(325, 325)];
     [User setProfilePic:self.userImage.image];
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-#pragma mark - Sizing Image
-
-- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
-    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
-    
-    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
-    resizeImageView.image = image;
-    
-    UIGraphicsBeginImageContext(size);
-    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
 }
 
 #pragma mark - Navigation

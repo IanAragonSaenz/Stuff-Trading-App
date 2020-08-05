@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) User *userB;
 @property (strong, nonatomic) NSString *latestMessage;
 
-+ (void)createChatWithUser:(User *)user;
++ (void)createChatWithUser:(User *)user withCompletion:(PFBooleanResultBlock)completion;
 
 @end
 

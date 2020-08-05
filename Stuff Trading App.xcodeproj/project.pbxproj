@@ -21,12 +21,13 @@
 		D15A1EE724C8DD2400935AC7 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = D15A1EE624C8DD2400935AC7 /* Location.m */; };
 		D15A1EEA24C8E15F00935AC7 /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = D15A1EE924C8E15F00935AC7 /* Section.m */; };
 		D15A1EED24CA206000935AC7 /* SectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D15A1EEC24CA206000935AC7 /* SectionCell.m */; };
-		D15A1EF024CB32A200935AC7 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D15A1EEF24CB32A200935AC7 /* SettingsViewController.m */; };
 		D15A1EF724CB9E2700935AC7 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D15A1EF624CB9E2700935AC7 /* RootViewController.m */; };
 		D15A1EFA24CB9E4100935AC7 /* BasePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D15A1EF924CB9E4100935AC7 /* BasePageViewController.m */; };
 		D15A1EFD24CF2D7900935AC7 /* FeedMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D15A1EFC24CF2D7900935AC7 /* FeedMapViewController.m */; };
 		D15A1F0124CF7A3A00935AC7 /* PostAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = D15A1F0024CF7A3A00935AC7 /* PostAnnotation.m */; };
 		D15A1F0724CF8E9200935AC7 /* PostPinAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D15A1F0624CF8E9200935AC7 /* PostPinAnnotationView.m */; };
+		D17B2CB724D224430071889D /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = D17B2CB624D224430071889D /* UIImage+Utils.m */; };
+		D17B2CBE24D87D2B0071889D /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = D17B2CBD24D87D2B0071889D /* Constants.m */; };
 		D1CD139324BB9A5500913AE7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD139224BB9A5500913AE7 /* AppDelegate.m */; };
 		D1CD139624BB9A5500913AE7 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD139524BB9A5500913AE7 /* SceneDelegate.m */; };
 		D1CD139924BB9A5500913AE7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CD139824BB9A5500913AE7 /* ViewController.m */; };
@@ -102,8 +103,6 @@
 		D15A1EE924C8E15F00935AC7 /* Section.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Section.m; sourceTree = "<group>"; };
 		D15A1EEB24CA206000935AC7 /* SectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SectionCell.h; sourceTree = "<group>"; };
 		D15A1EEC24CA206000935AC7 /* SectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SectionCell.m; sourceTree = "<group>"; };
-		D15A1EEE24CB32A200935AC7 /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
-		D15A1EEF24CB32A200935AC7 /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		D15A1EF524CB9E2700935AC7 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		D15A1EF624CB9E2700935AC7 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		D15A1EF824CB9E4100935AC7 /* BasePageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BasePageViewController.h; sourceTree = "<group>"; };
@@ -114,6 +113,10 @@
 		D15A1F0024CF7A3A00935AC7 /* PostAnnotation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostAnnotation.m; sourceTree = "<group>"; };
 		D15A1F0524CF8E9200935AC7 /* PostPinAnnotationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostPinAnnotationView.h; sourceTree = "<group>"; };
 		D15A1F0624CF8E9200935AC7 /* PostPinAnnotationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostPinAnnotationView.m; sourceTree = "<group>"; };
+		D17B2CB524D224430071889D /* UIImage+Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utils.h"; sourceTree = "<group>"; };
+		D17B2CB624D224430071889D /* UIImage+Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utils.m"; sourceTree = "<group>"; };
+		D17B2CBB24D87BE40071889D /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		D17B2CBD24D87D2B0071889D /* Constants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		D1CD138E24BB9A5500913AE7 /* Stuff Trading App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stuff Trading App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1CD139124BB9A5500913AE7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D1CD139224BB9A5500913AE7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -199,6 +202,8 @@
 			children = (
 				D132DB3F24C21FC2002A9501 /* UIAlertController+Utils.h */,
 				D132DB4024C21FC2002A9501 /* UIAlertController+Utils.m */,
+				D17B2CB524D224430071889D /* UIImage+Utils.h */,
+				D17B2CB624D224430071889D /* UIImage+Utils.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -236,6 +241,15 @@
 				D15A1F0624CF8E9200935AC7 /* PostPinAnnotationView.m */,
 			);
 			path = postAnnotation;
+			sourceTree = "<group>";
+		};
+		D17B2CB824D87B850071889D /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				D17B2CBB24D87BE40071889D /* Constants.h */,
+				D17B2CBD24D87D2B0071889D /* Constants.m */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		D1CD138524BB9A5500913AE7 = {
@@ -305,6 +319,7 @@
 		D1CD13C624BCCFD400913AE7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D17B2CB824D87B850071889D /* Constants */,
 				D15A1EF424CB920C00935AC7 /* ContentViewController */,
 				D1CD13C924BCCFFD00913AE7 /* LoginViewController.h */,
 				D1CD13CA24BCCFFD00913AE7 /* LoginViewController.m */,
@@ -322,8 +337,6 @@
 				D132DB3624C0E951002A9501 /* ChatViewController.m */,
 				D132DB4424C60E62002A9501 /* MapViewController.h */,
 				D132DB4524C60E62002A9501 /* MapViewController.m */,
-				D15A1EEE24CB32A200935AC7 /* SettingsViewController.h */,
-				D15A1EEF24CB32A200935AC7 /* SettingsViewController.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -618,14 +631,15 @@
 				D1CD13DB24BD0C4300913AE7 /* User.m in Sources */,
 				D1CD139924BB9A5500913AE7 /* ViewController.m in Sources */,
 				D132DB3724C0E951002A9501 /* ChatViewController.m in Sources */,
-				D15A1EF024CB32A200935AC7 /* SettingsViewController.m in Sources */,
 				D1CD13D824BCFB8F00913AE7 /* ComposePostViewController.m in Sources */,
 				D132DB2E24C0A87A002A9501 /* Chat.m in Sources */,
 				D1CD139324BB9A5500913AE7 /* AppDelegate.m in Sources */,
 				D15A1EEA24C8E15F00935AC7 /* Section.m in Sources */,
+				D17B2CB724D224430071889D /* UIImage+Utils.m in Sources */,
 				D1CD13A424BB9A5700913AE7 /* main.m in Sources */,
 				D132DB4D24C62F93002A9501 /* LocationSearchTableViewController.m in Sources */,
 				D132DB3124C0BBE3002A9501 /* MessageViewController.m in Sources */,
+				D17B2CBE24D87D2B0071889D /* Constants.m in Sources */,
 				D1CD13E124BE1C3D00913AE7 /* ProfilePostCollectionCell.m in Sources */,
 				D1CD139624BB9A5500913AE7 /* SceneDelegate.m in Sources */,
 				D1CD13D124BCEA1C00913AE7 /* PostCell.m in Sources */,

@@ -22,13 +22,13 @@
 
 #pragma mark - Create Chat
 
-+ (void)createChatWithUser:(User *)user {
++ (void)createChatWithUser:(User *)user withCompletion:(PFBooleanResultBlock)completion {
     User *userA = [User currentUser];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(userA = %@ AND userB = %@) OR (userA = %@ AND userB = %@)", userA, user, user, userA];
     PFQuery *query = [PFQuery queryWithClassName:@"Chat" predicate:predicate];
     [query countObjectsInBackgroundWithBlock:^(int number, NSError * _Nullable error) {
         if(error){
-            NSLog(@"Error when finding chat: %@", error.localizedDescription);
+            completion(NO, error);
         } else {
             if(number == 0){
                 Chat *chat = [Chat new];
@@ -36,6 +36,7 @@
                 chat.userB = user;
                 [chat saveInBackground];
             }
+            completion(YES, nil);
         }
     }];
 }

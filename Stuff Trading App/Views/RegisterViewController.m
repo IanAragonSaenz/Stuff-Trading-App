@@ -10,6 +10,7 @@
 #import "User.h"
 #import "SceneDelegate.h"
 #import "UIAlertController+Utils.h"
+#import "UIImage+Utils.h"
 
 @interface RegisterViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate>
 
@@ -39,54 +40,26 @@
     UIImagePickerController *imagePC = [UIImagePickerController new];
     imagePC.delegate = self;
     imagePC.allowsEditing = YES;
-    
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Choose Media" message:@"Choose camera vs photo library" preferredStyle:(UIAlertControllerStyleActionSheet)];
-    UIAlertAction *camera = [UIAlertAction actionWithTitle:@"Camera" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+    UIAlertController *alert = [UIAlertController takePictureAlert:^(int finished, NSString *_Nullable error) {
+        if(finished == 1) {
             imagePC.sourceType = UIImagePickerControllerSourceTypeCamera;
             [self presentViewController:imagePC animated:YES completion:nil];
-        } else {
-            [UIAlertController sendError:@"Camera source not found" onView:self];
-        }
-    }];
-    [alert addAction:camera];
-    
-    UIAlertAction *photoLibrary = [UIAlertAction actionWithTitle:@"Photo Library" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+        } else if(finished == 2) {
             imagePC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
             [self presentViewController:imagePC animated:YES completion:nil];
-        } else {
-            [UIAlertController sendError:@"Photo library source not found" onView:self];
+        } else if(finished == 0) {
+            UIAlertController *errorAlert = [UIAlertController sendError:error];
+            [self presentViewController:errorAlert animated:YES completion:nil];
+            return;
         }
     }];
-    [alert addAction:photoLibrary];
-    
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-    [alert addAction:cancel];
-    
     [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
-    
-    self.userImage.image = [self resizeImage:originalImage withSize:(CGSizeMake(325, 325))];
+    self.userImage.image = [UIImage resizeImage:originalImage withSize:(CGSizeMake(325, 325))];
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-#pragma mark - Sizing Image
-
-- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
-    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
-    
-    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
-    resizeImageView.image = image;
-    
-    UIGraphicsBeginImageContext(size);
-    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
 }
 
 #pragma mark - Cancel
@@ -106,7 +79,8 @@
     
     [User signUpUser:self.userImage.image username:self.username.text password:self.password.text description:self.userDescription.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if(error){
-            [UIAlertController sendError:error.localizedDescription onView:self];
+            UIAlertController *alert = [UIAlertController sendError:error.localizedDescription];
+            [self presentViewController:alert animated:YES completion:nil];
         } else {
             [self performSegueWithIdentifier:@"loginSegue" sender:nil];
         }
@@ -117,11 +91,12 @@
 
 - (BOOL)isEmpty:(NSString *)username password:(NSString *)password {
     if([username isEqualToString:@""]) {
-        [UIAlertController sendError:@"Username is empty" onView:self];
+        UIAlertController *alert = [UIAlertController sendError:@"Username is empty"];
+        [self presentViewController:alert animated:YES completion:nil];
         return YES;
     } else if([password isEqualToString:@""]) {
-        [UIAlertController sendError:@"Password is empty" onView:self];
-        return YES;
+        UIAlertController *alert = [UIAlertController sendError:@"Password is empty"];
+        [self presentViewController:alert animated:YES completion:nil];
     }
     return NO;
 }

@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) Section *section;
 @property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UIImageView *checkmarkImage;
 
 @end
 
@@ -26,11 +27,23 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+    if(selected) {
+        [self setCheckmark];
+    }
 }
 
 - (void)setCell:(Section *)section {
     _section = section;
     self.name.text = section.name;
+    [self.checkmarkImage setHidden:YES];
+}
+
+- (void)setCheckmark {
+    if([self.checkmarkImage isHidden]) {
+        [self.checkmarkImage setHidden:NO];
+    } else {
+        [self.checkmarkImage setHidden:YES];
+    }
 }
 
 @end

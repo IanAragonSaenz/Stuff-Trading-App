@@ -9,8 +9,11 @@
 #import "DetailPostViewController.h"
 #import "UserViewController.h"
 @import MapKit;
+#import "UIImage+Utils.h"
+#import "Constants.h"
 
-static NSString *const pin = @"pin";
+static const CGFloat carSize = 36.0;
+
 
 @interface DetailPostViewController ()
 
@@ -31,7 +34,7 @@ static NSString *const pin = @"pin";
     self.mapView.delegate = self;
     
     //setting post info
-    self.username.text = self.post.author.username;
+    self.username.text = self.post.author.name;
     self.titleLabel.text = self.post.title;
     self.postDescription.text = self.post.desc;
     [self.post.author.image getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
@@ -66,9 +69,9 @@ static NSString *const pin = @"pin";
         return nil;
     }
     
-    MKPinAnnotationView *pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pin];
+    MKPinAnnotationView *pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:kPin];
     if(pinView == nil) {
-        pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pin];
+        pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:kPin];
         pinView.enabled = YES;
         pinView.canShowCallout = YES;
         pinView.tintColor = [UIColor orangeColor];
@@ -76,8 +79,8 @@ static NSString *const pin = @"pin";
         pinView.annotation = annotation;
     }
     
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 48, 48)];
-    [button setBackgroundImage:[UIImage imageNamed:@"icon-car"]
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, carSize, carSize)];
+    [button setBackgroundImage:[UIImage iconCar]
                       forState:UIControlStateNormal];
     [button addTarget:self action:@selector(getDirections) forControlEvents:UIControlEventTouchUpInside];
     pinView.leftCalloutAccessoryView = button;

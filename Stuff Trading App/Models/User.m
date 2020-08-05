@@ -7,10 +7,12 @@
 //
 
 #import "User.h"
+#import "UIImage+Utils.h"
 
 @implementation User
 
 @dynamic image;
+@dynamic name;
 @dynamic userDescription;
 
 + (User *)user {
@@ -21,6 +23,7 @@
 
 + (void)signUpUser:(UIImage *)image username:(NSString *)username password:(NSString *)password description:(NSString *)description withCompletion:(PFBooleanResultBlock _Nullable)completion {
     User *user = [User user];
+    user.name = username;
     user.username = username;
     user.password = password;
     user.image = [self getPFFileFromImage:image];
@@ -53,6 +56,44 @@
             NSLog(@"pfile pic failed: %@", error.localizedDescription);
         }
     }];
+}
+
+#pragma mark - Facebook
+
++ (void)linkUser {
+    [PFFacebookUtils linkUserInBackground:[User currentUser] withReadPermissions:nil block:^(BOOL succeeded, NSError *error) {
+          if (succeeded) {
+              NSLog(@"Woohoo, user is linked with Facebook!");
+          }
+    }];
+}
+
++ (void)setFacebookInfo:(PFBooleanResultBlock)completion {
+    //creates parameters for info request
+    NSMutableDictionary* parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:@"id,name,email,picture" forKey:@"fields"];
+
+    [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:parameters] startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+         if (!error) {
+             //gets profile image
+             NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=large", result[@"id"]]];
+             NSData  *data = [NSData dataWithContentsOfURL:url];
+             UIImage *image = [UIImage imageWithData:data];
+             image = [UIImage resizeImage:image withSize:CGSizeMake(325, 325)];
+             NSString *username = result[@"name"];
+             
+             User *user = [User currentUser];
+             user.name = username;
+             user.image = [self getPFFileFromImage:image];
+             user.userDescription = @"New Facebook user";
+             [user saveInBackground];
+             
+             [User linkUser];
+             completion(YES, nil);
+         } else {
+             completion(NO, error);
+         }
+     }];
 }
 
 #pragma mark - Get PFFile from Image

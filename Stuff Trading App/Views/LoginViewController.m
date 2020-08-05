@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "User.h"
 #import "UIAlertController+Utils.h"
+#import <PFFacebookUtils.h>
 
 @interface LoginViewController ()
 
@@ -33,7 +34,8 @@
     
     [User logInWithUsernameInBackground:self.usernameText.text password:self.passwordText.text block:^(PFUser * _Nullable user, NSError * _Nullable error) {
         if(error) {
-            [UIAlertController sendError:error.localizedDescription onView:self];
+            UIAlertController *alert = [UIAlertController sendError:error.localizedDescription];
+            [self presentViewController:alert animated:YES completion:nil];
         } else {
             [self performSegueWithIdentifier:@"loginSegue" sender:nil];
         }
@@ -48,23 +50,48 @@
 
 - (BOOL)isEmpty:(NSString *)username password:(NSString *)password {
     if([username isEqualToString:@""]) {
-        [UIAlertController sendError:@"Username is empty" onView:self];
+        UIAlertController *alert = [UIAlertController sendError:@"Username is empty"];
+        [self presentViewController:alert animated:YES completion:nil];
         return YES;
     } else if([password isEqualToString:@""]) {
-        [UIAlertController sendError:@"Password is empty" onView:self];
+        UIAlertController *alert = [UIAlertController sendError:@"Password is empty"];
+        [self presentViewController:alert animated:YES completion:nil];
         return YES;
     }
     return NO;
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - Facebook Login
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)facebookLogin:(id)sender {
+    [PFFacebookUtils logInInBackgroundWithReadPermissions:@[@"email", @"public_profile"] block:^(PFUser *user, NSError *error) {
+        if(error) {
+            UIAlertController *alert = [UIAlertController sendError:error.localizedDescription];
+            [self presentViewController:alert animated:YES completion:nil];
+        } else if (!user) {
+          NSLog(@"Uh oh. The user cancelled the Facebook login.");
+        } else if (user.isNew) {
+          NSLog(@"User signed up and logged in through Facebook!");
+          [User setFacebookInfo:^(BOOL succeeded, NSError * _Nullable error) {
+              if(succeeded) {
+                  [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+              }
+          }];
+        } else {
+          NSLog(@"User logged in through Facebook!");
+          [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+        }
+    }];
 }
-*/
+
+/*
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

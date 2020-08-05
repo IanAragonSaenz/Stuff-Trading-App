@@ -11,8 +11,7 @@
 #import "PostAnnotation.h"
 #import "PostPinAnnotationView.h"
 #import "DetailPostViewController.h"
-
-static NSString *const pin = @"pin";
+#import "Constants.h"
 
 @interface FeedMapViewController ()
 
@@ -47,13 +46,13 @@ static NSString *const pin = @"pin";
 #pragma mark - Fetch Posts
 
 - (void)fetchPosts {
-    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    [query includeKey:@"location"];
-    [query includeKey:@"section"];
-    [query includeKey:@"author"];
-    PFQuery *location = [PFQuery queryWithClassName:@"Location"];
-    [location whereKey:@"coordinate" nearGeoPoint:[PFGeoPoint geoPointWithLocation:self.locationManager.location] withinKilometers:100.0];
-    [query whereKey:@"location" matchesQuery:location];
+    PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([Post class])];
+    [query includeKey:kLocationKey];
+    [query includeKey:kSectionKey];
+    [query includeKey:kAuthorKey];
+    PFQuery *location = [PFQuery queryWithClassName:NSStringFromClass([Location class])];
+    [location whereKey:kCoordinateKey nearGeoPoint:[PFGeoPoint geoPointWithLocation:self.locationManager.location] withinKilometers:100.0];
+    [query whereKey:kLocationKey matchesQuery:location];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
         if(error) {
             NSLog(@"error getting post locations: %@", error.localizedDescription);
@@ -99,9 +98,9 @@ static NSString *const pin = @"pin";
         return nil;
     }
     
-    MKPinAnnotationView *pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pin];
+    MKPinAnnotationView *pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:kPin];
     if(pinView == nil) {
-        pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pin];
+        pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:kPin];
         pinView.enabled = YES;
         pinView.canShowCallout = YES;
         pinView.tintColor = [UIColor orangeColor];

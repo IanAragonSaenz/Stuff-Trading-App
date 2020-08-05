@@ -37,7 +37,7 @@
 
 - (void)setPost:(Post *)post {
     _post = post;
-    self.usernameText.text = post.author.username;
+    self.usernameText.text = post.author.name;
     self.titleText.text = post.title;
     self.descriptionText.text = post.desc;
     [post.image getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {

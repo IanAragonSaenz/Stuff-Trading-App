@@ -31,10 +31,10 @@
 #pragma mark - Set Cell
 
 - (void)setCell:(Chat *)chat {
-    if(chat.userA.username == [User currentUser].username) {
-        self.username.text = chat.userB.username;
+    if([chat.userA.username isEqual:[User currentUser].username]) {
+        self.username.text = chat.userB.name;
     } else {
-        self.username.text = chat.userA.username;
+        self.username.text = chat.userA.name;
     }
     self.latestMessage.text = chat.latestMessage;
 }
