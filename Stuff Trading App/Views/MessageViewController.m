@@ -75,12 +75,7 @@ static const CGFloat kMessageTextOriginalHeight = 33.0;
         } else if(messages){
             self.messages = messages;
             [self.tableView reloadData];
-            NSUInteger rows = [self tableView:self.tableView numberOfRowsInSection:0];
-            NSUInteger items = (rows > 0)? rows-1: 0;
-            if(items) {
-                NSIndexPath *index = [NSIndexPath indexPathForItem:items inSection:0];
-                [self.tableView scrollToRowAtIndexPath:index atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-            }
+            [self scrollToBottom];
         }
         [self.activityIndicator stopAnimating];
     }];
@@ -91,17 +86,26 @@ static const CGFloat kMessageTextOriginalHeight = 33.0;
     [query includeKey:kSenderKey];
     [query whereKey:kChatKey equalTo:self.chat];
     [query orderByAscending:kCreatedAtKey];
-    __weak typeof(self) weakSelf = self;
     self.subscription = [self.client subscribeToQuery:query];
     self.subscription = [self.subscription addCreateHandler:^(PFQuery<PFObject *> * _Nonnull queried, PFObject * _Nonnull message) {
-        __weak typeof(self) strongSelf = weakSelf;
-        Message *mess = (Message *)message;
-        [mess.sender fetchIfNeeded];
-        strongSelf.messages = [strongSelf.messages arrayByAddingObject:mess];
-        [strongSelf.tableView reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            Message *mess = (Message *)message;
+            [mess.sender fetchIfNeeded];
+            self.messages = [self.messages arrayByAddingObject:mess];
+            [self.tableView reloadData];
+            [self scrollToBottom];
+        });
     }];
 }
 
+- (void)scrollToBottom {
+    NSUInteger rows = [self tableView:self.tableView numberOfRowsInSection:0];
+    NSUInteger items = (rows > 0)? rows-1: 0;
+    if(items) {
+        NSIndexPath *index = [NSIndexPath indexPathForItem:items inSection:0];
+        [self.tableView scrollToRowAtIndexPath:index atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    }
+}
 #pragma mark - Table View Data Source
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
