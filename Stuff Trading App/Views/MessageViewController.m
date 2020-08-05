@@ -27,6 +27,8 @@
 
 @end
 
+static const CGFloat kMessageTextOriginalHeight = 33.0;
+
 @implementation MessageViewController
 
 - (void)viewDidLoad {
@@ -51,7 +53,6 @@
     [self.tabBarController.tabBar setHidden:YES];
     [self.activityIndicator startAnimating];
     
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(reloadD) userInfo:nil repeats:YES];
     [self fetchMessages];
     [self subscribeToMessages];
 }
@@ -59,10 +60,6 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [self.navigationController.toolbar setHidden:NO];
     [self.tabBarController.tabBar setHidden:NO];
-}
-
-- (void)reloadD {
-    [self.tableView reloadData];
 }
 
 #pragma mark - Fetch Messages
@@ -97,9 +94,11 @@
     __weak typeof(self) weakSelf = self;
     self.subscription = [self.client subscribeToQuery:query];
     self.subscription = [self.subscription addCreateHandler:^(PFQuery<PFObject *> * _Nonnull queried, PFObject * _Nonnull message) {
+        __weak typeof(self) strongSelf = weakSelf;
         Message *mess = (Message *)message;
         [mess.sender fetchIfNeeded];
-        weakSelf.messages = [weakSelf.messages arrayByAddingObject:mess];
+        strongSelf.messages = [strongSelf.messages arrayByAddingObject:mess];
+        [strongSelf.tableView reloadData];
     }];
 }
 
@@ -128,6 +127,8 @@
     if(![self.messageText.text isEqualToString:@""]) {
         [Message createMessage:self.messageText.text withImage:self.messageImage inChat:self.chat];
         self.messageText.text = @"";
+        self.messageTextHeightConstraint.constant = [self.messageText sizeThatFits:CGSizeMake(self.messageText.frame.size.width, kMessageTextOriginalHeight)].height;
+        self.messageImage = nil;
     }
 }
 
@@ -193,6 +194,8 @@
     
     [self.messageText.textStorage insertAttributedString:attrString atIndex:self.messageText.selectedRange.location];
     [self dismissViewControllerAnimated:YES completion:nil];
+    [self.messageText resignFirstResponder];
+    [self textViewDidChange:self.messageText];
 }
 
 - (void)textViewDidChange:(UITextView *)textView {
