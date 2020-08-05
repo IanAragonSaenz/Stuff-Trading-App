@@ -128,6 +128,7 @@ static const CGFloat kMessageTextOriginalHeight = 33.0;
         [Message createMessage:self.messageText.text withImage:self.messageImage inChat:self.chat];
         self.messageText.text = @"";
         self.messageTextHeightConstraint.constant = [self.messageText sizeThatFits:CGSizeMake(self.messageText.frame.size.width, kMessageTextOriginalHeight)].height;
+        self.messageImage = nil;
     }
 }
 
