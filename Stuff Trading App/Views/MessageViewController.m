@@ -12,6 +12,7 @@
 #import "UIAlertController+Utils.h"
 #import "UIImage+Utils.h"
 #import "Constants.h"
+#import <ChameleonFramework/Chameleon.h>
 @import ParseLiveQuery;
 
 @interface MessageViewController () <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate>
@@ -24,6 +25,8 @@
 @property (strong, nonatomic) PFLiveQueryClient *client;
 @property (strong, nonatomic) PFLiveQuerySubscription *subscription;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageTextHeightConstraint;
+@property (weak, nonatomic) IBOutlet UIView *messageTextView;
+
 
 @end
 
@@ -43,6 +46,7 @@ static const CGFloat kMessageTextOriginalHeight = 33.0;
     self.messageText.delegate = self;
     self.messageImage = nil;
     self.messages = [NSArray array];
+    [self.messageTextView setBackgroundColor:[UIColor flatWhiteColor]];
     
     if([self.chat.userA.username isEqual:[User currentUser].username]) {
         self.title = self.chat.userB.name;

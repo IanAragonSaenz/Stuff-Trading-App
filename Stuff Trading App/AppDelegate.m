@@ -10,7 +10,7 @@
 #import <Parse/Parse.h>
 @import FBSDKCoreKit;
 #import <PFFacebookUtils.h>
-
+#import <ChameleonFramework/Chameleon.h>
 
 @interface AppDelegate ()
 
@@ -30,10 +30,21 @@
     [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
     
     UIPageControl *pageControl = [UIPageControl appearance];
-    pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
-    pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
+    pageControl.pageIndicatorTintColor = [UIColor flatWhiteColorDark];
+    pageControl.currentPageIndicatorTintColor =[UIColor flatMintColor];
     pageControl.backgroundColor = [UIColor whiteColor];
     
+    [UINavigationBar.appearance setTintColor:[UIColor flatWhiteColor]];
+    [UINavigationBar.appearance setBarTintColor:[UIColor flatMintColor]];
+    [UINavigationBar.appearance setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor flatWhiteColor]}];
+    
+    [UISegmentedControl.appearance setSelectedSegmentTintColor:[UIColor flatMintColor]];
+    [UISegmentedControl.appearance setBackgroundColor:[UIColor flatWhiteColor]];
+    
+    [UITabBar.appearance setTintColor:[UIColor flatMintColor]];
+    [UITabBar.appearance setBarTintColor:[UIColor flatWhiteColor]];
+    
+    [UIButton.appearance setTintColor:[UIColor flatBlackColor]];
     return YES;
 }
 

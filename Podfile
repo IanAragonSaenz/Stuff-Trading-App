@@ -12,6 +12,7 @@ target 'Stuff Trading App' do
   pod 'Parse/FacebookUtils'
   pod 'DZNEmptyDataSet'
   pod 'ParseLiveQuery'
+  pod 'ChameleonFramework'
 
   target 'Stuff Trading AppTests' do
     inherit! :search_paths
