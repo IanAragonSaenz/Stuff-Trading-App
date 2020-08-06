@@ -74,7 +74,7 @@
             Chat *chat = (Chat *)chatObj;
             [chat.userA fetchIfNeeded];
             [chat.userB fetchIfNeeded];
-            self.chats = [self.chats arrayByAddingObject:chat];
+            [self.chats addObject:chat];
             [self.tableView reloadData];
         });
     }];
