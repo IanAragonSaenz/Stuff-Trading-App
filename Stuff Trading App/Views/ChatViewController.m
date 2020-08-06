@@ -14,12 +14,15 @@
 #import "UIScrollView+EmptyDataSet.h"
 #import "UIImage+Utils.h"
 #import "Constants.h"
+@import ParseLiveQuery;
 
 @interface ChatViewController () <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
-@property (strong, nonatomic) NSArray *chats;
+@property (strong, nonatomic) NSMutableArray *chats;
+@property (strong, nonatomic) PFLiveQueryClient *client;
+@property (strong, nonatomic) PFLiveQuerySubscription *subscription;
 
 @end
 
@@ -33,9 +36,11 @@
     self.tableView.emptyDataSetSource = self;
     self.tableView.emptyDataSetDelegate = self;
     self.tableView.tableFooterView = [UIView new];
+    self.client = [[PFLiveQueryClient alloc] initWithServer:@"wss://stuff-trading-app.back4app.io" applicationId:@"1gHw0yAZF8v8hOLVm24wHP4oB51riILVplibrRPT" clientKey:@"x79NuR0hf7XN0yiJrcX5A9lRe2cW6jxe11MRMTFh"];
     
     [self.activityIndicator startAnimating];
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(fetchChats) userInfo:nil repeats:YES];
+    [self fetchChats];
+    [self subscribeToChat];
 }
 
 #pragma mark - Fetch Chats
@@ -45,14 +50,48 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userA = %@ OR userB = %@", user, user];
     PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([Chat class]) predicate:predicate];
     [query includeKeys:@[kUserAKey, kUserBKey]];
+    [query orderByDescending:kUpdatedAtKey];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable chats, NSError * _Nullable error) {
         if(error) {
             NSLog(@"error loading chats: %@", error.localizedDescription);
         } else {
-            self.chats = chats;
+            self.chats = (NSMutableArray *)chats;
             [self.tableView reloadData];
         }
         [self.activityIndicator stopAnimating];
+    }];
+}
+
+- (void)subscribeToChat {
+    User *user = [User currentUser];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userA = %@ OR userB = %@", user, user];
+    PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([Chat class]) predicate:predicate];
+    [query includeKeys:@[kUserAKey, kUserBKey]];
+    [query orderByDescending:kUpdatedAtKey];
+    self.subscription = [self.client subscribeToQuery:query];
+    self.subscription = [self.subscription addCreateHandler:^(PFQuery<PFObject *> * _Nonnull queried, PFObject * _Nonnull chatObj) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            Chat *chat = (Chat *)chatObj;
+            [chat.userA fetchIfNeeded];
+            [chat.userB fetchIfNeeded];
+            self.chats = [self.chats arrayByAddingObject:chat];
+            [self.tableView reloadData];
+        });
+    }];
+    self.subscription = [self.subscription addUpdateHandler:^(PFQuery<PFObject *> * _Nonnull queried, PFObject * _Nonnull chatUpdate) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            Chat *chat = (Chat *)chatUpdate;
+            [chat.userA fetchIfNeeded];
+            [chat.userB fetchIfNeeded];
+            for(int i = 0; i < self.chats.count; i++) {
+                Chat *chatA = self.chats[i];
+                if([chatA.userA.username isEqual:chat.userA.username] && [chatA.userB.username isEqual:chat.userB.username]) {
+                    [self.chats replaceObjectAtIndex:i withObject:chat];
+                    break;
+                }
+            }
+            [self.tableView reloadData];
+        });
     }];
 }
 
