@@ -21,5 +21,7 @@ extern NSString *const kUserBKey;
 extern NSString *const kChatKey;
 extern NSString *const kSenderKey;
 extern NSString *const kUpdatedAtKey;
-
+extern NSString *const kSubdomain;
+extern NSString *const kAppId;
+extern NSString *const kClientId;
 #endif /* Constants_h */
