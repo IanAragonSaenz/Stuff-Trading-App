@@ -36,7 +36,7 @@
     self.tableView.emptyDataSetSource = self;
     self.tableView.emptyDataSetDelegate = self;
     self.tableView.tableFooterView = [UIView new];
-    self.client = [[PFLiveQueryClient alloc] initWithServer:@"wss://stuff-trading-app.back4app.io" applicationId:@"1gHw0yAZF8v8hOLVm24wHP4oB51riILVplibrRPT" clientKey:@"x79NuR0hf7XN0yiJrcX5A9lRe2cW6jxe11MRMTFh"];
+    self.client = [[PFLiveQueryClient alloc] initWithServer:[NSString stringWithFormat:@"wss://%@.back4app.io", kSubdomain] applicationId:kAppId clientKey:kClientId];
     
     [self.activityIndicator startAnimating];
     [self fetchChats];
@@ -74,7 +74,7 @@
             Chat *chat = (Chat *)chatObj;
             [chat.userA fetchIfNeeded];
             [chat.userB fetchIfNeeded];
-            self.chats = [self.chats arrayByAddingObject:chat];
+            [self.chats addObject:chat];
             [self.tableView reloadData];
         });
     }];
