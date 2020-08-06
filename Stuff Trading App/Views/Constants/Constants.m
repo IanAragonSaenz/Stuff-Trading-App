@@ -20,3 +20,6 @@ NSString *const kUserBKey = @"userB";
 NSString *const kChatKey = @"chat";
 NSString *const kSenderKey = @"sender";
 NSString *const kUpdatedAtKey = @"updatedAt";
+NSString *const kSubdomain = @"stuff-trading-app2";
+NSString *const kAppId = @"AjLGEpC3FVjPNw4lRSINDiz670gGjveYPXdB5lMi";
+NSString *const kClientId = @"OspzmQ2rmbLW66Ulgd71n6nePPyqvpc3Omm8J9TV";
