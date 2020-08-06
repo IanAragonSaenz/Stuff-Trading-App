@@ -19,3 +19,4 @@ NSString *const kUserAKey = @"userA";
 NSString *const kUserBKey = @"userB";
 NSString *const kChatKey = @"chat";
 NSString *const kSenderKey = @"sender";
+NSString *const kUpdatedAtKey = @"updatedAt";

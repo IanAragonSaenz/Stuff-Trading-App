@@ -20,5 +20,6 @@ extern NSString *const kUserAKey;
 extern NSString *const kUserBKey;
 extern NSString *const kChatKey;
 extern NSString *const kSenderKey;
+extern NSString *const kUpdatedAtKey;
 
 #endif /* Constants_h */
