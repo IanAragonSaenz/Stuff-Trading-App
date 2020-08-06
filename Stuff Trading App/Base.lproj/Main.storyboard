@@ -805,6 +805,7 @@
                         <outlet property="activityIndicator" destination="eAd-br-vIz" id="IIv-8P-MJ7"/>
                         <outlet property="messageText" destination="QJW-Wc-HuZ" id="Iar-sd-Tyz"/>
                         <outlet property="messageTextHeightConstraint" destination="hCH-Rw-T1o" id="Q4w-sM-fBz"/>
+                        <outlet property="messageTextView" destination="YdT-a7-aVu" id="DLr-mh-lqn"/>
                         <outlet property="tableView" destination="cdt-GJ-Zfm" id="ZXz-za-Eki"/>
                     </connections>
                 </viewController>
