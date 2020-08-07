@@ -11,6 +11,7 @@
 #import "User.h"
 #import "UIAlertController+Utils.h"
 #import <PFFacebookUtils.h>
+#import <ChameleonFramework/Chameleon.h>
 
 @interface LoginViewController ()
 
@@ -24,6 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.view setBackgroundColor:[UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.view.frame andColors:@[[UIColor flatMintColor], [UIColor flatWhiteColor]]]];
 }
 
 #pragma mark - Sign Up / Login
