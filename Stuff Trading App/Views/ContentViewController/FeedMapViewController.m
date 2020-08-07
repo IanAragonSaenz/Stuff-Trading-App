@@ -12,6 +12,10 @@
 #import "PostPinAnnotationView.h"
 #import "DetailPostViewController.h"
 #import "Constants.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import "User.h"
+#import "SceneDelegate.h"
 
 @interface FeedMapViewController ()
 
@@ -41,6 +45,12 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     self.navItem.title = @"Feed Map";
+    
+    UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logout)];
+    self.navItem.leftBarButtonItem = logoutButton;
+    
+    UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithTitle:@"Share" style:UIBarButtonItemStylePlain target:self action:@selector(share)];
+    self.navItem.rightBarButtonItem = shareButton;
 }
 
 #pragma mark - Fetch Posts
@@ -133,13 +143,34 @@
     [self performSegueWithIdentifier:@"detailSegue" sender:self.selectedPin.annotation.post];
 }
 
+#pragma mark - Logout
+
+- (void)logout {
+    SceneDelegate *sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *loginView = [storyBoard instantiateViewControllerWithIdentifier:@"loginView"];
+    sceneDelegate.window.rootViewController = loginView;
+    
+    if([FBSDKAccessToken currentAccessToken]) {
+        FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
+        [loginManager logOut];
+    }
+    [User logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+        //needs to be open so that current user sets to nil
+    }];
+}
+
+- (void)share {
+    [self performSegueWithIdentifier:@"composePostSegue" sender:nil];
+}
 
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    DetailPostViewController *detailView = [segue destinationViewController];
-    detailView.post = sender;
+    if([segue.identifier isEqualToString:@"detailSegue"]){
+        DetailPostViewController *detailPostView = [segue destinationViewController];
+        detailPostView.post = sender;
+    }
 }
-
 
 @end

@@ -1001,6 +1001,7 @@
                     <connections>
                         <outlet property="mapView" destination="aM7-h1-5OB" id="HSQ-HQ-eqL"/>
                         <segue destination="HNb-q5-TGn" kind="show" identifier="detailSegue" id="tnB-9u-zRI"/>
+                        <segue destination="lnB-H8-OXN" kind="presentation" identifier="composePostSegue" id="MoB-GG-vuF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n0v-vW-6YO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1302,7 +1303,8 @@
     <inferredMetricsTieBreakers>
         <segue reference="Xun-Uz-WdW"/>
         <segue reference="u6y-DR-7R5"/>
-        <segue reference="hUk-dZ-6Zk"/>
+        <segue reference="tnB-9u-zRI"/>
+        <segue reference="MoB-GG-vuF"/>
         <segue reference="9uy-DO-imk"/>
     </inferredMetricsTieBreakers>
     <resources>
