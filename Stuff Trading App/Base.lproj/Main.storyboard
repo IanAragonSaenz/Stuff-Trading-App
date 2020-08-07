@@ -107,6 +107,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="password" destination="INC-cS-eMr" id="iKl-um-CSU"/>
+                        <outlet property="scrollView" destination="5eQ-Aj-NNz" id="NWM-Qg-i6F"/>
                         <outlet property="userDescription" destination="yYx-Bf-i6q" id="AXx-WZ-jvY"/>
                         <outlet property="userImage" destination="Yhn-gK-sYY" id="kr4-0x-jQX"/>
                         <outlet property="username" destination="8QX-Yu-j5j" id="GyU-Gz-ggB"/>
@@ -1302,7 +1303,7 @@
         <segue reference="Xun-Uz-WdW"/>
         <segue reference="u6y-DR-7R5"/>
         <segue reference="hUk-dZ-6Zk"/>
-        <segue reference="KJ6-HT-lny"/>
+        <segue reference="9uy-DO-imk"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="camera" catalog="system" width="128" height="96"/>
