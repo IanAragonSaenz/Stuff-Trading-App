@@ -46,6 +46,7 @@
     [UITabBar.appearance setBarTintColor:[UIColor flatWhiteColor]];
     
     [UIButton.appearance setTintColor:[UIColor flatBlackColor]];
+    [UIImageView.appearance setTintColor:[UIColor flatBlackColor]];
     return YES;
 }
 
