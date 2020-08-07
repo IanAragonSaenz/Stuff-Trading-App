@@ -11,6 +11,7 @@
 #import "SceneDelegate.h"
 #import "UIAlertController+Utils.h"
 #import "UIImage+Utils.h"
+#import <ChameleonFramework/Chameleon.h>
 
 @interface RegisterViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate>
 
@@ -18,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *username;
 @property (weak, nonatomic) IBOutlet UITextField *password;
 @property (weak, nonatomic) IBOutlet UITextView *userDescription;
+@property (weak, nonatomic) IBOutlet UIView *scrollView;
 
 @end
 
@@ -26,6 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.scrollView setBackgroundColor:[UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.scrollView.frame andColors:@[[UIColor flatMintColor], [UIColor flatWhiteColor]]]];
     self.username.delegate = self;
     self.password.delegate = self;
     

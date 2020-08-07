@@ -107,6 +107,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="password" destination="INC-cS-eMr" id="iKl-um-CSU"/>
+                        <outlet property="scrollView" destination="5eQ-Aj-NNz" id="NWM-Qg-i6F"/>
                         <outlet property="userDescription" destination="yYx-Bf-i6q" id="AXx-WZ-jvY"/>
                         <outlet property="userImage" destination="Yhn-gK-sYY" id="kr4-0x-jQX"/>
                         <outlet property="username" destination="8QX-Yu-j5j" id="GyU-Gz-ggB"/>
@@ -161,7 +162,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello There" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JPL-0z-nMi">
                                 <rect key="frame" x="134.66666666666666" y="118" width="144.99999999999997" height="36"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LJ7-MO-33w">
